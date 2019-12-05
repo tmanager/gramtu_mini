@@ -1,0 +1,40 @@
+<!--pages/mine/mine.wxml-->
+<view class="personal_info">
+	<view class="photo_wrap">
+		<image src="{{userInfo.avatarUrl}}" class="photo"></image>
+	</view>
+  <view class="info">
+  	<view class="nickname">
+      {{userInfo.nickName}}
+    </view>
+    <view class="mark">
+      <view><image src="../../images/mark.png"></image></view>
+      <view>积分: {{mark}}</view>
+    </view>
+    <view style='margin-top:10rpx'>
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定</button>
+    </view>
+  </view>
+</view>
+<view class="wode_list">
+  <view>
+    <view>turnin</view>
+    <view>我的查重列表</view>
+  </view>
+  <view>
+    <view>Grmmarian</view>
+    <view>我的语法检测列表</view>
+  </view>
+  <view>
+    <view>积分/优惠码</view>
+    <view>我的优惠码卡券</view>
+  </view>
+</view>
+<view class="wode_item_wrap">
+	<view class="wode_item" wx:for="{{mode}}">
+    <navigator url="{{item.url}}">
+		  <image src="{{item.icon}}" class="wode_icon"></image> {{item.title}}
+		  <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
+    </navigator>
+	</view>
+</view>

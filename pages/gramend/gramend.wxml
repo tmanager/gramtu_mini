@@ -1,0 +1,29 @@
+<!--pages/gram/gram.wxml-->
+<view class='view-back' style='height:{{totalheight}}rpx'>
+  <image src='../../images/gram.png' class='gram-icon'></image>
+  <view class='end-info'>
+    <view>文件：{{filename}}</view>
+    <view>文档大小：{{filesize}}</view>
+    <view>文字总数：{{wordnum}}</view>
+    <view class='hori-line'></view>
+    <view>原始单价：<text style='text-decoration:line-through'>{{price}}元/{{priceword}}字</text></view>
+    <view>当前折扣：{{cdiscount}}</view>
+    <view>当前计费标准：{{currprice}}元/{{priceword}}字</view>
+    <view>应付件数：{{count}}</view>
+    <view>应付总价：￥{{total}}</view>
+    <view class='hori-line'></view>
+    <view>
+      <text>优惠码：</text>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{coupname}}">
+        <view class="tui-picker-detail">{{coupon[index].name}}</view>
+      </picker>
+    </view>
+    <view wx:if="{{couponword != 0}}">
+      <view>对应优惠件数：{{coupcount}}</view>
+      <view>实际付款件数：{{realcount}}</view>
+      <view>实付总价：{{realtotal}}</view>
+    </view>
+    <view class='payment-btn' bindtap='payment'>确认并跳转至微信付款页面</view>
+  </view>
+  
+</view>

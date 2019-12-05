@@ -1,0 +1,73 @@
+<!--index.wxml-->
+<view class="container">
+  <view>
+    <swiper class="tui-swiper" indicator-dots="{{indicatorDots}}" vertical="{{vertical}}"
+              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+              indicator-color="#ccc" indicator-active-color="white">
+      <block wx:for-items="{{banner_url}}">
+        <swiper-item>
+          <block wx:if="{{item}}">
+            <image class="tui-img" src="{{item}}"  mode="scaleToFill "/>
+          </block>
+          <block wx:else>
+            <image src="../../images/ceshi/ad.png" mode="scaleToFill "></image>
+          </block>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='zzfw'>
+    <view class='zzfw-title'>自助服务区</view>
+    <view class='zzfw-content'>
+      <navigator>
+        <view class='zzfw-icon'>turnin</view>
+        <text>turnin国际查重</text>
+      </navigator>
+      <navigator>
+        <view class='zzfw-icon'>turninUK</view>
+        <text>turninUK查重</text>
+      </navigator>
+      <navigator url="../gram/gram">
+        <view class='zzfw-icon'>Grammar</view>
+        <text>Grammarian语法检测</text>
+      </navigator>
+    </view>
+  </view>
+
+  <view class='zzfw' style='height:{{tsHeight}}rpx'>
+    <view class='zzfw-title'>特色服务区</view>
+    <view class='zzfw-content' style='height:{{tsContentHeight}}rpx'>
+      <navigator wx:for-items="{{tsfwList}}">
+        <view class='zzfw-icon'>
+          <image src="{{item.image}}"></image>
+        </view>
+        <text>{{item.title}}</text>
+      </navigator>
+    </view>
+  </view>
+  <view class='zzfw' style='height: 180rpx'>
+    <view class='zzfw-title'><view class='xr-title'>新人专区</view></view>
+    <view class='xrfl'>
+      <navigator>新人福利</navigator>
+      <navigator>成为GramTu会员送免费查重</navigator>
+    </view>
+  </view>
+
+  <view class='zzfw' style='height: 180rpx'>
+    <view class='zzfw-title'>海外招募</view>
+    <view class='xrfl hwzm'>
+      <navigator>招募翻译译员</navigator>
+      <navigator>招募写作编辑</navigator>
+    </view>
+  </view>
+  <view class="tui-list-box">
+    <view class="tui-list-head">推荐阅读</view>
+    <view class="tui-gallery-list" wx:for="{{galleryList}}">
+      <image class="gallery-img tui-fr" src="{{item.image}}"></image>
+      <view class="gallery-box gallery-right">
+        <text class="gallery-name">{{item.title}}</text>
+        <text class="gallery-detail">{{item.read}}阅读</text>
+      </view>
+    </view>
+  </view>
+</view>

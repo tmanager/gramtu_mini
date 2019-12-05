@@ -1,0 +1,128 @@
+/**index.wxss**/
+.tui-swiper {
+  height: 130px;
+  margin: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+.tui-img{
+  height:130px;
+  border-radius: 10rpx;
+}
+
+.zzfw{
+  margin: 20rpx 20rpx;
+  background-color: #FAFAFA;
+  border-radius: 10rpx;
+  height: 370rpx;
+}
+
+.zzfw-title{
+  padding: 20rpx 0rpx 10rpx 30rpx;
+  font-size: 30rpx;
+}
+
+.zzfw-content{
+  margin: 0 20rpx 30rpx 20rpx;
+  border: 2px solid #ddd;
+  height: 270rpx;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: row;
+  font-size: 25rpx;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.zzfw-content > navigator{
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  padding: 20rpx 30rpx 0;
+  box-sizing:border-box;
+  text-align: center;
+}
+
+.zzfw-content > navigator > view{
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 50%;
+  background-color: #2AB572;
+  text-align: center;
+  color:white;
+}
+
+.zzfw-content > navigator > text{
+  margin-top: 20rpx;
+  font-size: 23rpx;
+}
+
+.zzfw-icon{
+  line-height: 150rpx;
+  font-size: 28rpx;
+}
+
+.zzfw-icon image{
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 50%;
+}
+
+.xr-title{
+  background-color:#2AB572;
+  border-radius: 10rpx;
+  width: 120rpx;
+  padding: 10rpx 20rpx;
+  color:white;
+}
+
+.xrfl{
+  display: flex;
+  flex-direction: row;
+  padding:10rpx 20rpx;
+}
+
+
+.xrfl > navigator{
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  box-sizing: border-box;
+  color:white;
+}
+
+.xrfl > navigator:first-child{
+  background-color: #C6BDD2;
+  padding: 20rpx 80rpx;
+  width: 48%;
+  background: linear-gradient(-115deg,transparent 45rpx,#C6BDD2 0) top right;
+  border-radius: 10rpx;
+}
+
+.xrfl > navigator:nth-child(2){
+  background-color: #89C997;
+  padding: 20rpx 0rpx 20rpx 60rpx;
+  width: 60%;
+  background: linear-gradient(65deg,transparent 45rpx,#89C997 0) top right;
+  border-radius: 10rpx;
+  margin-left: -40rpx;
+  font-size: 25rpx;
+}
+
+.hwzm > navigator:first-child{
+  background-color: #F9B552;
+  padding: 20rpx 60rpx;
+  width: 55%;
+  background: linear-gradient(-135deg,transparent 45rpx,#F9B552 0) top right;
+  border-radius: 10rpx;
+}
+
+.hwzm > navigator:nth-child(2){
+  background-color: #F9B552;
+  padding: 20rpx 0rpx 20rpx 100rpx;
+  width: 60%;
+  background: linear-gradient(45deg,transparent 45rpx,#F9B552 0) top right;
+  border-radius: 10rpx;
+  margin-left: -30rpx;
+  font-size: 30rpx;
+}

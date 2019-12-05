@@ -1,0 +1,46 @@
+/* pages/gram/gram.wxss */
+.view-back{
+  margin: 0 20rpx;
+  background-color: #FDFDFD;
+  height: 500rpx;
+  border-radius: 10rpx;
+}
+
+.gram-icon{
+  padding: 20rpx 30rpx;
+  width: 250rpx;
+  height: 100rpx;
+}
+
+.upload-btn{
+  text-align: center;
+}
+
+.upload-btn image{
+  width: 218rpx;
+  height:253rpx;
+}
+
+.gram-sample image{
+  width: 100%;
+}
+
+.file-name{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 160rpx;
+  margin-top: -180rpx;
+  font-size: 20rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.gram-sample view{
+  padding: 0 60rpx;
+  color:#818181;
+}

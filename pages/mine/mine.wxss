@@ -1,0 +1,122 @@
+/* pages/mine/mine.wxss */
+.personal_info {
+	padding: 10px 0;
+	background-color: #1D76D0;
+  display: flex;
+  flex-direction: row;
+}
+
+.personal_info > view{
+  display: flex;
+  flex-direction: column;
+}
+
+.photo_wrap {
+  padding: 0 20rpx;
+  width: 200rpx;
+	text-align: center;
+}
+.info{
+   width: 40%;
+}
+.photo {
+	width: 180rpx;
+	height: 180rpx;
+	border-radius: 50%;
+}
+.nickname {
+	margin-top: 15px;
+	color: #FFF;
+  font-weight:bold;
+}
+.mark{
+  color:white;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10rpx;
+}
+
+.mark > view{
+  display: flex;
+  flex-direction: column;
+}
+.mark image{
+  padding-top: 5rpx;
+  width: 40rpx;
+  height:40rpx;
+  padding-right: 10rpx;
+}
+.wode_item_wrap {
+	background-color: #FFF;
+	font-size: 14px;
+	margin-top: 10px;
+	border-top: 1px solid #E5E5E5;
+}
+.wode_item {
+  height: 90rpx;
+	border-bottom: 1px solid #E5E5E5;
+	padding: 0 10px;
+	line-height: 90rpx;
+	position: relative;
+}
+.arrow_wrap {
+    position: absolute;
+    width: 90rpx;
+    height: 90rpx;
+    right: 0;
+    top: 0;
+}
+
+.arrow_wrap image{
+  width: 17px;
+  height: 14px;
+}
+
+.wode_icon{
+  width: 17px;
+  height: 14px;
+}
+.wode_out {
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	background-color: #FFF;
+	margin-top: 10px;
+	border-bottom: 1px solid #E5E5E5;
+	border-top: 1px solid #E5E5E5;
+}
+
+.wode_list{
+  display: flex;
+  flex-direction: row;
+  padding: 0 20rpx;
+}
+
+.wode_list > view{
+  display: flex;
+  flex-direction: column;
+  width: 180rpx;
+  height: 180rpx;
+  margin: 30rpx;
+  background-color: #1D76D0;
+  border-radius: 50%;
+  color:white;
+  text-align: center;
+  font-size: 21rpx;
+}
+
+.wode_list > view > view:first-child{
+  padding-top: 60rpx;
+  font-size: 26rpx;
+}
+
+button{
+  background-color: rgba(0, 0, 0, 0);
+  line-height: 40rpx;
+  padding: 0;
+  display:inline;
+  color:white;
+  border:0!important;
+  font-weight: normal;
+  text-decoration:underline;
+}

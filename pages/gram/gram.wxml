@@ -1,0 +1,15 @@
+<!--pages/gram/gram.wxml-->
+<view class='view-back'>
+  <image src='../../images/gram.png' class='gram-icon'></image>
+  <view class='upload-btn' wx:if="{{uploadfile == ''}}">
+    <image src="../../images/gram-upload.png" bindtap='choosefilefun'></image>
+  </view>
+  <view class='upload-btn'  wx:if="{{uploadfile != ''}}">
+    <image src="../../images/gram-confirm.png" bindtap='uploadfilefun'></image>
+    <view class='file-name'>{{uploadfile.name}}</view>
+  </view>
+</view>
+<view class="gram-sample">
+  <view>语法报告样例展示：</view>
+  <image src="../../images/gram-sample.jpg" mode="widthFix"></image>
+</view>
