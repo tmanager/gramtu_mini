@@ -1,6 +1,9 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
+var config = require('../../utils/config.js');
+var util = require('../../utils/util.js');
+
 var bannerList = ['../../images/banner_01.jpg', '../../images/banner_02.jpg', '../../images/banner_03.jpg', '../../images/banner_04.jpg'];
 var tsfwList = [
   { title: "Essay修改降重", image: "../../images/ts.png" },
@@ -37,6 +40,20 @@ Page({
     galleryList: galleryList
   },
   onLoad: function () {
-    
+    //获取用户
+    var that= this;
+    var data = { userid: "", username: "", organid: "", currentpage: "", pagesize: "10", startindex: "0", draw: 1 }
+    wx.request({
+      url: config.serverAddress + "userquery",
+      header: {
+        'content-type': 'application/json'
+      },
+      data: util.sendMessageEdit(null, data),
+      method: 'post',
+      success: function (res) {
+        console.info("获取用户信息：")
+        console.log(res.data) //获取openid 
+      }
+    })
   }
 })

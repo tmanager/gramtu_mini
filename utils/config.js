@@ -1,5 +1,5 @@
 var config = {
-  serverAddress: 'https://api.getweapp.com/vendor/huosu/api',
+  serverAddress: 'http://172.16.7.105:8001/gramtu/ac/web/front/',
 }
 
 module.exports = config;
