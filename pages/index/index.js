@@ -16,11 +16,13 @@ var tsfwList = [
 
 var galleryList = [
   {
-    image: '../../images/ts.png',
+    id: 1,
+    coverimage: '../../images/ts.png',
     title: '论文重复率越查越高？知网、万方、维普等查重原理揭晓',
     read: '20378'
   }, {
-    image: '../../images/ts.png',
+    id: 2,
+    coverimage: '../../images/ts.png',
     title: '论文查重前解决这些问题，合格几率将大大增加',
     read: '2022'
   }
@@ -40,19 +42,25 @@ Page({
     galleryList: galleryList
   },
   onLoad: function () {
-    //获取用户
+    //获取文章
     var that= this;
-    var data = { userid: "", username: "", organid: "", currentpage: "", pagesize: "10", startindex: "0", draw: 1 }
+    var data = { title: "", currentpage: "", pagesize: "", startindex: "0", draw: 1 };
     wx.request({
-      url: config.serverAddress + "userquery",
+      url: config.serverAddress + "artquery",
       header: {
         'content-type': 'application/json'
       },
       data: util.sendMessageEdit(null, data),
       method: 'post',
       success: function (res) {
-        console.info("获取用户信息：")
-        console.log(res.data) //获取openid 
+        if(res.status == 200){
+          console.info("获取文章信息：");
+          console.log(res.data) //获取openid
+          if (res.data.retcode === config.SUCCESS)
+          that.setData({
+            galleryList: res.data.response.artlist
+          })
+        }
       }
     })
   }

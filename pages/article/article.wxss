@@ -1,0 +1,19 @@
+/* pages/article/article.wxss */
+.article{
+  margin: 0 30rpx;
+}
+
+.arttitle{
+  font-size: 40rpx;
+}
+
+.arteditor{
+  font-size: 25rpx;
+  color:#ccc;
+  margin-top: 20rpx;
+}
+
+.artcontent{
+  font-size: 30rpx;
+  margin-top: 30rpx;
+}

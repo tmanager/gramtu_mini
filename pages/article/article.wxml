@@ -1,0 +1,6 @@
+<!--pages/article/article.wxml-->
+<view class='article'>
+  <view class='arttitle'>{{title}}</view>
+  <view class='arteditor'>{{editor}}{{time}}</view>
+  <view class='artcontent'>{{content}}</view>
+</view>

@@ -63,11 +63,13 @@
   <view class="tui-list-box">
     <view class="tui-list-head">推荐阅读</view>
     <view class="tui-gallery-list" wx:for="{{galleryList}}">
-      <image class="gallery-img tui-fr" src="{{item.image}}"></image>
-      <view class="gallery-box gallery-right">
-        <text class="gallery-name">{{item.title}}</text>
-        <text class="gallery-detail">{{item.read}}阅读</text>
-      </view>
+      <navigator url="../article/article?id={{item.id}}">
+        <image class="gallery-img tui-fr" src="{{item.coverimage}}"></image>
+        <view class="gallery-box gallery-right">
+          <text class="gallery-name">{{item.title}}</text>
+          <text class="gallery-detail">{{item.read}}阅读</text>
+        </view>
+      </navigator>
     </view>
   </view>
 </view>

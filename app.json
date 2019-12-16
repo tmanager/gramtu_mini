@@ -5,6 +5,7 @@
     "pages/shop/shop",
     "pages/mine/mine",
     "pages/gramend/gramend",
+    "pages/article/article",
     "pages/gram/gram"
   ],
   "window": {

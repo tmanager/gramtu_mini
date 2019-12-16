@@ -1,0 +1,89 @@
+1.获取文章列表
+接口url:/artquery
+送信内容
+{
+	timestamp:	"",			//日期时间
+	token:	"",				//token
+	userid:	"",				//用户id
+	request:{}				//请求信息
+}
+回信内容
+{
+	retcode: "",				//返回码
+	retmsg:	"",				//返回信息
+	response:	{			//回复信息
+    artlist:[
+      {
+        id:"",          //文章id
+        coverimage:"",  //文章封面图
+        title:"",       //文章标题
+        read:""         //阅读数
+      }
+      ....
+    ]
+  }
+}
+2.获取文章详细
+接口url:/artdetail
+送信内容
+{
+	timestamp:	"",			//日期时间
+	token:	"",				//token
+	userid:	"",				//用户id
+	request:{				//请求信息
+    id:""          //文章id
+  }
+}
+回信内容
+{
+	retcode: "",				//返回码
+	retmsg:	"",				//返回信息
+	response:	{			//回复信息
+    id:"",          //文章id
+      title:"",       //文章标题
+      editor:""       //作者
+      time:""         //发表时间
+      content:""      //文章内容
+    ]
+  }
+}
+
+3.文章增加
+接口url:/artadd
+送信内容
+{
+	timestamp:	"",			//日期时间
+	token:	"",				//token
+	userid:	"",				//用户id
+	request:{				  //请求信息
+    title:"",       //文章标题
+    content:""      //文章内容
+    coverimage:""  //文章封面图
+  }
+}
+回信内容
+{
+	retcode: "",				//返回码
+	retmsg:	"",				//返回信息
+	response:	{			//回复信息
+  }
+}
+
+4.文章删除
+接口url:/artdelete
+送信内容
+{
+	timestamp:	"",			//日期时间
+	token:	"",				//token
+	userid:	"",				//用户id
+	request:{				  //请求信息
+    artidlist:[xxxxx,xxxx]  //id列表
+  }
+}
+回信内容
+{
+	retcode: "",				//返回码
+	retmsg:	"",				//返回信息
+	response:	{			//回复信息
+  }
+}
