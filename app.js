@@ -1,4 +1,6 @@
 //app.js
+var config = require('utils/config.js');
+var util = require('utils/util.js');
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -6,19 +8,34 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     // 登录
+    wx.setStorageSync('openid',"");
+    wx.setStorageSync('registre', "0");
+    wx.setStorageSync('mark', "0");
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // TODO:从后台获取openid phonenumber
-        /*wx.request({
-          url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&grant_type=authorization_code&js_code=' + res.code,
+        var data = { code: res.code};
+        wx.request({
+          url: config.serverAddress + 'login',
+          data: util.sendMessageEdit(null, data),
           header: {
             'content-type': 'application/json'
           },
           success: function (res) {
-            console.log(res.data.openid) //获取openid 
+            const self = this
+            if (res.statusCode == 200) {
+              if (res.data.retcode === config.SUCCESS) {
+                var json = JSON.parse(res.data.response)
+                wx.setStorageSync('openid', json.openid);
+                wx.setStorageSync('register', json.registe);
+                wx.setStorageSync('mark', json.mark);
+                if(json.register == 1){
+                  this.getUserInfo();
+                }
+              }
+            }
           }
-        })*/ 
+        }) 
       }
     })
     // 获取用户信息
@@ -26,17 +43,20 @@ App({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
+          
+        }
+      }
+    })
+  },
+  getUserInfo: function(){
+    wx.getUserInfo({
+      success: res => {
+        // 可以将 res 发送给后台解码出 unionId
+        this.globalData.userInfo = res.userInfo
+        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        // 所以此处加入 callback 以防止这种情况
+        if (this.userInfoReadyCallback) {
+          this.userInfoReadyCallback(res)
         }
       }
     })

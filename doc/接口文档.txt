@@ -1,89 +1,122 @@
-1.获取文章列表
-接口url:/artquery
+小程序登录用户：
+接口url:/gramtu/mini/login
 送信内容
 {
 	timestamp:	"",			//日期时间
-	token:	"",				//token
-	userid:	"",				//用户id
-	request:{}				//请求信息
-}
-回信内容
-{
-	retcode: "",				//返回码
-	retmsg:	"",				//返回信息
-	response:	{			//回复信息
-    artlist:[
-      {
-        id:"",          //文章id
-        coverimage:"",  //文章封面图
-        title:"",       //文章标题
-        read:""         //阅读数
-      }
-      ....
-    ]
-  }
-}
-2.获取文章详细
-接口url:/artdetail
-送信内容
-{
-	timestamp:	"",			//日期时间
-	token:	"",				//token
-	userid:	"",				//用户id
-	request:{				//请求信息
-    id:""          //文章id
+	token:	"",				//token（空）
+	userid:	"",				//用户id（空）
+	request:{				  //请求信息
+    code:""         //临时登录凭证
   }
 }
 回信内容
 {
 	retcode: "",				//返回码
-	retmsg:	"",				//返回信息
-	response:	{			//回复信息
-    id:"",          //文章id
-      title:"",       //文章标题
-      editor:""       //作者
-      time:""         //发表时间
-      content:""      //文章内容
+	retmsg:	"",				  //返回信息
+	response:	{			    //回复信息
+    openid:"",
+    register:"",        //是否已注册（注册1，未注册0）
+    mark:""             //积分
+  }
+}
+
+小程序手机号解密：
+接口url:/gramtu/mini/decodephone
+送信内容
+{
+	timestamp:	"",			//日期时间
+	token:	"",				//token（空）
+	userid:	"",				//用户id（空）
+	request:{				  //请求信息
+    encryptedData:"" //加密数据
+    iv:"",           //加密算法的初始向量,
+    openid:""         //openid
+  }
+}
+回信内容
+{
+	retcode: "",				//返回码
+	retmsg:	"",				  //返回信息
+	response:	{			    //回复信息
+    phonenumber:"",   //用户绑定的手机号,
+    purephonenumber:"", //没有区号的手机号,
+    countrycode:""     //区号,
+  }
+}
+
+
+小程序信息保存：
+接口url:/gramtu/mini/userinfo
+送信内容
+{
+	timestamp:	"",			//日期时间
+	token:	"",				//token（空）
+	userid:	"",				//用户id（空）
+	request:{				  //请求信息
+    openid:"",         //openid
+    nickname:"",        //昵称
+    avatar:""           //头像图片
+  }
+}
+回信内容
+{
+	retcode: "",				//返回码
+	retmsg:	"",				  //返回信息
+	response:	{			    //回复信息
+
+  }
+}
+
+小程序首页内容(除文章内容）：
+接口url:/gramtu/mini/index/query
+送信内容
+{
+	timestamp:	"",			//日期时间
+	token:	"",				//token（空）
+	userid:	"",				//用户id（空）
+	request:{				  //请求信息
+  }
+}
+回信内容
+{
+	retcode: "",				//返回码
+	retmsg:	"",				  //返回信息
+	response:	{			    //回复信息
+    adlist:[          //所有广告列表
+      {"adtype":"0","adid":"2","adimage":"","sort":2,innerurl":"","title":"www"}
+    ],
+    servlist:[        //所有特色服务列表
+      {"servid":"","servimage":"","servname":"","servlink":"","servtype":"1","sort":2}
+    ],
+    abroadlist:[      //所有海外招募列表
+      {"abroadid":"","title":""}
+    ],
+    newbornlist:[      //所有新人专区列表
+      {"newbornid":"","title":""}
     ]
   }
 }
 
-3.文章增加
-接口url:/artadd
-送信内容
-{
-	timestamp:	"",			//日期时间
-	token:	"",				//token
-	userid:	"",				//用户id
-	request:{				  //请求信息
-    title:"",       //文章标题
-    content:""      //文章内容
-    coverimage:""  //文章封面图
-  }
-}
-回信内容
-{
-	retcode: "",				//返回码
-	retmsg:	"",				//返回信息
-	response:	{			//回复信息
-  }
-}
 
-4.文章删除
-接口url:/artdelete
+小程序首页文章内容：
+接口url:/gramtu/mini/index/query
 送信内容
 {
 	timestamp:	"",			//日期时间
-	token:	"",				//token
-	userid:	"",				//用户id
+	token:	"",				//token（空）
+	userid:	"",				//用户id（空）
 	request:{				  //请求信息
-    artidlist:[xxxxx,xxxx]  //id列表
+    { title: "", currentpage: "1", pagesize: "5", startindex: "0", draw: 1 }
   }
 }
 回信内容
 {
 	retcode: "",				//返回码
-	retmsg:	"",				//返回信息
-	response:	{			//回复信息
+	retmsg:	"",				  //返回信息
+	response:	{			    //回复信息
+    totalcount:"",    //总条数
+    artlist:[          //文章列表
+      {"artid":"","coverimage":"","title":"ddddd", "readcount":"0"} //readcount:阅读数
+    ]
   }
 }

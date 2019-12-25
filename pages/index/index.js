@@ -6,12 +6,12 @@ var util = require('../../utils/util.js');
 
 var bannerList = ['../../images/banner_01.jpg', '../../images/banner_02.jpg', '../../images/banner_03.jpg', '../../images/banner_04.jpg'];
 var tsfwList = [
-  { title: "Essay修改降重", image: "../../images/ts.png" },
-  { title: "英语母语润色", image: "../../images/ts.png" },
-  { title: "专业人工翻译", image: "../../images/ts.png" },
-  { title: "签证翻译盖章", image: "../../images/ts.png" },
-  { title: "留学文书", image: "../../images/ts.png" },
-  { title: "Essay写作", image: "../../images/ts.png" }
+  { servname: "Essay修改降重", servimage: "../../images/ts.png", servlink: "" },
+  { servname: "英语母语润色", servimage: "../../images/ts.png", servlink: ""  },
+  { servname: "专业人工翻译", servimage: "../../images/ts.png", servlink: ""  },
+  { servname: "签证翻译盖章", servimage: "../../images/ts.png", servlink: ""  },
+  { servname: "留学文书", servimage: "../../images/ts.png", servlink: ""  },
+  { servname: "Essay写作", servimage: "../../images/ts.png", servlink: ""  }
 ];
 
 var galleryList = [
@@ -39,27 +39,144 @@ Page({
     tsfwList: tsfwList,
     tsContentHeight: Math.ceil(tsfwList.length / 3) * 230,
     tsHeight: Math.ceil(tsfwList.length / 3) * 230 + 100,
-    galleryList: galleryList
+    galleryList: galleryList,
+    abroadList:[],
+    newbornList: [{ id: "1", title: "新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }]
   },
   onLoad: function () {
-    //获取文章
-    var that= this;
-    var data = { title: "", currentpage: "", pagesize: "", startindex: "0", draw: 1 };
+    this.adListGet();
+    this.servListGet();
+    this.articleListGet();
+    this.abroadListGet();
+    this.newbornListGet();
+  },
+  //获取广告图片列表
+  adListGet:function(){
+    var that = this;
+    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
     wx.request({
-      url: config.serverAddress + "artquery",
+      url: config.serverAddress + "advert/query",
       header: {
         'content-type': 'application/json'
       },
       data: util.sendMessageEdit(null, data),
       method: 'post',
       success: function (res) {
-        if(res.status == 200){
+        if (res.statusCode == 200) {
+          console.info("获取广告信息：");
+          console.log(res.data) //获取openid
+          if (res.data.retcode === config.SUCCESS){
+            var adList = res.data.response.adlist;
+            var adTemp = [];
+            for(var i=0; i<adList.length; i++){
+              adTemp.push(adList[i].adimage);
+            }
+            that.setData({
+              banner_url: adTemp
+            })
+          }  
+        }
+      }
+    })
+  },
+  //获取特色服务列表
+  servListGet: function () {
+    var that = this;
+    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
+    wx.request({
+      url: config.serverAddress + "feature/query",
+      header: {
+        'content-type': 'application/json'
+      },
+      data: util.sendMessageEdit(null, data),
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("获取特色服务信息：");
+          console.log(res.data) //获取openid
+          if (res.data.retcode === config.SUCCESS) {
+            var servList = res.data.response.servlist;
+            that.setData({
+              tsfwList: servList,
+              tsContentHeight: Math.ceil(servList.length / 3) * 230,
+              tsHeight: Math.ceil(servList.length / 3) * 230 + 100,
+            })
+          }
+        }
+      }
+    })
+  },
+  //获取文章列表
+  articleListGet: function () {
+    var that = this;
+    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
+    wx.request({
+      url: config.serverAddress + "article/query",
+      header: {
+        'content-type': 'application/json'
+      },
+      data: util.sendMessageEdit(null, data),
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
           console.info("获取文章信息：");
           console.log(res.data) //获取openid
-          if (res.data.retcode === config.SUCCESS)
-          that.setData({
-            galleryList: res.data.response.artlist
-          })
+          if (res.data.retcode === config.SUCCESS) {
+            var artList = res.data.response.artlist;
+            that.setData({
+              galleryList: artList
+            })
+          }
+        }
+      }
+    })
+  },
+  //获取海外招募
+  abroadListGet: function () {
+    var that = this;
+    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
+    wx.request({
+      url: config.serverAddress + "abroad/query",
+      header: {
+        'content-type': 'application/json'
+      },
+      data: util.sendMessageEdit(null, data),
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("获取海外招募信息：");
+          console.log(res.data) //获取openid
+          if (res.data.retcode === config.SUCCESS) {
+            var abroadList = res.data.response.abroadlist;
+            that.setData({
+              abroadList: abroadList
+            })
+          }
+        }
+      }
+    })
+  },
+  //获取海外招募
+  newbornListGet: function () {
+    var that = this;
+    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
+    wx.request({
+      url: config.serverAddress + "newborn/query",
+      header: {
+        'content-type': 'application/json'
+      },
+      data: util.sendMessageEdit(null, data),
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("获取新人专区信息：");
+          console.log(res.data) //获取openid
+          if (res.data.retcode === config.SUCCESS) {
+            var newbornList = res.data.response.newbornlist;
+            that.setData({
+              newbornList: newbornList
+            })
+          }
         }
       }
     })

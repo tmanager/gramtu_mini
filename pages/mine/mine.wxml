@@ -1,18 +1,27 @@
 <!--pages/mine/mine.wxml-->
 <view class="personal_info">
 	<view class="photo_wrap">
-		<image src="{{userInfo.avatarUrl}}" class="photo"></image>
+    <block wx:if="{{userInfo}}">
+    	<image src="{{userInfo.avatarUrl}}" class="photo"></image>
+    </block>
+    <block wx:else>
+      <image src="../../images/head.png"  class="photo"></image>
+    </block>
 	</view>
   <view class="info">
-  	<view class="nickname">
-      {{userInfo.nickName}}
-    </view>
+    <block wx:if="{{userInfo}}">
+    	<view class="nickname">
+        {{userInfo.nickName}}
+      </view>
+    </block>
+    <block wx:else>
+      <view class="nickname" bindtap=''>
+        <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">点此登录</button>
+      </view>
+    </block>
     <view class="mark">
       <view><image src="../../images/mark.png"></image></view>
       <view>积分: {{mark}}</view>
-    </view>
-    <view style='margin-top:10rpx'>
-      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定</button>
     </view>
   </view>
 </view>

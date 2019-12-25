@@ -37,33 +37,33 @@
   <view class='zzfw' style='height:{{tsHeight}}rpx'>
     <view class='zzfw-title'>特色服务区</view>
     <view class='zzfw-content' style='height:{{tsContentHeight}}rpx'>
-      <navigator wx:for-items="{{tsfwList}}">
+      <navigator wx:for-items="{{tsfwList}}" url="{{item.servlink}}">
         <view class='zzfw-icon'>
-          <image src="{{item.image}}"></image>
+          <image src="{{item.servimage}}"></image>
         </view>
-        <text>{{item.title}}</text>
+        <text>{{item.servname}}</text>
       </navigator>
     </view>
   </view>
   <view class='zzfw' style='height: 180rpx'>
     <view class='zzfw-title'><view class='xr-title'>新人专区</view></view>
     <view class='xrfl'>
-      <navigator>新人福利</navigator>
-      <navigator>成为GramTu会员送免费查重</navigator>
+      <navigator url="../article/article?newbornid={{newbornList[0].id}}">{{newbornList[0].title}}</navigator>
+      <navigator url="../article/article?newbornid={{newbornList[1].id}}">{{newbornList[1].title}}</navigator>
     </view>
   </view>
 
   <view class='zzfw' style='height: 180rpx'>
     <view class='zzfw-title'>海外招募</view>
     <view class='xrfl hwzm'>
-      <navigator>招募翻译译员</navigator>
-      <navigator>招募写作编辑</navigator>
+      <navigator url="../article/article?abroadid={{abroadList[0].abroadid}}">{{abroadList[0].title}}</navigator>
+      <navigator url="../article/article?abroadid={{abroadList[1].abroadid}}">{{abroadList[1].title}}</navigator>
     </view>
   </view>
   <view class="tui-list-box">
     <view class="tui-list-head">推荐阅读</view>
     <view class="tui-gallery-list" wx:for="{{galleryList}}">
-      <navigator url="../article/article?id={{item.id}}">
+      <navigator url="../article/article?artid={{item.artid}}">
         <image class="gallery-img tui-fr" src="{{item.coverimage}}"></image>
         <view class="gallery-box gallery-right">
           <text class="gallery-name">{{item.title}}</text>

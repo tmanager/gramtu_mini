@@ -34,8 +34,8 @@ const sendMessageEdit = (type, data) =>{
 function msgHeadMake(type) {
   return {
     "timestamp": getTimeStamp(),
-    "token": '',
-    "userid": '',
+    "token": "",
+    "userid": "",
     "termid": ""
   };
 }

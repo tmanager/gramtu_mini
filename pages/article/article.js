@@ -9,10 +9,11 @@ Page({
    */
   data: {
     id: "",
-    title: "1",
+    articleAddress: config.articleAddress
+    /*title: "1",
     editor: "1",
     time: "201912160000",
-    content: "123456"
+    content: "123456"*/
   },
 
   /**
@@ -22,7 +23,7 @@ Page({
     this.setData({
       id: options.id
     });
-    var that = this;
+    /*var that = this;
     var data = { id: that.data.id };
     wx.request({
       url: config.serverAddress + "artdetail",
@@ -44,7 +45,7 @@ Page({
             })
         }
       }
-    })
+    })*/
   },
 
   /**
