@@ -26,23 +26,36 @@
   </view>
 </view>
 <view class="wode_list">
-  <view>
-    <view>turnin</view>
-    <view>我的查重列表</view>
-  </view>
-  <view>
-    <view>Grmmarian</view>
-    <view>我的语法检测列表</view>
-  </view>
-  <view>
-    <view>积分/优惠码</view>
-    <view>我的优惠码卡券</view>
-  </view>
+  <navigator url="../turninlist/turninlist">
+    <view><image src="../../images/turnin.png" class='wode_image'></image></view>
+    <view>查重列表</view>
+  </navigator>
+  <navigator>
+    <view><image src="../../images/gramm.png" class='wode_image'></image></view>
+    <view>语法检测列表</view>
+  </navigator>
+</view>
+<view class="wode_item_wrap">
+	<view class="wode_item">
+    <navigator url="">
+		  <image src="../../images/consume.png" class="wode_icon"></image> 
+      <view class='wode_name'>消费记录</view>
+		  <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
+    </navigator>
+	</view>
+  <view class="wode_item">
+    <navigator url="">
+		  <image src="../../images/coup.png" class="wode_icon"></image> 
+      <view class='wode_name'>我的优惠券</view>
+		  <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
+    </navigator>
+	</view>
 </view>
 <view class="wode_item_wrap">
 	<view class="wode_item" wx:for="{{mode}}">
     <navigator url="{{item.url}}">
-		  <image src="{{item.icon}}" class="wode_icon"></image> {{item.title}}
+		  <image src="{{item.icon}}" class="wode_icon"></image> 
+      <view class='wode_name'>{{item.title}}</view>
 		  <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
     </navigator>
 	</view>

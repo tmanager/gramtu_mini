@@ -5,9 +5,39 @@ var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
 
 var bannerList = [
-  { adid: "0", adtype: "0", adimage: "../../images/banner_01.jpg", innerurl: "" },
-  { adid: "1", adtype: "0", adimage: "../../images/banner_02.jpg", innerurl: "" },
-  { adid: "2", adtype: "0", adimage: "../../images/banner_03.jpg", innerurl: "" }]
+  {
+    "adtype": "0",
+    "adid": "2",
+    "adimage": "http://www.gramtu.com/group1/M00/00/00/rBBVI136KKKAQSSPAABaO2gQgo0198.png",
+    "sort": 2,
+    "innerurl": "https://mq.weixin.qq.com",
+    "title": "www"
+  },
+  {
+    "adtype": "1",
+    "adid": "1",
+    "adimage": "http://www.gramtu.com/group1/M00/00/00/rBBVI136KKKAQSSPAABaO2gQgo0198.png",
+    "sort": 3,
+    "innerurl": "",
+    "title": "sdf"
+  },
+  {
+    "adtype": "0",
+    "adid": "2eaee66e3d074e3fbb1627be83acd76c",
+    "adimage": "http://www.gramtu.com/group1/M00/00/00/rBBVI14AWqiAGVluAAEOsUeF3mA281.jpg",
+    "sort": 22,
+    "innerurl": "https://www.baidu.com",
+    "title": "22"
+  },
+  {
+    "adtype": "0",
+    "adid": "f32c90a62d8f4be7bd692de2bfca1a7a",
+    "adimage": "http://www.gramtu.com/group1/M00/00/00/rBBVI14AW-6AbSxpAAEOsUeF3mA388.jpg",
+    "sort": 4444,
+    "innerurl": "https://www.baidu.com",
+    "title": "4444"
+  }
+];
 var tsfwList = [
   { servname: "Essay修改降重", servimage: "../../images/ts.png", servlink: "" },
   { servname: "英语母语润色", servimage: "../../images/ts.png", servlink: ""  },
@@ -43,8 +73,8 @@ Page({
     duration: 1000,
     banner_url: bannerList,
     tsfwList: tsfwList,
-    tsContentHeight: Math.ceil(tsfwList.length / 3) * 230,
-    tsHeight: Math.ceil(tsfwList.length / 3) * 230 + 100,
+    tsContentHeight: Math.ceil(tsfwList.length / 3) * 250,
+    tsHeight: Math.ceil(tsfwList.length / 3) * 250 + 100,
     galleryList: galleryList,
     abroadList:[],
     newbornList: [{ id: "1", title: "新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }],
@@ -90,7 +120,7 @@ Page({
     var data = { title: "", currentpage: currentPage, pagesize: pageSize, 
       startindex: currentPage * pageSize, draw: 1 };
     wx.request({
-      url: config.serverAddress + "article/query",
+      url: config.serverAddress + "index/article/query",
       header: {
         'content-type': 'application/json'
       },

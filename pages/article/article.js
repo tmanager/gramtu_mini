@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    articleAddress: config.articleAddress
+    articleAddress: config.articleAddress,
+    template:""
   },
 
   /**
@@ -22,7 +23,7 @@ Page({
       newbornid: options.newbornid || '',
       adtype: options.adtype || '',
       servtype: options.servtype || '',
-      innerurl: options.innerurl || '',
+      innerurl: options.url || '',
       servlink: options.servlink || ''
     });
     if (this.data.artid != ""){
@@ -31,7 +32,7 @@ Page({
       })
     }
     if (this.data.adid != "") {
-      if(adtype == 0){
+      if (this.data.adtype == 0){
         this.setData({
           template: this.data.innerurl
         })
@@ -43,7 +44,7 @@ Page({
 
     }
     if (this.data.servid != "") {
-      if (servtype == 0) {
+      if (this.data.servtype == 0) {
         this.setData({
           template: this.data.servlink
         })

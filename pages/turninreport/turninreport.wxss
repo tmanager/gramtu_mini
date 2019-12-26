@@ -1,0 +1,75 @@
+/* pages/turninreport/turninreport.wxss */
+page{
+  background-color: #F2F3F5;
+}
+.wode_item_wrap {
+	background-color: #FFF;
+	font-size: 14px;
+	margin-top: 3px;
+	border-top: 1px solid #E5E5E5;
+}
+.wode_item {
+  height: 470rpx;
+	border-bottom: 1px solid #E5E5E5;
+	padding: 0 10px;
+	line-height: 40rpx;
+	position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.wode_item > view{
+  width: 100%
+}
+
+.wode_name{
+  position: absolute;
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  left: 80rpx;
+  top: 0;
+}
+.arrow_wrap {
+  position: absolute;
+  width: 60rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  right: 0;
+  top: 0;
+}
+
+.turnin-name{
+  font-size: 35rpx;
+  padding: 30rpx 0 0 0;
+}
+
+.turnin-name:last-child{
+  padding-bottom: 30rpx;
+}
+
+.navi{
+  border-bottom: 1px solid #E5E5E5;
+  margin-left: 10rpx;
+}
+
+.detail{
+  color:#8E8E8E;
+  margin-left: 10rpx;
+  font-size: 35rpx;
+}
+
+.detail > view{
+  margin-top: 30rpx;
+}
+
+.detail > view:last-child{
+  margin-bottom: 20rpx
+}
+
+.btn-inline{
+  width: 45%;
+  display: inline-block;
+  margin: 0 10rpx;
+  font-size: 35rpx;
+}

@@ -14,7 +14,6 @@ Page({
       { icon: "", title: "母语润色", url: "" },
       { icon: "", title: "人工翻译", url: "" },
       { icon: "", title: "Essay写作", url: "" },
-      { icon: "", title: "在线客服", url: "" },
       { icon: "", title: "投诉建议", url: "" }
       ]
   },

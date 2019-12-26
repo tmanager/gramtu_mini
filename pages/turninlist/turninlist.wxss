@@ -1,0 +1,213 @@
+page{
+  background-color: #F2F3F5;
+}
+.navbar {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+}
+.navbar-item {
+    flex: 1.0;
+    text-align: center;
+    font-size: 30rpx;
+    color: #999;
+    margin-bottom: -1px;
+}
+.navbar-text {
+    display: block;
+    width: 100rpx;
+    padding: 10px;
+    margin: auto;
+}
+.navbar-text.active {
+    border-bottom: 2px solid #000;
+    color: #000;
+    font-weight: bold;
+}
+.hidden {
+    display: none;
+}
+
+.wode_item_wrap {
+	background-color: #FFF;
+	font-size: 14px;
+	margin-top: 3px;
+	border-top: 1px solid #E5E5E5;
+}
+.wode_item {
+  height: 220rpx;
+	border-bottom: 1px solid #E5E5E5;
+	padding: 0 10px;
+	line-height: 40rpx;
+	position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.wode_item > view{
+  width: 100%
+}
+
+.wode_name{
+  position: absolute;
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  left: 80rpx;
+  top: 0;
+}
+.arrow_wrap {
+    position: absolute;
+    width: 60rpx;
+    height: 130rpx;
+    line-height: 130rpx;
+    right: 0;
+    top: 0;
+}
+
+.arrow_wrap image{
+  width: 14px;
+  height: 14px;
+}
+
+.turnin-name{
+  font-size: 35rpx;
+  padding: 20rpx 0 0 0;
+}
+
+.turnin-time{
+  font-size: 30rpx;
+  padding: 10rpx 0 20rpx;
+  color:#999;
+}
+
+.navi{
+  border-bottom: 1px solid #E5E5E5;
+  margin-left: 20rpx;
+}
+
+.price{
+  text-align: right;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-right: 35rpx;
+  color:#F24F50;
+  font-size: 30rpx;
+}
+
+.status{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+}
+
+.checkbox .wx-checkbox-input {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  border: 2px solid rgba(255, 129, 92, 1);
+}
+
+.checkbox .wx-checkbox-input-disabled {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  background: #f3f3f3;
+  border: 1px solid rgba(201, 201, 201, 1);
+}
+
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: rgba(255, 129, 92, 1);
+}
+
+.checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox .wx-checkbox-input {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  border: 1px solid rgb(199, 199, 199);
+}
+
+.checkbox .wx-checkbox-input-disabled {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  background: #f3f3f3;
+  border: 1px solid rgba(201, 201, 201, 1);
+}
+
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: rgba(255, 129, 92, 1);
+}
+
+.checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox{
+  margin-top:80rpx;
+}
+
+.tabbar{ 
+  font-size: 30rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 120rpx;
+  border-top: 1px solid #C5C5C5;
+}
+
+.tabbar > view:nth-child(1){
+  flex: 1;
+  line-height: 120rpx;
+  margin-left: 20rpx;
+}
+.tabbar > view:nth-child(2){
+  flex: 2;
+  line-height: 120rpx;
+  text-align: right;
+  font-size:30rpx;
+  padding-right: 20rpx;
+}
+.tabbar > view:nth-child(3){
+  flex: 1;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 20rpx;
+  background-color: #C5C5C5;
+  border-radius: 50rpx;
+}
+
+.tabbar > view:nth-child(4){
+  flex: 1;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 20rpx 10rpx;
+  background-color: #F24F50;
+  border-radius: 50rpx;
+}

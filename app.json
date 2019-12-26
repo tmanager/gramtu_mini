@@ -2,12 +2,14 @@
   "pages": [
     
     "pages/index/index",
+    "pages/mine/mine",
     "pages/logs/logs",
     "pages/shop/shop",
-    "pages/mine/mine",
     "pages/gramend/gramend",
     "pages/article/article",
-    "pages/gram/gram"
+    "pages/gram/gram",
+    "pages/turninreport/turninreport",
+    "pages/turninlist/turninlist"
   ],
   "window": {
     "backgroundTextStyle": "light",

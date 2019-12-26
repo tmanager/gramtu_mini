@@ -23,13 +23,13 @@
 }
 
 .zzfw-content{
-  margin: 0 20rpx 30rpx 20rpx;
+  margin: 0 5rpx 30rpx 5rpx;
   border: 2px solid #ddd;
   height: 270rpx;
   border-radius: 20rpx;
   display: flex;
   flex-direction: row;
-  font-size: 25rpx;
+  font-size: 30rpx;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -38,9 +38,12 @@
   display: flex;
   flex-direction: column;
   width: 33%;
-  padding: 20rpx 30rpx 0;
   box-sizing:border-box;
   text-align: center;
+}
+
+.zzfw-content > navigator > view{
+  margin: 20rpx 30rpx 0;
 }
 
 .zzfw-content > navigator > view{
@@ -54,7 +57,7 @@
 
 .zzfw-content > navigator > text{
   margin-top: 20rpx;
-  font-size: 23rpx;
+  font-size: 28rpx;
 }
 
 .zzfw-icon{
@@ -79,7 +82,7 @@
 .xrfl{
   display: flex;
   flex-direction: row;
-  padding:10rpx 20rpx;
+  padding:10rpx 10rpx;
 }
 
 
@@ -101,12 +104,12 @@
 
 .xrfl > navigator:nth-child(2){
   background-color: #89C997;
-  padding: 20rpx 0rpx 20rpx 60rpx;
+  padding: 20rpx 0rpx 20rpx 45rpx;
   width: 60%;
   background: linear-gradient(65deg,transparent 45rpx,#89C997 0) top right;
   border-radius: 10rpx;
   margin-left: -40rpx;
-  font-size: 25rpx;
+  font-size: 26rpx;
 }
 
 .hwzm > navigator:first-child{

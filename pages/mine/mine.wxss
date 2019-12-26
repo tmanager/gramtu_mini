@@ -1,4 +1,7 @@
 /* pages/mine/mine.wxss */
+page{
+  background-color: #F2F3F5;
+}
 .personal_info {
 	padding: 10px 0;
 	background-color: #1D76D0;
@@ -48,7 +51,7 @@
 }
 .wode_item_wrap {
 	background-color: #FFF;
-	font-size: 14px;
+	font-size: 35rpx;
 	margin-top: 10px;
 	border-top: 1px solid #E5E5E5;
 }
@@ -59,22 +62,31 @@
 	line-height: 90rpx;
 	position: relative;
 }
+.wode_name{
+  position: absolute;
+  width: 500rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  left: 80rpx;
+  top: 0;
+}
 .arrow_wrap {
     position: absolute;
-    width: 90rpx;
+    width: 60rpx;
     height: 90rpx;
     right: 0;
     top: 0;
 }
 
 .arrow_wrap image{
-  width: 17px;
-  height: 14px;
+  width: 28rpx;
+  height: 28rpx;
 }
 
 .wode_icon{
-  width: 17px;
-  height: 14px;
+  padding-top: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .wode_out {
 	height: 45px;
@@ -89,26 +101,33 @@
 .wode_list{
   display: flex;
   flex-direction: row;
-  padding: 0 20rpx;
+  padding: 30rpx 20rpx;
+  background-color: white;
+  border-bottom:1px solid #E5E5E5;
 }
 
-.wode_list > view{
-  display: flex;
-  flex-direction: column;
-  width: 180rpx;
+.wode_image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.wode_list > navigator{
+  flex: 1;
+  text-align:center;
+  font-size:30rpx;
+  /*width: 180rpx;
   height: 180rpx;
   margin: 30rpx;
   background-color: #1D76D0;
   border-radius: 50%;
   color:white;
   text-align: center;
-  font-size: 21rpx;
+  font-size: 21rpx;*/
 }
 
-.wode_list > view > view:first-child{
+/*.wode_list > view > view:first-child{
   padding-top: 60rpx;
   font-size: 26rpx;
-}
+}*/
 
 button{
   background-color: rgba(0, 0, 0, 0);

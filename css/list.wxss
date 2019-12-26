@@ -21,6 +21,7 @@
 .gallery-img{
   width: 170rpx;
   height: 170rpx;
+  margin-top: -10rpx
 }
 .gallery-box{
   height: 170rpx;
@@ -31,7 +32,7 @@
   height: 100rpx;
   line-height: 50rpx;
   overflow: hidden;
-  font-size: 30rpx;
+  font-size: 35rpx;
   display: -webkit-box;
   word-break: break-all;
   text-overflow: ellipsis;
