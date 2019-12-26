@@ -1,19 +1,13 @@
 // pages/article/article.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id: "",
     articleAddress: config.articleAddress
-    /*title: "1",
-    editor: "1",
-    time: "201912160000",
-    content: "123456"*/
   },
 
   /**
@@ -21,31 +15,54 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      id: options.id
+      artid: options.artid || '',
+      adid: options.adid || '',
+      servid: options.servid || '',
+      abroadid: options.abroadid || '',
+      newbornid: options.newbornid || '',
+      adtype: options.adtype || '',
+      servtype: options.servtype || '',
+      innerurl: options.innerurl || '',
+      servlink: options.servlink || ''
     });
-    /*var that = this;
-    var data = { id: that.data.id };
-    wx.request({
-      url: config.serverAddress + "artdetail",
-      header: {
-        'content-type': 'application/json'
-      },
-      data: util.sendMessageEdit(null, data),
-      method: 'post',
-      success: function (res) {
-        if (res.status == 200) {
-          console.info("获取文章信息：");
-          console.log(res.data) //获取openid
-          if (res.data.retcode === config.SUCCESS)
-            that.setData({
-              title: res.data.response.title,
-              editor: res.data.response.editor,
-              time: res.data.response.time,
-              content: res.data.response.content
-            })
-        }
+    if (this.data.artid != ""){
+      this.setData({
+        template: config.articleAddress + "?artid=" + this.data.artid
+      })
+    }
+    if (this.data.adid != "") {
+      if(adtype == 0){
+        this.setData({
+          template: this.data.innerurl
+        })
+      }else{
+        this.setData({
+          template: config.articleAddress + "?adid=" + this.data.adid
+        })
       }
-    })*/
+
+    }
+    if (this.data.servid != "") {
+      if (servtype == 0) {
+        this.setData({
+          template: this.data.servlink
+        })
+      } else {
+        this.setData({
+          template: config.articleAddress + "?servid=" + this.data.servid
+        })
+      }
+    }
+    if (this.data.abroadid != "") {
+      this.setData({
+        template: config.articleAddress + "?abroadid=" + this.data.abroadid
+      })
+    }
+    if (this.data.newbornid != "") {
+      this.setData({
+        template: config.articleAddress + "?newbornid=" + this.data.newbornid
+      })
+    }
   },
 
   /**

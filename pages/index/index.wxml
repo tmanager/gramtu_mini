@@ -7,10 +7,10 @@
       <block wx:for-items="{{banner_url}}">
         <swiper-item>
           <block wx:if="{{item}}">
-            <image class="tui-img" src="{{item}}"  mode="scaleToFill "/>
+            <navigator url="../article/article?adid={{item.adid}}&adtype={{item.adtype}}&url={{item.innerurl}}"><image class="tui-img" src="{{item.adimage}}"  mode="scaleToFill "/></navigator>
           </block>
           <block wx:else>
-            <image src="../../images/ceshi/ad.png" mode="scaleToFill "></image>
+            <navigator><image src="../../images/ceshi/ad.png" mode="scaleToFill "></image></navigator>
           </block>
         </swiper-item>
       </block>
@@ -37,7 +37,7 @@
   <view class='zzfw' style='height:{{tsHeight}}rpx'>
     <view class='zzfw-title'>特色服务区</view>
     <view class='zzfw-content' style='height:{{tsContentHeight}}rpx'>
-      <navigator wx:for-items="{{tsfwList}}" url="{{item.servlink}}">
+      <navigator wx:for-items="{{tsfwList}}" url="../article/article?servid={{item.servid}}&servtype={{item.servtype}}&url={{item.servlink}}">
         <view class='zzfw-icon'>
           <image src="{{item.servimage}}"></image>
         </view>
@@ -48,8 +48,8 @@
   <view class='zzfw' style='height: 180rpx'>
     <view class='zzfw-title'><view class='xr-title'>新人专区</view></view>
     <view class='xrfl'>
-      <navigator url="../article/article?newbornid={{newbornList[0].id}}">{{newbornList[0].title}}</navigator>
-      <navigator url="../article/article?newbornid={{newbornList[1].id}}">{{newbornList[1].title}}</navigator>
+      <navigator url="../article/article?newbornid={{newbornList[0].newbornid}}">{{newbornList[0].title}}</navigator>
+      <navigator url="../article/article?newbornid={{newbornList[1].newbornid}}">{{newbornList[1].title}}</navigator>
     </view>
   </view>
 
@@ -72,4 +72,5 @@
       </navigator>
     </view>
   </view>
+  <view wx:if="{{noitem}}" class='noitem'>没有更多内容了~</view>
 </view>
