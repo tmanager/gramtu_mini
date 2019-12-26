@@ -1,1 +1,41 @@
 /* pages/shop/shop.wxss */
+.tipImage{
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.smallImage{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.oneLine{
+  display: flex;
+  flex-direction: row;
+}
+.oneLine > view:first-child{
+  flex: 1;
+  text-align: right;
+  padding-right: 20rpx;
+}
+
+.oneLine > view:nth-child(2){
+  flex: 2;
+  line-height: 60rpx;
+}
+
+.service{
+  margin-top: 50rpx;
+}
+
+.service > view{
+  margin-top: 50rpx;
+}
+
+.contactService{
+  background-color: #5CB431;
+  width: 250rpx;
+  padding:0 60rpx;
+  border-radius: 5rpx;
+  color:white;
+}

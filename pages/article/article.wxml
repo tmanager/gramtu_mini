@@ -4,4 +4,4 @@
   <view class='arteditor'>{{editor}}{{time}}</view>
   <view class='artcontent'>{{content}}</view>
 </view>-->
-<web-view src="{{articleAddress}}?id={{id}}" />
+<web-view src="{{template}}" />

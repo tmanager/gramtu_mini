@@ -4,7 +4,10 @@ const app = getApp();
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
 
-var bannerList = ['../../images/banner_01.jpg', '../../images/banner_02.jpg', '../../images/banner_03.jpg', '../../images/banner_04.jpg'];
+var bannerList = [
+  { adid: "0", adtype: "0", adimage: "../../images/banner_01.jpg", innerurl: "" },
+  { adid: "1", adtype: "0", adimage: "../../images/banner_02.jpg", innerurl: "" },
+  { adid: "2", adtype: "0", adimage: "../../images/banner_03.jpg", innerurl: "" }]
 var tsfwList = [
   { servname: "Essay修改降重", servimage: "../../images/ts.png", servlink: "" },
   { servname: "英语母语润色", servimage: "../../images/ts.png", servlink: ""  },
@@ -28,6 +31,9 @@ var galleryList = [
   }
 ];
 
+var currentPage = 0;
+var totalPage = 0;
+var pageSize = 5;
 Page({
   data: {
     indicatorDots: true,
@@ -41,21 +47,19 @@ Page({
     tsHeight: Math.ceil(tsfwList.length / 3) * 230 + 100,
     galleryList: galleryList,
     abroadList:[],
-    newbornList: [{ id: "1", title: "新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }]
+    newbornList: [{ id: "1", title: "新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }],
+    noitem:0
   },
   onLoad: function () {
-    this.adListGet();
-    this.servListGet();
+    this.indexListGet();
     this.articleListGet();
-    this.abroadListGet();
-    this.newbornListGet();
   },
   //获取广告图片列表
-  adListGet:function(){
+  indexListGet:function(){
     var that = this;
     var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
     wx.request({
-      url: config.serverAddress + "advert/query",
+      url: config.serverAddress + "index/query",
       header: {
         'content-type': 'application/json'
       },
@@ -63,45 +67,19 @@ Page({
       method: 'post',
       success: function (res) {
         if (res.statusCode == 200) {
-          console.info("获取广告信息：");
+          console.info("获取首页信息：");
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS){
-            var adList = res.data.response.adlist;
-            var adTemp = [];
-            for(var i=0; i<adList.length; i++){
-              adTemp.push(adList[i].adimage);
-            }
+            var response = res.data.response;
             that.setData({
-              banner_url: adTemp
+              banner_url: response.adlist,
+              tsfwList: response.servlist,
+              tsContentHeight: Math.ceil(response.servlist.length / 3) * 230,
+              tsHeight: Math.ceil(response.servlist.length / 3) * 230 + 100,
+              abroadList: response.abroadlist,
+              newbornList: response.newbornlist
             })
           }  
-        }
-      }
-    })
-  },
-  //获取特色服务列表
-  servListGet: function () {
-    var that = this;
-    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
-    wx.request({
-      url: config.serverAddress + "feature/query",
-      header: {
-        'content-type': 'application/json'
-      },
-      data: util.sendMessageEdit(null, data),
-      method: 'post',
-      success: function (res) {
-        if (res.statusCode == 200) {
-          console.info("获取特色服务信息：");
-          console.log(res.data) //获取openid
-          if (res.data.retcode === config.SUCCESS) {
-            var servList = res.data.response.servlist;
-            that.setData({
-              tsfwList: servList,
-              tsContentHeight: Math.ceil(servList.length / 3) * 230,
-              tsHeight: Math.ceil(servList.length / 3) * 230 + 100,
-            })
-          }
         }
       }
     })
@@ -109,7 +87,8 @@ Page({
   //获取文章列表
   articleListGet: function () {
     var that = this;
-    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
+    var data = { title: "", currentpage: currentPage, pagesize: pageSize, 
+      startindex: currentPage * pageSize, draw: 1 };
     wx.request({
       url: config.serverAddress + "article/query",
       header: {
@@ -122,63 +101,36 @@ Page({
           console.info("获取文章信息：");
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS) {
+            totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             var artList = res.data.response.artlist;
             that.setData({
               galleryList: artList
             })
           }
         }
+      },
+      complete:function(res){
+        wx.hideLoading();
       }
     })
   },
-  //获取海外招募
-  abroadListGet: function () {
+  onReachBottom: function () {
+    if((currentPage + 1) >= totalPage){
+      this.setData({
+        noitem: 1
+      });
+      return;
+    }else{
+      this.setData({
+        noitem: 0
+      });
+    }
+    currentPage ++;
     var that = this;
-    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
-    wx.request({
-      url: config.serverAddress + "abroad/query",
-      header: {
-        'content-type': 'application/json'
-      },
-      data: util.sendMessageEdit(null, data),
-      method: 'post',
-      success: function (res) {
-        if (res.statusCode == 200) {
-          console.info("获取海外招募信息：");
-          console.log(res.data) //获取openid
-          if (res.data.retcode === config.SUCCESS) {
-            var abroadList = res.data.response.abroadlist;
-            that.setData({
-              abroadList: abroadList
-            })
-          }
-        }
-      }
-    })
-  },
-  //获取海外招募
-  newbornListGet: function () {
-    var that = this;
-    var data = { title: "", currentpage: "1", pagesize: "10", startindex: "0", draw: 1 };
-    wx.request({
-      url: config.serverAddress + "newborn/query",
-      header: {
-        'content-type': 'application/json'
-      },
-      data: util.sendMessageEdit(null, data),
-      method: 'post',
-      success: function (res) {
-        if (res.statusCode == 200) {
-          console.info("获取新人专区信息：");
-          console.log(res.data) //获取openid
-          if (res.data.retcode === config.SUCCESS) {
-            var newbornList = res.data.response.newbornlist;
-            that.setData({
-              newbornList: newbornList
-            })
-          }
-        }
-      }
-    })
+    // 显示加载图标
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    that.articleListGet();
   }
 })
