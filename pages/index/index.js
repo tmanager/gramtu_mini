@@ -77,7 +77,7 @@ Page({
     tsHeight: Math.ceil(tsfwList.length / 3) * 250 + 100,
     galleryList: galleryList,
     abroadList:[],
-    newbornList: [{ id: "1", title: "新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }],
+    newbornList: [{ id: "1", title: "新人福利新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }],
     noitem:0
   },
   onLoad: function () {
