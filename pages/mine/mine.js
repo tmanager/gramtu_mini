@@ -1,5 +1,7 @@
 // pages/mine/mine.js
 var app = getApp();
+var config = require('../../utils/config.js');
+var util = require('../../utils/util.js');
 
 Page({
 
@@ -31,6 +33,7 @@ Page({
       wx.getUserInfo({
         success: res => {
           // 可以将 res 发送给后台解码出 unionId
+          console.info(res.userInfo);
           this.setData({
             userInfo: res.userInfo
           });
@@ -97,63 +100,49 @@ Page({
     console.info(e.detail.iv);
     console.info(e.detail.encryptedData);
     var openid = wx.getStorageSync("openid");
-    var data = {
-      openid: openid,
-      encryptedData: e.detail.encryptedData,
-      iv: e.detail.iv
-    }
+    var register = wx.getStorageSync("register");
     if(e.detail.errMsg == 'getPhoneNumber:ok' ) {
-      wx.request({
-        url: config.serverAddress + 'decodephone',
-        data: util.sendMessageEdit(null, data),
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          if (res.statusCode == 200) {
-            if (res.data.retcode === config.SUCCESS) {
-              wx.setStorageSync('register', 1);
-              var json = JSON.parse(res.data.response)
-              //获取昵称
-              wx.getUserInfo({
-                success: res => {
-                  //注册
-                  var data = {
-                    openid: openid,
-                    nickname: res.userInfo.nickName,
-                    avatar: res.userInfo.avatarUrl
-                  }
-                  wx.request({
-                    url: config.serverAddress + 'userinfo',
-                    data: util.sendMessageEdit(null, data),
-                    header: {
-                      'content-type': 'application/json'
-                    },
-                    success: function (res) {
-                      if (res.statusCode == 200) {
-                        if (res.data.retcode === config.SUCCESS) {
-                          self.setData({
-                            userInfo: res.userInfo,
-                            mark: 0
-                          });
-                        } else {
-                          self.registFail();
-                        }
-                      }else{
-                        self.registFail();
-                      }
-                    }
-                  })
-                }
-              })               
-            } else {
-              self.registFail();
+        //获取昵称
+        wx.getUserInfo({
+          success: res => {
+            //注册
+            var data = {
+              register: register,
+              openid: openid,
+              encryptedData: e.detail.encryptedData,
+              iv: e.detail.iv,
+              city: res.userInfo.city,              
+              nickname: res.userInfo.nickName,
+              avatarurl: res.userInfo.avatarUrl,
+              country: res.userInfo.country,
+              gender:res.userInfo.gender,
+              language: res.userInfo.language,
+              province: res.userInfo.province
             }
-          } else {
-            self.registFail();
+            wx.request({
+              url: config.serverAddress + 'login/userinfo',
+              data: util.sendMessageEdit(null, data),
+              header: {
+                'content-type': 'application/json'
+              },
+              method: 'post',
+              success: function (res) {
+                if (res.statusCode == 200) {
+                  if (res.data.retcode === config.SUCCESS) {
+                    self.setData({
+                      userInfo: res.userInfo,
+                      mark: 0
+                    });
+                  } else {
+                    self.registFail();
+                  }
+                }else{
+                  self.registFail();
+                }
+              }
+            })
           }
-        }
-      }) 
+        })
     } else {
       wx.showModal({
         title: '提示',

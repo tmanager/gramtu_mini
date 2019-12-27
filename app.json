@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+
     "pages/index/index",
     "pages/mine/mine",
     "pages/logs/logs",
@@ -9,7 +9,9 @@
     "pages/article/article",
     "pages/gram/gram",
     "pages/turninreport/turninreport",
-    "pages/turninlist/turninlist"
+    "pages/turninlist/turninlist",
+    "pages/turninsettle/turninsettle"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
