@@ -16,7 +16,7 @@
     </block>
     <block wx:else>
       <view class="nickname" bindtap=''>
-        <button open-type="getPhoneNumber" bindgetphonenumber="bindgetPhoneNumber">点此登录</button>
+        <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点此登录</button>
       </view>
     </block>
     <view class="mark">
@@ -59,4 +59,15 @@
 		  <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
     </navigator>
 	</view>
+</view>
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-content">
+    <view><image src='../images/show.png' class='show'></image></view>
+    <view>绑定手机号</view>
+    <view>请先绑定手机号在进行此操作</view>  
+    <button open-type='getPhoneNumber' bindgetphonenumber="bindgetPhoneNumber">
+      微信用户一键绑定
+    </button>
+  </view>
 </view>

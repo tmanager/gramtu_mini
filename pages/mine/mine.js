@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showModal: false,//定义登录弹窗
     userInfo: app.globalData.userInfo,
     mark:5,
     mode: [
@@ -97,19 +98,49 @@ Page({
   onShareAppMessage: function () {
 
   },
+  bindGetUserInfo: function(e){
+    var that = this;
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      wx.setStorageSync("userinfo", e.detail.userInfo);
+      that.showDialogBtn();//调用一键获取手机号弹窗（自己写的）
+    }
+  },
+  // 显示一键获取手机号弹窗
+  showDialogBtn: function () {
+    this.setData({
+      showModal: true//修改弹窗状态为true，即显示
+    })
+  },
+  // 隐藏一键获取手机号弹窗
+  hideModal: function () {
+    this.setData({
+      showModal: false//修改弹窗状态为false,即隐藏
+    });
+  },
   bindgetPhoneNumber: function (e) {
     const self = this;
+    self.hideModal();
     console.info(e.detail.errMsg);
     console.info(e.detail.iv);
     console.info(e.detail.encryptedData);
     var openid = wx.getStorageSync("openid");
     var sessionKey = wx.getStorageSync('sessionKey');
+    var userInfo = wx.getStorageSync('userinfo');
+    var register = wx.getStorageSync("register");
     if(e.detail.errMsg == 'getPhoneNumber:ok' ) {
       var data = {
+        register: register,
         openid: openid,
         encryptedData: e.detail.encryptedData,
         iv: e.detail.iv,
-        sessionkey: sessionKey
+        sessionkey: sessionKey,
+        nickname: userInfo.nickName,
+        avatarurl: userInfo.avatarUrl,
+        gender: userInfo.gender,
+        country: userInfo.country,
+        province: userInfo.province,
+        city: userInfo.city,
+        language: userInfo.language
       }
       wx.request({
         url: config.serverAddress + 'login/userinfo',
@@ -120,9 +151,10 @@ Page({
         method: 'post',
         success: function (res) {
           if (res.statusCode == 200) {
+            console.info("login/userinfo:" + JSON.stringify(res.data));
             if (res.data.retcode === config.SUCCESS) {
               self.setData({
-                userInfo: res.userInfo,
+                userInfo: userInfo,
                 mark: 0
               });
             } else {
