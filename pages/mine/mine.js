@@ -123,7 +123,7 @@ Page({
     wx.getUserInfo({
       success: res => {
         // 可以将 res 发送给后台解码出 unionId
-        wx.setStorageSync("userinfo", e.detail.userInfo);
+        wx.setStorageSync("userinfo", res.userInfo);
         that.showDialogBtn();//调用一键获取手机号弹窗（自己写的）
       },
       complete: res => {
