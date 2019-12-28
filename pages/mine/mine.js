@@ -141,6 +141,9 @@ Page({
                 }
               }
             })
+          },
+          complete: function (res) {
+            console.info("wx.getUserInfo" + JSON.stringify(res));
           }
         })
     } else {
