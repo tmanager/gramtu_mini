@@ -31,6 +31,7 @@ App({
                 wx.setStorageSync('openid', json.openid);
                 wx.setStorageSync('register', json.register);
                 wx.setStorageSync('mark', json.mark);
+                wx.setStorageSync('sessionKey', json.session_key);
                 if(json.register == 1){
                   this.getUserInfo();
                 }
@@ -57,35 +58,12 @@ App({
         this.globalData.userInfo = res.userInfo
         // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
         // 所以此处加入 callback 以防止这种情况
-        //发送保存客户信息
-        var openid = wx.getStorageSync("openid");
-        var register = wx.getStorageSync("register");
-        var data = {
-          register: register,
-          openid: openid,
-          encryptedData: "",
-          iv: "",
-          city: "",
-          nickname: res.userInfo.nickName,
-          avatarurl: res.userInfo.avatarUrl,
-          country: res.userInfo.country,
-          gender: res.userInfo.gender,
-          language: res.userInfo.language,
-          province: res.userInfo.province
-        }
-        wx.request({
-          url: config.serverAddress + 'login/userinfo',
-          data: util.sendMessageEdit(null, data),
-          header: {
-            'content-type': 'application/json'
-          },
-          method:'post',
-          success: function (res) {
-          }
-        });
         if (this.userInfoReadyCallback) {
           this.userInfoReadyCallback(res)
         }
+      },
+      complete: res => {
+        console.info("wx.userInfo:" + JSON.stringify(res));
       }
     })
   },

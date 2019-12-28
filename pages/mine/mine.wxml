@@ -16,7 +16,7 @@
     </block>
     <block wx:else>
       <view class="nickname" bindtap=''>
-        <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">点此登录</button>
+        <button open-type="getPhoneNumber" bindgetphonenumber="bindgetPhoneNumber">点此登录</button>
       </view>
     </block>
     <view class="mark">
