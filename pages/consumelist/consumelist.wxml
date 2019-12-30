@@ -1,0 +1,13 @@
+<view class="wode_item_wrap">
+  <view class="wode_item">
+    <view>
+      <view class="navi">
+        <view class='turnin-name'>Turnin查重 name</view>
+        <view class='turnin-name'>-1000.00</view>
+      </view>
+      <view class="price">
+        2019-12-16 10:10:10
+      </view>
+    </view>
+  </view>
+</view>

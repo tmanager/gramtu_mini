@@ -14,11 +14,10 @@ Page({
     userInfo: app.globalData.userInfo,
     mark:5,
     mode: [
-      { icon: "", title:"修改降重", url:""},
-      { icon: "", title: "母语润色", url: "" },
-      { icon: "", title: "人工翻译", url: "" },
-      { icon: "", title: "Essay写作", url: "" },
-      { icon: "", title: "投诉建议", url: "" }
+      { icon: "../../images/jiang.png", title:"修改降重", url:""},
+      { icon: "../../images/runse.png", title: "母语润色", url: "" },
+      { icon: "../../images/rengong1.png", title: "人工翻译", url: "" },
+      { icon: "../../images/xiezuo.png", title: "Essay写作", url: "" }
       ]
   },
 

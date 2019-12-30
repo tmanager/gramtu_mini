@@ -6,6 +6,7 @@ App({
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
+    var that = this;
     wx.setStorageSync('logs', logs)
     // 登录
     wx.setStorageSync('openid',"");
@@ -23,7 +24,6 @@ App({
           },
           method: 'post',
           success: function (res) {
-            const self = this
             if (res.statusCode == 200) {
               console.info("login/check:" + JSON.stringify(res.data));
               if (res.data.retcode === config.SUCCESS) {
@@ -33,7 +33,7 @@ App({
                 wx.setStorageSync('mark', json.mark);
                 wx.setStorageSync('sessionKey', json.session_key);
                 if(json.register == 1){
-                  this.getUserInfo();
+                  that.bindGetUserInfo();
                 }
               }
             }
@@ -51,7 +51,7 @@ App({
       }
     })
   },
-  getUserInfo: function(){
+  bindGetUserInfo: function(){
     wx.getUserInfo({
       success: res => {
         // 可以将 res 发送给后台解码出 unionId

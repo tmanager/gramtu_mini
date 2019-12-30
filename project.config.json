@@ -9,11 +9,12 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"nodeModules": false,
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
-	"appid": "wx69939c350fd8de3d",
+	"appid": "wxb357a08d73d16a15",
 	"projectname": "gramtu_mini",
 	"debugOptions": {
 		"hidedInDevtools": []

@@ -1,0 +1,93 @@
+page{
+  background-color: #F2F3F5;
+}
+
+.wode_item_wrap {
+	background-color: #FFF;
+	font-size: 14px;
+	margin-top: 3px;
+	border-top: 1px solid #E5E5E5;
+}
+.wode_item {
+	border-bottom: 1px solid #E5E5E5;
+	padding: 0 10px;
+	line-height: 40rpx;
+	position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.wode_item > view{
+  width: 100%
+}
+
+.wode_name{
+  position: absolute;
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  left: 80rpx;
+  top: 0;
+}
+.arrow_wrap {
+    position: absolute;
+    width: 60rpx;
+    height: 130rpx;
+    line-height: 130rpx;
+    right: 0;
+    top: 0;
+}
+
+.arrow_wrap image{
+  width: 14px;
+  height: 14px;
+}
+
+.turnin-name{
+  font-size: 35rpx;
+  padding: 20rpx 0 20rpx 0;
+}
+
+.turnin-time{
+  font-size: 30rpx;
+  padding: 10rpx 0 20rpx;
+  color:#999;
+}
+
+.navi{
+  border-bottom: 1px solid #E5E5E5;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.navi > view:nth-child(1){
+  flex: 3;
+  display: -webkit-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.navi > view:nth-child(2){
+  flex:1;
+  text-align: right;
+  color:#F24F50;
+}
+
+.price{
+  height: 80rpx;
+  line-height: 80rpx;
+  color:#999;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+
+.status{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+}
