@@ -1,4 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "推荐阅读"
+  "navigationBarTitleText": "推荐阅读",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#2bb673"
 }

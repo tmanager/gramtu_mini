@@ -1,7 +1,7 @@
 var config = {
-  serverAddress: 'http://172.16.7.88:8003/gramtu/mini/',
+  serverAddress: 'https://www.gramtu.com/gramtu/mini/',
   SUCCESS: "0000",
-  articleAddress: 'http://172.16.7.105:8006/template'
+  articleAddress: 'https://www.gramtu.com/template'
 }
 
 module.exports = config;

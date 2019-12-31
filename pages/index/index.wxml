@@ -19,30 +19,30 @@
   <view class='zzfw'>
     <view class='zzfw-title'>自助服务区</view>
     <view class='zzfw-content'>
-      <navigator>
+      <view bindtap='turninCheck'>
         <view class='zzfw-icon'>turnin</view>
         <text>turnin国际查重</text>
-      </navigator>
-      <navigator>
+      </view>
+      <view>
         <view class='zzfw-icon'>turninUK</view>
         <text>turninUK查重</text>
-      </navigator>
-      <navigator url="../gram/gram">
+      </view>
+      <view url="../gram/gram">
         <view class='zzfw-icon'>Grammar</view>
         <text>Grammarian语法检测</text>
-      </navigator>
+      </view>
     </view>
   </view>
 
   <view class='zzfw' style='height:{{tsHeight}}rpx'>
     <view class='zzfw-title'>特色服务区</view>
     <view class='zzfw-content' style='height:{{tsContentHeight}}rpx'>
-      <navigator wx:for-items="{{tsfwList}}" url="../article/article?servid={{item.servid}}&servtype={{item.servtype}}&url={{item.servlink}}">
+      <view wx:for-items="{{tsfwList}}" url="../article/article?servid={{item.servid}}&servtype={{item.servtype}}&url={{item.servlink}}">
         <view class='zzfw-icon'>
           <image src="{{item.servimage}}"></image>
         </view>
         <text>{{item.servname}}</text>
-      </navigator>
+      </view>
     </view>
   </view>
   <view class='zzfw' style='height: 180rpx'>

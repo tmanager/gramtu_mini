@@ -1,0 +1,4 @@
+<view>
+<button class="btn-block"style="background-color:#2bb673; color:white; width: 95%" bindtap="turninTypeChoose">单独文件</button>
+<button class="btn-block" style='margin-top:20rpx;background-color:#2489F3; color:white; width: 95%'>剪贴文本</button>
+</view>

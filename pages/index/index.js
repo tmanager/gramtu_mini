@@ -73,8 +73,8 @@ Page({
     duration: 1000,
     banner_url: bannerList,
     tsfwList: tsfwList,
-    tsContentHeight: Math.ceil(tsfwList.length / 3) * 250,
-    tsHeight: Math.ceil(tsfwList.length / 3) * 250 + 100,
+    tsContentHeight: Math.ceil(tsfwList.length / 3) * 180,
+    tsHeight: Math.ceil(tsfwList.length / 3) * 180 + 100,
     galleryList: galleryList,
     abroadList:[],
     newbornList: [{ id: "1", title: "新人福利新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }],
@@ -104,8 +104,8 @@ Page({
             that.setData({
               banner_url: response.adlist,
               tsfwList: response.servlist,
-              tsContentHeight: Math.ceil(response.servlist.length / 3) * 230,
-              tsHeight: Math.ceil(response.servlist.length / 3) * 230 + 100,
+              tsContentHeight: Math.ceil(response.servlist.length / 3) * 180,
+              tsHeight: Math.ceil(response.servlist.length / 3) * 180 + 100,
               abroadList: response.abroadlist,
               newbornList: response.newbornlist
             })
@@ -162,5 +162,19 @@ Page({
       title: '正在加载中',
     });
     that.articleListGet();
+  },
+  turninCheck: function(){
+    var register = wx.getStorageSync("register");
+    if (register == 1){
+      wx.showModal({
+        title: '提示',
+        content: '请先进入[我的]登录后再进行该操作',
+        showCancel:false
+      })
+      return
+    }
+    wx.navigateTo({
+      url: '../turnintype/turnintype',
+    })
   }
 })

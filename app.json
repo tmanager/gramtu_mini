@@ -12,8 +12,11 @@
     "pages/turninlist/turninlist",
     "pages/suggest/suggest",
     "pages/consumelist/consumelist",
-    "pages/turninsettle/turninsettle"
-    
+    "pages/turninsettle/turninsettle",
+    "pages/turnintype/turnintype",
+    "pages/turninfile/turninfile",
+    "pages/turninend/turninend",
+    "pages/payend/payend"
   ],
   "window": {
     "backgroundTextStyle": "light",
