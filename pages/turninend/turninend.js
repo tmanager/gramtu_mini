@@ -260,7 +260,7 @@ Page({
   },
 
   payResultNotify: function(){
-    var data = { openid: openid, fileid: that.data.fileid };
+    var data = { openid: openid, fileid: that.data.fileid, coupid: that.data.index};
     wx.request({
       url: config.serverAddress + 'pay/result',
       data: util.sendMessageEdit(null, data),
