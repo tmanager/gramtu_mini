@@ -120,7 +120,7 @@ Page({
           //合法的扩展名
           var exname = ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "wp", "wpd", "wpt", "ps","pdf", "html", ".rtf", "odt", "hwp", "txt"];
           var name = res.tempFiles[0].name;
-          if (name.substr(name.lastIndexOf(".") + 1).indexOf(exname) == -1) {
+          if (exname.indexOf(name.substr(name.lastIndexOf(".") + 1)) == -1) {
             wx.showToast({
               title: '文件类型不合法，请参照[上传文件要求]中允许的文件类型！',
               icon: 'none'
