@@ -9,7 +9,6 @@ Page({
   data: {
     uploadfile: "",
     addDocument: "添加文件",
-    addDocEnglish:"Add document",
     filename:"",
     firstname:"",
     lastname:"",
@@ -120,7 +119,7 @@ Page({
           //合法的扩展名
           var exname = ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "wp", "wpd", "wpt", "ps","pdf", "html", ".rtf", "odt", "hwp", "txt"];
           var name = res.tempFiles[0].name;
-          if (exname.indexOf(name.substr(name.lastIndexOf(".") + 1)) == -1) {
+          if (exname.indexOf(name.substr(name.lastIndexOf(".") + 1).toLowerCase()) == -1) {
             wx.showToast({
               title: '文件类型不合法，请参照[上传文件要求]中允许的文件类型！',
               icon: 'none'
@@ -131,7 +130,6 @@ Page({
           _that.setData({
             uploadfile: res.tempFiles[0],
             addDocument: "移除文件",
-            addDocEnglish: "Remove document",
             filename: res.tempFiles[0].name
           })
           //显示按钮上显示文件名和移除文件
@@ -141,7 +139,6 @@ Page({
     }else{
       _that.setData({
         addDocument: "添加文件",
-        addDocEnglish: "Add document",
         filename: "",
         uploadfile: "",
         filesize: 0
