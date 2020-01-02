@@ -28,12 +28,6 @@ Page({
    */
   onLoad: function (options) {
     var fileSize = options.filesize;
-    if(fileSize < 1024 * 10.24){
-      fileSize = (fileSize / 1024).toFixed(2) + "K";
-    }else{
-      fileSize = (fileSize / 1024 / 1024).toFixed(2) + "M";
-    }
-
     this.setData({
       filename: options.filename,
       filesize: fileSize,

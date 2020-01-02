@@ -1,5 +1,6 @@
 // pages/turninfile/turninfile.js
 var config = require('../../utils/config.js')
+var util = require('../../utils/util.js');
 
 Page({
 
@@ -198,14 +199,16 @@ Page({
         "content-type": "multipart/form-data;charset=UTF-8",
       },
       success: function (res) {
-        console.log("上传文件：" + res);
+        console.log("上传文件：");
+        console.log(res);
         if (res.statusCode == 200) {
-          if (res.data.retcode === config.SUCCESS) {
-            var data = { orderid: res.data.response.orderid}
+          var resData = JSON.parse(res.data);
+          if (resData.retcode === config.SUCCESS) {
+            var data = { orderid: resData.response.orderid}
             $this.fileByteGet(data);
           }else{
             wx.showToast({
-              title: res.data.retmsg,
+              title: resData.retmsg,
               icon: 'none'
             })
           }
@@ -243,6 +246,8 @@ Page({
       data: util.sendMessageEdit(null, data),
       method: 'post',
       success: function (res) {
+        console.log("解析文件：");
+        console.log(res);
         if (res.statusCode == 200) {
           if (res.data.retcode === config.SUCCESS) {
             var response = res.data.response;
