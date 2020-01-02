@@ -16,7 +16,7 @@ Page({
     cdiscount: "",
     priceword: 500,
     coupon: [
-      { word: 0, name: "不使用优惠券", id: 0 }
+      { word: 0, name: "不使用优惠券", id: "" }
     ],
     index: 0,
     couponword: 0,
@@ -99,7 +99,7 @@ Page({
    */
   payListGet:function(){
     wx.showLoading({
-      title: '正在加载中....',
+      title: '正在获取价格信息',
     });
     var that = this;
     var openid = wx.getStorageSync("openid");
@@ -148,7 +148,9 @@ Page({
       }
     })
   },
-
+  /**
+   * 折扣显示
+   */
   discountNumberChange: function (data) {
     if (data == "10" || data == "") {
       return "无折扣";
@@ -159,6 +161,9 @@ Page({
     return data + "折";
   },
 
+  /**
+   * 优惠券选择框
+   */
   bindPickerChange: function (e) {
     console.log('选中的优惠券为:', this.data.coupon[e.detail.value].name)
     this.setData({
@@ -187,6 +192,9 @@ Page({
       })
     }
   },
+  /**
+   * 获取支付信息
+   */
   payment: function () {
     var that = this;
     wx.showLoading({
@@ -197,7 +205,7 @@ Page({
       amount = this.data.realtotal
     }
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, amount: amount, fileid: that.data.fileid};
+    var data = { openid: openid, amount: amount, fileid: that.data.fileid, coupid: that.data.coupon[that.data.index].id};
     wx.request({
       url: config.serverAddress + 'wxPay',
       data: util.sendMessageEdit(null, data),
@@ -228,6 +236,9 @@ Page({
       }
     });
   },
+  /**
+   * 支付处理
+   */
   doWxPay: function (param) {
     //小程序发起微信支付
     wx.requestPayment({
@@ -259,8 +270,11 @@ Page({
     });
   },
 
+  /**
+   * 支付成功通知
+   */
   payResultNotify: function(){
-    var data = { openid: openid, fileid: that.data.fileid, coupid: that.data.index};
+    var data = { openid: openid, fileid: that.data.fileid};
     wx.request({
       url: config.serverAddress + 'pay/result',
       data: util.sendMessageEdit(null, data),

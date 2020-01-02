@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "pages/turnintype/turnintype",
     "pages/index/index",
     "pages/mine/mine",
     "pages/logs/logs",
@@ -13,7 +13,7 @@
     "pages/suggest/suggest",
     "pages/consumelist/consumelist",
     "pages/turninsettle/turninsettle",
-    "pages/turnintype/turnintype",
+    
     "pages/turninfile/turninfile",
     "pages/turninend/turninend",
     "pages/payend/payend"

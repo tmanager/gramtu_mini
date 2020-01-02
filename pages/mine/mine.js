@@ -178,6 +178,7 @@ Page({
           if (res.statusCode == 200) {
             console.info("login/userinfo:" + JSON.stringify(res.data));
             if (res.data.retcode === config.SUCCESS) {
+              wx.setStorageSync("register", "1");
               self.setData({
                 userInfo: userInfo,
                 mark: 0

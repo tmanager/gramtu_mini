@@ -74,6 +74,9 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+   * 输入框输入事件
+   */
   getInputValue(e) {
     console.log(e)// {value: "ff", cursor: 2}  
     switch(e.target.id){
@@ -94,20 +97,42 @@ Page({
         break;
     }
   },
+  /**
+   * 选择文件
+   */
   choosefilefun: function () {
     let _that = this;
-    if (_that.data.subtitle == ""){
+    if (_that.data.filename == ""){
       wx.chooseMessageFile({
         count: 1,
         type: 'file',
         success(res) {
           console.log(_that, ' :this');
           console.log(res, " :res");
+          //合法大小。不能超过100M
+          if(res.tempFiles[0].size > 100 * 1024 * 1024){
+            wx.showToast({
+              title: '文件不能超过100M！',
+              icon: 'none'
+            })
+            return
+          }
+          //合法的扩展名
+          var exname = ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "wp", "wpd", "wpt", "ps","pdf", "html", ".rtf", "odt", "hwp", "txt"];
+          var name = res.tempFiles[0].name;
+          if (name.substr(name.lastIndexOf(".") + 1).indexOf(exname) == -1) {
+            wx.showToast({
+              title: '文件类型不合法，请参照[上传文件要求]中允许的文件类型！',
+              icon: 'none'
+            })
+            return
+          }
+
           _that.setData({
             uploadfile: res.tempFiles[0],
             addDocument: "移除文件",
             addDocEnglish: "Remove document",
-            subtitle: res.tempFiles[0].name
+            filename: res.tempFiles[0].name
           })
           //显示按钮上显示文件名和移除文件
 
@@ -117,12 +142,15 @@ Page({
       _that.setData({
         addDocument: "添加文件",
         addDocEnglish: "Add document",
-        subtitle: "",
+        filename: "",
         uploadfile: "",
         filesize: 0
       })
     }
   },
+  /**
+   * 上传文件
+   */
   uploadfilefun: function () {
     let { uploadfile } = this.data;
     if (this.data.firstname == "") {
@@ -155,8 +183,9 @@ Page({
     }
     let $this = this;
     wx.showLoading({
-      title: '上传中',
+      title: '正在上传文件',
     })
+    var openid = wx.getStorageSync("openid");
     wx.uploadFile({
       url: config.serverAddress.url + '/upload', // 请求服务端文件,
       filePath: uploadfile.path,
@@ -165,7 +194,8 @@ Page({
         firstname: $this.data.firstname,
         lastname: $this.data.lastname,
         subtitle: $this.data.subtitle,
-        checktype: $this.data.checktype
+        checktype: $this.data.checktype,
+        openid: openid
       },
       header: {
         "content-type": "multipart/form-data;charset=UTF-8",
@@ -174,11 +204,8 @@ Page({
         console.log("上传文件：" + res);
         if (res.statusCode == 200) {
           if (res.data.retcode === config.SUCCESS) {
-            var response = res.data.response;
-            var para = "filename=" + uploadfile.name + 
-              "&filesize=" + uploadfile.size + "&wordnum=" + response.wordnum + 
-              "&fileid=" + response.fileid + "&checktype=" + $this.data.checktype;
-            wx.navigateTo({ url: "../turninend/turninend?" + para });
+            var data = { orderid: res.data.response.orderid}
+            $this.fileByteGet(data);
           }else{
             wx.showToast({
               title: res.data.retmsg,
@@ -199,6 +226,53 @@ Page({
         })
       },
       complete: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
+  /**
+   * 解析文件字数
+   */
+  fileByteGet: function (data){
+    let $this = this;
+    wx.showLoading({
+      title: '正在解析文件字数',
+    });
+    wx.request({
+      url: config.serverAddress + "analyse",
+      header: {
+        'content-type': 'application/json'
+      },
+      data: util.sendMessageEdit(null, data),
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          if (res.data.retcode === config.SUCCESS) {
+            var response = res.data.response;
+            var para = "filename=" + uploadfile.name +
+              "&filesize=" + uploadfile.size + "&wordnum=" + response.wordnum +
+              "&orderid=" + response.orderid + "&checktype=" + $this.data.checktype;
+            wx.navigateTo({ url: "../turninend/turninend?" + para });
+          } else {
+            wx.showToast({
+              title: res.data.retmsg,
+              icon: 'none'
+            })
+          }
+        } else {
+          wx.showToast({
+            title: "解析文件字数失败",
+            icon: 'none'
+          })
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: "解析文件字数失败",
+          icon: 'none'
+        })
+      },
+      complete: function(res){
         wx.hideLoading();
         //TODO:测试用。
         /*var para = "filename=" + uploadfile.name + "&filesize=1304&wordnum=123456&fileid=123456&checktype=0";

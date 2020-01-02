@@ -4,30 +4,29 @@
 		<view class="group-body">
 			<view class="input-list">
 				<view class="input-item">
-					<text class="input-item-label">名<text class='sm-font'>（First name）</text></text>
+					<text class="input-item-label">名</text>
 					<view class="input-item-content">
 						<input type="text" placeholder="请输入名" bindinput='getInputValue' id="firstname"></input>
 					</view>
 				</view>
 				<view class="input-item">
-					<text class="input-item-label">姓<text class='sm-font'>（Last name）</text></text>
+					<text class="input-item-label">姓</text>
 					<view class="input-item-content">
 						<input type="text" placeholder="请输入姓" bindinput='getInputValue' id="lastname"></input>
 					</view>
 				</view>
 				<view class="input-item">
-					<text class="input-item-label">文件标题<text class='sm-font'>（Submittion title）</text></text>
+					<text class="input-item-label">文件标题</text>
 					<input type="text" placeholder="请输入文件标题" value="{{subtitle}}" bindinput='getInputValue' id="subtitle"></input>
 				</view>
         <view class="input-item add-file">
-					<view><input type="text" disabled='disabled' placeholder="文件名" value="{{subtitle}}" ></input></view>
-          <view><button class="btn-block" style="background-color:#2bb673; color:white; width:90%" bindtap='choosefilefun'><view class='sm-font'>{{addDocument}}</view><view class='xs-font'>{{addDocEnglish}}</view></button></view>
+					<view><input type="text" disabled='disabled' placeholder="文件名" value="{{filename}}" ></input></view>
+          <view><button class="btn-block" style="background-color:#2bb673; color:white; width:90%" bindtap='choosefilefun'><view class='sm-font'>{{addDocument}}</view></button></view>
 				</view>
         <view class="input-item">
           <text class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到Turnin的文档：</text>
-          <text class='sm-font'>Choose the file you want to upload to turnin:</text>
 				  <view class='upload-btn'> 
-            <button class="btn-block" style='background-color:#2489F3; color:white; width: 100%' bindtap='uploadfilefun'>上传<text class='sm-font'>（Submit）</text></button>
+            <button class="btn-block" style='background-color:#2489F3; color:white; width: 100%' bindtap='uploadfilefun'>上传</button>
           </view>
         </view>
 			</view>
