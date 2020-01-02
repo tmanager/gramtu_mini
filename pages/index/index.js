@@ -165,7 +165,7 @@ Page({
   },
   turninCheck: function(){
     var register = wx.getStorageSync("register");
-    if (register == 1){
+    if (register == 0){
       wx.showModal({
         title: '提示',
         content: '请先进入[我的]登录后再进行该操作',
