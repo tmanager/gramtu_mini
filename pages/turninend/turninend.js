@@ -37,7 +37,7 @@ Page({
     this.setData({
       filename: options.filename,
       filesize: fileSize,
-      fileid: options.fileid,
+      orderid: options.orderid,
       wordnum: options.wordnum,
       checktype: options.checktype
     });
@@ -205,7 +205,7 @@ Page({
       amount = this.data.realtotal
     }
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, amount: amount, fileid: that.data.fileid, coupid: that.data.coupon[that.data.index].id};
+    var data = { openid: openid, amount: amount, orderid: that.data.orderid, coupid: that.data.coupon[that.data.index].id};
     wx.request({
       url: config.serverAddress + 'wxPay',
       data: util.sendMessageEdit(null, data),
@@ -274,7 +274,7 @@ Page({
    * 支付成功通知
    */
   payResultNotify: function(){
-    var data = { openid: openid, fileid: that.data.fileid};
+    var data = { openid: openid, orderid: that.data.orderid};
     wx.request({
       url: config.serverAddress + 'pay/result',
       data: util.sendMessageEdit(null, data),
