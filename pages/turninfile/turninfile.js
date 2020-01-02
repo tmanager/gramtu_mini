@@ -187,9 +187,9 @@ Page({
     })
     var openid = wx.getStorageSync("openid");
     wx.uploadFile({
-      url: config.serverAddress.url + '/upload', // 请求服务端文件,
+      url: config.serverAddress + '/busi/upload', // 请求服务端文件,
       filePath: uploadfile.path,
-      name: uploadfile.name,
+      name: "file",
       formData:{
         firstname: $this.data.firstname,
         lastname: $this.data.lastname,
@@ -239,7 +239,7 @@ Page({
       title: '正在解析文件字数',
     });
     wx.request({
-      url: config.serverAddress + "analyse",
+      url: config.serverAddress + "/busi/analyse",
       header: {
         'content-type': 'application/json'
       },
