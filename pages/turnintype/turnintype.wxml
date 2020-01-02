@@ -1,4 +1,8 @@
-<view>
-<button class="btn-block"style="background-color:#2bb673; color:white; width: 95%" bindtap="turninTypeChoose">单独文件</button>
-<button class="btn-block" style='margin-top:20rpx;background-color:#2489F3; color:white; width: 95%'>剪贴文本</button>
+<view style='margin: 10rpx 30rpx'>
+  <view class='type-title'>请选择查重类型</view>
+  <view class="turnin-type">
+    <view class="{{file ? 'active' : ''}}" bindtap='fileTap'>单独文件查重</view>
+    <view class="{{cut ? 'active' : ''}}" bindtap='cutTap'>剪贴文本查重</view>
+  </view>
 </view>
+<button class="btn-block"style="background-color:#2bb673; color:white; width: 95%" bindtap="turninTypeChoose">确定</button>

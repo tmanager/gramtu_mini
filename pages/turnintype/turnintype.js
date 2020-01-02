@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    file: true,
+    cut: false
   },
 
   /**
@@ -68,8 +69,22 @@ Page({
    */
   turninTypeChoose: function(){
     //type:"0"：国际查重， "1":UK查重，"2"：语法检测
-    wx.navigateTo({
-      url: '../turninfile/turninfile?type=0'
+    if(this.data.file){
+      wx.navigateTo({
+        url: '../turninfile/turninfile?type=0'
+      })
+    }
+  },
+  fileTap: function(){
+    this.setData({
+      file: true,
+      cut: false
+    })
+  },
+  cutTap: function () {
+    this.setData({
+      file: false,
+      cut: true
     })
   }
 })
