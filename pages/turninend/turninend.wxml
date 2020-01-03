@@ -4,11 +4,11 @@
   <view class='end-info'>
     <view>文件：{{filename}}</view>
     <view>文档大小：{{filesize}}</view>
-    <view>文字总数：{{wordnum}}</view>
+    <view>文字总数：{{wordcount}}</view>
     <view class='hori-line'></view>
-    <view>原始单价：<text style='text-decoration:line-through'>{{price}}元/{{priceword}}字</text></view>
+    <view>原始单价：<text style='text-decoration:line-through'>{{price}}元/{{wordnum}}字</text></view>
     <view>当前折扣：{{cdiscount}}</view>
-    <view>当前计费标准：{{currprice}}元/{{priceword}}字</view>
+    <view>当前计费标准：{{currprice}}元/{{wordnum}}字</view>
     <view>应付件数：{{count}}</view>
     <view>应付总价：￥{{total}}</view>
     <view class='hori-line'></view>

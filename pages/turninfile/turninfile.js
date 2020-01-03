@@ -258,8 +258,8 @@ Page({
             var para = "filename=" + uploadfile.name +
               "&filesize=" + response.filesize + "&wordcount=" + response.wordcount +
               "&orderid=" + response.orderid + "&checktype=" + $this.data.checktype + 
-              "&price=" + $this.data.price + "&wordnum=" + $this.data.wordnum + 
-              "&discount=" + $this.data.discount ;
+              "&price=" + response.price + "&wordnum=" + response.wordnum + 
+              "&discount=" + response.discount ;
             wx.navigateTo({ url: "../turninend/turninend?" + para });
           } else {
             wx.showToast({

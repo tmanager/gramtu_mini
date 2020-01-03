@@ -27,7 +27,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var fileSize = options.filesize;
     this.setData({
       filename: options.filename,
       filesize: options.filesize,
@@ -39,21 +38,18 @@ Page({
       price: options.price
     });
     
-    that.setData({
-      cdiscount: that.discountNumberChange(response.discount),
-      currprice: (response.price * (response.discount / 10)).toFixed(2),
-      count: Math.ceil(that.data.wordcount / response.wordnum)
+    this.setData({
+      cdiscount: this.discountNumberChange(this.data.discount),
+      currprice: (this.data.price * (this.data.discount / 10)).toFixed(2),
+      count: Math.ceil(this.data.wordcount / this.data.wordnum)
     });
     //计算应付总价
-    that.setData({
-      total: that.data.currprice * that.data.count
-    });
-    that.setData({
-      coupon: this.data.coupon.concat(response.coupon)
+    this.setData({
+      total: this.data.currprice * this.data.count
     });
 
-    //获取折扣，计费标准，优惠券
-    this.payListGet();
+    //优惠券
+    this.coupListGet();
   },
 
   /**
