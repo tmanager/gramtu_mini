@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/mine/mine",
     "pages/logs/logs",
@@ -15,8 +14,8 @@
     "pages/turninsettle/turninsettle",
     "pages/turnintype/turnintype",
     "pages/turninfile/turninfile",
-    "pages/turninend/turninend",
-    "pages/payend/payend"
+    "pages/payend/payend",
+    "pages/turninend/turninend"
   ],
   "window": {
     "backgroundTextStyle": "light",

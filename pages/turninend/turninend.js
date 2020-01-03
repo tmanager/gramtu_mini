@@ -11,22 +11,22 @@ Page({
     filesize: "",
     fileurl: "",
     wordcount: "",
-    price: "5",
-    discount: 7,
+    price: "",
+    discount: "",
     cdiscount: "",
-    wordnum: 500,
+    wordnum: 0,
     coupon: [
       { word: 0, name: "不使用优惠券", id: "" }
     ],
     index: 0,
-    couponword: 0,
-    totalheight: 770
+    couponword: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     this.setData({
       filename: options.filename,
       filesize: options.filesize,
@@ -35,7 +35,8 @@ Page({
       checktype: options.checktype,
       wordnum: options.wordnum,
       discount: options.discount,
-      price: options.price
+      price: options.price,
+      cwordcount: that.format(options.wordcount)
     });
     
     this.setData({
@@ -45,7 +46,8 @@ Page({
     });
     //计算应付总价
     this.setData({
-      total: this.data.currprice * this.data.count
+      total: (this.data.currprice * this.data.count).toFixed(2),
+      realtotal: (this.data.currprice * this.data.count).toFixed(2)
     });
 
     //优惠券
@@ -177,12 +179,11 @@ Page({
       }
       this.setData({
         realcount: this.data.count - this.data.coupcount,
-        realtotal: (this.data.count - this.data.coupcount) * this.data.currprice,
-        totalheight: 940
+        realtotal: ((this.data.count - this.data.coupcount) * this.data.currprice).toFixed(2),
       })
     } else {
       this.setData({
-        totalheight: 770
+        realtotal: this.data.total
       })
     }
   },
@@ -201,7 +202,7 @@ Page({
     var openid = wx.getStorageSync("openid");
     var data = { openid: openid, amount: amount, orderid: that.data.orderid, coupid: that.data.coupon[that.data.index].id};
     wx.request({
-      url: config.serverAddress + 'wxPay',
+      url: config.serverAddress + 'wxpay/unifiedorder',
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
@@ -242,14 +243,18 @@ Page({
     wx.requestPayment({
       timeStamp: param.timestamp,
       nonceStr: param.noncestr,
-      package: param.package,
-      signType: param.signtype,
+      package: param.paypackage,
+      signType: "MD5",
       paySign: param.paysign,
       success: function (event) {
         // success
         console.log(event);
         //通知后端支付成功，跳转到支付成功画面
-        that.payResultNotify();
+        //that.payResultNotify();
+        //暂不做通知，直接跳转
+        wx.navigateTo({
+          url: '../payend/payend',
+        })
       },
       fail: function (error) {
         // fail
@@ -295,5 +300,9 @@ Page({
         //TODO:应该也要跳转到支付成功页面
       }
     })
+  },
+  format :function(num) {
+    var reg = /\d{1,3}(?=(\d{3})+$)/g;
+    return(num + '').replace(reg, '$&,');  
   }
 })

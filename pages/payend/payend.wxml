@@ -1,3 +1,7 @@
 <!--pages/payend/payend.wxml-->
-<text>支付成功</text>
-<button class="btn-block"style="background-color:#2bb673; color:white; width: 95%" bindtap='gotoList'>查看查重列表</button>
+<view style='margin: 10rpx 30rpx'>
+  <view class='type-title'>支付成功</view>
+  <view class="turnin-type">
+    <button class="btn-block"style="background-color:#2489F3; color:white; width: 95%" bindtap="gotoList">查看查重列表</button>
+  </view>
+</view>

@@ -1,1 +1,18 @@
 /* pages/payend/payend.wxss */
+.type-title{
+  color:#808080;
+  font-size: 35rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.turnin-type{
+  display: flex;
+  flex-direction: row;
+  font-size: 25rpx;
+  margin-top: 80rpx;
+}
+
+.turnin-type button{
+  font-size: 25rpx;
+  padding: 10rpx;
+}
