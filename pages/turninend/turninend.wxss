@@ -60,3 +60,72 @@ picker{
   margin: 30rpx 0;
   width: 300rpx;
 }
+
+page{
+  background-color: #F2F3F5;
+}
+
+.wode_item_wrap {
+	background-color: #FFF;
+	font-size: 25rpx;
+	margin-top: 10rpx;
+	border-top: 1px solid #E5E5E5;
+}
+.wode_item {
+  height: 60rpx;
+	border-bottom: 1px solid #E5E5E5;
+	margin: 0 20px;
+	line-height: 60rpx;
+	position: relative;
+}
+
+.wode_item:last-child {
+  height: 60rpx;
+	border-bottom: 1px solid #E5E5E5;
+	padding: 0 20px;
+  margin: 0;
+	line-height: 60rpx;
+	position: relative;
+}
+
+.wode_item{
+ display: flex;
+ flex-direction: row; 
+}
+
+.wode_item > view:first-child{
+  flex: 1.5;
+}
+
+.wode_item > view:nth-child(2){
+  flex: 3;
+}
+
+.hidden {
+    display: none;
+}
+
+.tabbar{ 
+  font-size: 30rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 100rpx;
+  border-top: 1px solid #C5C5C5;
+}
+.tabbar > view:nth-child(1){
+  flex: 2;
+  line-height: 100rpx;
+  margin-left: 20rpx;
+}
+.tabbar > view:nth-child(2){
+  flex: 1;
+  line-height: 100rpx;
+  text-align: center;
+  font-size:30rpx;
+  color:white;
+  background-color: #F24F50;
+}

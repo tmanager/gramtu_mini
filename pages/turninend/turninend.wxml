@@ -1,29 +1,69 @@
 <!--pages/gram/gram.wxml-->
-<view class='view-back' style='height:{{totalheight}}rpx'>
-  <image src='../../images/turnin-logo.png' class='gram-icon'></image>
-  <view class='end-info'>
-    <view>文件：{{filename}}</view>
-    <view>文档大小：{{filesize}}</view>
-    <view>文字总数：{{wordcount}}</view>
-    <view class='hori-line'></view>
-    <view>原始单价：<text style='text-decoration:line-through'>{{price}}元/{{wordnum}}字</text></view>
-    <view>当前折扣：{{cdiscount}}</view>
-    <view>当前计费标准：{{currprice}}元/{{wordnum}}字</view>
-    <view>应付件数：{{count}}</view>
-    <view>应付总价：￥{{total}}</view>
-    <view class='hori-line'></view>
-    <view>
-      <text>优惠码：</text>
-      <picker bindchange="bindPickerChange" value="{{index}}" range="{{coupname}}">
-        <view class="tui-picker-detail">{{coupon[index].name}}</view>
-      </picker>
+<view>
+  <view class="wode_item_wrap">
+    <view class="wode_item">
+      <view class='wode_name'>文件：</view>
+      <view>{{filename}}</view>
     </view>
-    <view wx:if="{{couponword != 0}}">
-      <view>对应优惠件数：{{coupcount}}</view>
-      <view>实际付款件数：{{realcount}}</view>
-      <view>实付总价：{{realtotal}}</view>
+    <view class="wode_item">
+      <view class='wode_name'>文档大小：</view>
+      <view>{{filesize}}</view>
     </view>
-    <view class='payment-btn' bindtap='payment'>确认并跳转至微信付款页面</view>
+    <view class="wode_item">
+      <view class='wode_name'>文字总数：</view>
+      <view>{{wordcount}}</view>
+    </view>
   </view>
-  
+
+  <view class="wode_item_wrap">
+    <view class="wode_item">
+      <view class='wode_name'>原始单价：</view>
+      <view><text style='text-decoration:line-through'>{{price}}元/{{wordnum}}字</text></view>
+    </view>
+    <view class="wode_item">
+      <view class='wode_name'>当前折扣：</view>
+      <view>{{cdiscount}}</view>
+    </view>
+    <view class="wode_item">
+      <view class='wode_name'>当前计费标准：</view>
+      <view>{{currprice}}元/{{wordnum}}字</view>
+    </view>
+    <view class="wode_item">
+      <view class='wode_name'>应付件数：</view>
+      <view>{{count}}</view>
+    </view>
+    <view class="wode_item">
+      <view class='wode_name'>应付总价：</view>
+      <view>￥{{total}}</view>
+    </view>
+  </view>
+
+  <view class="wode_item_wrap">
+    <view class="wode_item" style='height: 90rpx; line-height: 90rpx'>
+      <view class='wode_name'>优惠码：</view>
+      <view><picker bindchange="bindPickerChange" value="{{index}}" range="{{coupname}}">
+          <view class="tui-picker-detail">{{coupon[index].name}}</view>
+        </picker></view>
+    </view>
+    <view wx:if="{{couponword != 0}}">    
+      <view class="wode_item">
+        <view class='wode_name'>对应优惠件数：</view>
+        <view>{{coupcount}}</view>
+      </view>
+      <view class="wode_item">
+        <view class='wode_name'>实际付款件数：</view>
+        <view>{{realcount}}</view>
+      </view>
+      <view class="wode_item">
+        <view class='wode_name'>实付总价：</view>
+        <view>￥{{realtotal}}</view>
+      </view>
+    </view>
+  </view>
 </view>
+
+<view class="tabbar">
+  <view>合计:<text style='color:#F24F50;'>￥{{realtotal}}</text></view>
+  <view bindtap="payment">确认支付</view>
+</view>
+
