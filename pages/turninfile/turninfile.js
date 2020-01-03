@@ -193,7 +193,8 @@ Page({
         lastname: $this.data.lastname,
         subtitle: $this.data.subtitle,
         checktype: $this.data.checktype,
-        openid: openid
+        openid: openid,
+        filename: uploadfile.name,
       },
       header: {
         "content-type": "multipart/form-data;charset=UTF-8",
@@ -201,6 +202,7 @@ Page({
       success: function (res) {
         console.log("上传文件：");
         console.log(res);
+        wx.hideLoading();
         if (res.statusCode == 200) {
           var resData = JSON.parse(res.data);
           if (resData.retcode === config.SUCCESS) {
@@ -220,13 +222,14 @@ Page({
         }
       },
       fail: function (res) {
+        wx.hideLoading();
         wx.showToast({
           title: "上传文件失败",
           icon: 'none'
         })
       },
       complete: function (res) {
-        wx.hideLoading();
+        
       }
     })
   },
@@ -234,6 +237,7 @@ Page({
    * 解析文件字数
    */
   fileByteGet: function (data){
+    let { uploadfile } = this.data;
     let $this = this;
     wx.showLoading({
       title: '正在解析文件字数',
@@ -252,8 +256,10 @@ Page({
           if (res.data.retcode === config.SUCCESS) {
             var response = res.data.response;
             var para = "filename=" + uploadfile.name +
-              "&filesize=" + uploadfile.size + "&wordnum=" + response.wordnum +
-              "&orderid=" + response.orderid + "&checktype=" + $this.data.checktype;
+              "&filesize=" + response.filesize + "&wordcount=" + response.wordcount +
+              "&orderid=" + response.orderid + "&checktype=" + $this.data.checktype + 
+              "&price=" + $this.data.price + "&wordnum=" + $this.data.wordnum + 
+              "&discount=" + $this.data.discount ;
             wx.navigateTo({ url: "../turninend/turninend?" + para });
           } else {
             wx.showToast({

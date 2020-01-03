@@ -10,11 +10,11 @@ Page({
     filename: "",
     filesize: "",
     fileurl: "",
-    wordnum: "8001",
+    wordcount: "",
     price: "5",
     discount: 7,
     cdiscount: "",
-    priceword: 500,
+    wordnum: 500,
     coupon: [
       { word: 0, name: "不使用优惠券", id: "" }
     ],
@@ -30,12 +30,28 @@ Page({
     var fileSize = options.filesize;
     this.setData({
       filename: options.filename,
-      filesize: fileSize,
+      filesize: options.filesize,
       orderid: options.orderid,
+      wordcount: options.wordcount,
+      checktype: options.checktype,
       wordnum: options.wordnum,
-      checktype: options.checktype
+      discount: options.discount,
+      price: options.price
     });
     
+    that.setData({
+      cdiscount: that.discountNumberChange(response.discount),
+      currprice: (response.price * (response.discount / 10)).toFixed(2),
+      count: Math.ceil(that.data.wordcount / response.wordnum)
+    });
+    //计算应付总价
+    that.setData({
+      total: that.data.currprice * that.data.count
+    });
+    that.setData({
+      coupon: this.data.coupon.concat(response.coupon)
+    });
+
     //获取折扣，计费标准，优惠券
     this.payListGet();
   },
@@ -91,15 +107,15 @@ Page({
   /**
    * 获取原始价格，折扣，拥有的优惠券
    */
-  payListGet:function(){
+  coupListGet:function(){
     wx.showLoading({
-      title: '正在获取价格信息',
+      title: '正在获取优惠券信息',
     });
     var that = this;
     var openid = wx.getStorageSync("openid");
     var data = { openid: openid, checktype: that.data.checktype };
     wx.request({
-      url: config.serverAddress + "pay/query",
+      url: config.serverAddress + "coup/query",
       header: {
         'content-type': 'application/json'
       },
@@ -112,21 +128,9 @@ Page({
           if (res.data.retcode === config.SUCCESS) {
             var response = res.data.response;
             //response中的内容有如下字段
-            //discount:折扣, price:原始价格（元）,priceword:原始价格对应的字数
             //coupon:优惠券数组，例如 [{ word: 500, name: "500字语法检测优惠券", id: 1 }]
             //计算原始价格
-            that.setData({
-              cdiscount: that.discountNumberChange(response.discount),
-              currprice: (response.price * (response.discount / 10)).toFixed(2),
-              count: Math.ceil(that.data.wordnum / response.priceword)
-            });
-            //计算应付总价
-            that.setData({
-              total: that.data.currprice * that.data.count
-            });
-            that.setData({
-              coupon: this.data.coupon.concat(response.coupon)
-            });
+            
             var coupname = [];
             for (var i = 0; i < that.data.coupon.length; i++) {
               coupname.push(that.data.coupon[i].name);
@@ -165,7 +169,7 @@ Page({
       couponword: this.data.coupon[e.detail.value].word
     });
     if (this.data.couponword != 0) {
-      var coupcount = Math.floor(this.data.coupon[this.data.index].word / this.data.priceword);
+      var coupcount = Math.floor(this.data.coupon[this.data.index].word / this.data.wordnum);
       if (coupcount > this.data.count) {
         this.setData({
           coupcount: this.data.count
