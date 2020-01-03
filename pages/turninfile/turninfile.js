@@ -240,7 +240,7 @@ Page({
     let { uploadfile } = this.data;
     let $this = this;
     wx.showLoading({
-      title: '正在解析文件字数',
+      title: '正在解析文件',
     });
     wx.request({
       url: config.serverAddress + "/busi/analyse",

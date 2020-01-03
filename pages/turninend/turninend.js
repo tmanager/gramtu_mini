@@ -192,7 +192,7 @@ Page({
   payment: function () {
     var that = this;
     wx.showLoading({
-      title: '处理中',
+      title: '正在获取支付信息',
     })
     var amount = this.data.total;
     if (this.data.couponword != 0) {
@@ -212,7 +212,8 @@ Page({
           console.info("获取支付需要的信息：");
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS) {
-              that.doWxPay(res.data.response);
+            wx.hideLoading();
+            that.doWxPay(res.data.response);
           }else{
             wx.showToast({
               icon: "none",
@@ -235,12 +236,15 @@ Page({
    */
   doWxPay: function (param) {
     //小程序发起微信支付
+    wx.showLoading({
+      title: '正在发起支付',
+    })
     wx.requestPayment({
-      timeStamp: param.timeStamp,
-      nonceStr: param.nonceStr,
+      timeStamp: param.timestamp,
+      nonceStr: param.noncestr,
       package: param.package,
-      signType: 'MD5',
-      paySign: param.paySign,
+      signType: param.signtype,
+      paySign: param.paysign,
       success: function (event) {
         // success
         console.log(event);
@@ -259,6 +263,7 @@ Page({
       },
       complete: function () {
         // complete
+        wx.hideLoading();
         console.log("pay complete")
       }
     });
@@ -279,6 +284,7 @@ Page({
       success: function (res) {
         if (res.statusCode == 200) {
           //跳转到支付成功页面
+          wx.hideLoading();
           wx.navigateTo({
             url: '../payend/payend',
           })
