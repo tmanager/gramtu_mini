@@ -48,7 +48,15 @@ function getTimeStamp() {
   return y.toString() + (m < 10 ? "0" + m : m) + (d < 10 ? "0" + d : d) + now.toTimeString().substr(0, 8).replace(/:/g, "");
 }
 
+const formatDateTime = datetime => {
+  if (datetime.length < 14) return datetime;
+  return datetime.substr(0, 4) + "/" + datetime.substr(4, 2) + "/" +
+    datetime.substr(6, 2) + " " + datetime.substr(8, 2) + ":" +
+    datetime.substr(10, 2) + ":" + datetime.substr(12, 2);
+}
+
 module.exports = {
   formatTime: formatTime,
-  sendMessageEdit: sendMessageEdit
+  sendMessageEdit: sendMessageEdit,
+  formatDateTime: formatDateTime
 }

@@ -35,7 +35,6 @@ page{
 	border-top: 1px solid #E5E5E5;
 }
 .wode_item {
-  height: 220rpx;
 	border-bottom: 1px solid #E5E5E5;
 	padding: 0 10px;
 	line-height: 40rpx;
@@ -59,8 +58,8 @@ page{
 .arrow_wrap {
     position: absolute;
     width: 60rpx;
-    height: 130rpx;
-    line-height: 130rpx;
+    height: 100rpx;
+    line-height: 100rpx;
     right: 0;
     top: 0;
 }
@@ -71,13 +70,13 @@ page{
 }
 
 .turnin-name{
-  font-size: 35rpx;
-  padding: 20rpx 0 0 0;
+  font-size: 30rpx;
+  padding: 10rpx 0 0 0;
 }
 
 .turnin-time{
-  font-size: 30rpx;
-  padding: 10rpx 0 20rpx;
+  font-size: 25rpx;
+  padding: 0 0 10rpx;
   color:#999;
 }
 
@@ -99,14 +98,14 @@ page{
   height: 80rpx;
   line-height: 80rpx;
   padding-left: 20rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
 
 .checkbox .wx-checkbox-input {
   border-radius: 32rpx; /* 圆角 */
   width: 32rpx; /* 背景的宽 */
   height: 32rpx; /* 背景的高 */
-  border: 2px solid rgba(255, 129, 92, 1);
+  border: 2px solid rgba(242, 79, 80, 1);
 }
 
 .checkbox .wx-checkbox-input-disabled {
@@ -118,7 +117,7 @@ page{
 }
 
 .checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-  background: rgba(255, 129, 92, 1);
+  background: rgba(242, 79, 80, 1);
 }
 
 .checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
@@ -149,7 +148,8 @@ page{
 }
 
 .checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-  background: rgba(255, 129, 92, 1);
+  background: rgba(242, 79, 80, 1);
+  border: 1px solid rgba(201, 201, 201, 0);
 }
 
 .checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
@@ -165,49 +165,45 @@ page{
 }
 
 .checkbox{
-  margin-top:80rpx;
+  margin-top:60rpx;
 }
 
 .tabbar{ 
-  font-size: 30rpx;
+  font-size: 25rpx;
   background: #fff;
   position: fixed;
   bottom: 0;
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 120rpx;
+  height: 100rpx;
   border-top: 1px solid #C5C5C5;
 }
 
 .tabbar > view:nth-child(1){
   flex: 1;
-  line-height: 120rpx;
+  line-height: 100rpx;
   margin-left: 20rpx;
 }
 .tabbar > view:nth-child(2){
   flex: 2;
-  line-height: 120rpx;
+  line-height: 100rpx;
   text-align: right;
-  font-size:30rpx;
+  font-size:25rpx;
   padding-right: 20rpx;
 }
 .tabbar > view:nth-child(3){
   flex: 1;
   text-align: center;
-  height: 80rpx;
-  line-height: 80rpx;
-  margin: 20rpx;
   background-color: #C5C5C5;
-  border-radius: 50rpx;
+  line-height: 100rpx;
+  color: white;
 }
 
 .tabbar > view:nth-child(4){
   flex: 1;
   text-align: center;
-  height: 80rpx;
-  line-height: 80rpx;
-  margin: 20rpx 10rpx;
   background-color: #F24F50;
-  border-radius: 50rpx;
+  line-height: 100rpx;
+  color: white;
 }

@@ -5,56 +5,45 @@
 </view>
 <scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
   scroll-y="true" bindscrolltolower="pullUpLoad">
-  <view class="wode_item_wrap">
-    <view class="wode_item">
-      <checkbox class='checkbox' value="1"/>
-      <view>
-        <navigator url="" class="navi">
-          <view>
-            <view class='turnin-name'>name</view>
-            <view class='turnin-time'>2019-12-16 10:10:10</view>
+  <checkbox-group bindchange="checkboxChange">
+    <view class="wode_item_wrap" wx:for="{{orderList}}">
+      <view class="wode_item">
+        <checkbox class='checkbox' checked='{{item.checked}}' value='{{item.orderid}}'/>
+        <view>
+          <navigator url="" class="navi">
+            <view>
+              <view class='turnin-name'>{{item.subtitle}}</view>
+              <view class='turnin-time'>{{item.time}}</view>
+            </view>
+            <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
+          </navigator>
+          <view class='price'>
+            ￥{{item.price}}
           </view>
-          <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
-        </navigator>
-        <view class='price'>
-          ￥9.90
         </view>
       </view>
     </view>
-  </view>
+  </checkbox-group>
 
 </scroll-view>
 
 <scroll-view class="hot-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
   scroll-y="true" bindscrolltolower="pullUpLoad">
-  <view class="wode_item_wrap">
+  <view class="wode_item_wrap" wx:for="{{orderList}}">
     <view class="wode_item">
       <view>
         <navigator url="" class="navi">
           <view>
-            <view class='turnin-name'>name</view>
-            <view class='turnin-time'>2019-12-16 10:10:10</view>
+            <view class='turnin-name'>{{item.subtitle}}</view>
+            <view class='turnin-time'>{{item.time}}</view>
           </view>
           <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
         </navigator>
-        <view class='status'>
+        <view class='status' wx:if="{{item.status == 0}}">
           正在检测中....
         </view>
-      </view>
-    </view>
-  </view>
-  <view class="wode_item_wrap">
-    <view class="wode_item">
-      <view>
-        <navigator url="../turninreport/turninreport?id=aa" class="navi">
-          <view>
-            <view class='turnin-name'>name</view>
-            <view class='turnin-time'>2019-12-16 10:10:10</view>
-          </view>
-          <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
-        </navigator>
-        <view class='status'>
-          重复比率：<text style='color:#F24F50'>0.00%</text>
+        <view class='status' wx:if="{{item.status == 1}}">
+          重复比率：<text style='color:#F24F50'>{{item.repeat}}</text>
         </view>
       </view>
     </view>
@@ -65,12 +54,12 @@
   <view class="tabbar">
     <view>
       <label class="checkbox">
-        <checkbox value="1"/>全选
+        <checkbox value="1" bindtap='allCheck'/>全选
       </label>
     </view>
-    <view>合计:<text style='color:#F24F50;'>￥0.00</text></view>
+    <view>合计:<text style='color:#F24F50;'>￥{{checkedList.price}}</text></view>
     <view>删除</view>
-    <view>结算</view>
+    <view bindtap='payment'>结算</view>
   </view>
 </view>
 
