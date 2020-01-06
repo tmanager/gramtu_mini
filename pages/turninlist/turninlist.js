@@ -25,12 +25,16 @@ Page({
       { orderid: "2", subtitle: "name2", time: "20201216101010", price: "10.90"  },
       { orderid: "3", subtitle: "name3", time: "20211216101010", price: "11.00" }
     ],
-    totalPrice: "0.00",
+    realtotal: "0.00",
     select_all: false,
     checkedList:{
       orderid:[],
       price: "0.00"
-    }
+    },
+    coupon: [],
+    coupname: [{ id: "1", name: "111", disable: '0' }, { id: "2", name: "222", disable: '1' }],
+    chooseindex: -1,
+    coupamount: 0
   },
 
   /**
@@ -55,6 +59,7 @@ Page({
     this.setData({
       orderList: list
     })
+    this.coupListGet();
   },
 
   /**
@@ -141,7 +146,8 @@ Page({
     checkedlist.orderid = e.detail.value;
     checkedlist.price = price.toFixed(2);
     this.setData({
-      checkedList: checkedlist
+      checkedList: checkedlist,
+      realtotal: checkedlist.price
     })
   },
   /**
@@ -162,7 +168,8 @@ Page({
     that.setData({
       orderList: list,
       select_all: (!that.data.select_all),
-      checkedList: checkedlist
+      checkedList: checkedlist,
+      realtotal: checkedlist.price
     })
   },
   /**
@@ -180,7 +187,7 @@ Page({
     wx.showLoading({
       title: '正在获取支付信息',
     })
-    var amount = this.data.checkedList.price;
+    var amount = this.data.realtotal;
     var openid = wx.getStorageSync("openid");
     var data = { openid: openid, amount: amount, orderidlist: this.data.checkedList.orderid, coupid: ""};
     wx.request({
@@ -296,5 +303,83 @@ Page({
         });
       }
     })
+  },
+  /**
+  * 获取拥有的优惠券
+  */
+  coupListGet: function () {
+    wx.showLoading({
+      title: '正在获取优惠券信息',
+    });
+    var that = this;
+    var openid = wx.getStorageSync("openid");
+    var data = { openid: openid, checktype: that.data.checktype };
+    wx.request({
+      url: config.serverAddress + "coupon/query",
+      header: {
+        'content-type': 'application/json'
+      },
+      data: util.sendMessageEdit(null, data),
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("获取拥有的优惠券：");
+          console.log(res.data) //获取openid
+          if (res.data.retcode === config.SUCCESS) {
+            var response = res.data.response;
+            that.setData({
+              coupon: response.couponlist
+            });
+          }
+        }
+      },
+      complete: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
+  coupShow: function () {
+    var that = this;
+    var couponlist = this.data.coupon;
+    var coupname = [];
+    for (var i = 0; i < couponlist.length; i++) {
+      var disable = 1;
+      if (couponlist[i].upfee == -1 || Number(that.data.total) >= couponlist[i].upfee) {
+        disable = 0;
+      }
+      var obj = { id: couponlist[i].id, name: couponlist[i].name, disable: disable };
+      coupname.push(obj);
+    }
+    if (coupname.length == 0) {
+      return;
+    }
+    that.setData({
+      isOpened: 1,
+      sheetList: coupname,
+      title: "选择优惠券"
+    });
+  },
+  selectAction: function (e) {
+    var that = this;
+    for (var i = 0; i < that.data.coupon.length; i++) {
+      if (that.data.coupon[i].id == e.detail) {
+        var amount = that.data.coupon[i].amount;
+        if (amount == -1) amount = that.data.total;
+        that.setData({
+          chooseindex: i,
+          coupamount: (that.data.coupon[i].amount).toFixed(2),
+          realtotal: (that.data.total - amount).toFixed(2)
+        });
+      }
+    }
+
+  },
+  cancelAction: function () {
+    var that = this;
+    that.setData({
+      chooseindex: -1,
+      coupamount: "0.00",
+      realtotal: (that.data.total - 0).toFixed(2)
+    });
   }
 })

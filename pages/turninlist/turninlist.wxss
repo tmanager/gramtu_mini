@@ -207,3 +207,17 @@ page{
   line-height: 100rpx;
   color: white;
 }
+
+.coup_item{
+  display: flex;
+  flex-direction: row;
+}
+
+.coup_item > view:nth-child(1){
+  flex: 1.5;
+  text-align: center;
+}
+
+.coup_item > view:nth-child(2){
+  flex: 3;
+}

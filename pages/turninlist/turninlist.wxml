@@ -24,7 +24,12 @@
       </view>
     </view>
   </checkbox-group>
-
+  <view class="wode_item_wrap">
+    <view class="wode_item coup_item" style='height: 90rpx; line-height: 90rpx'>
+      <view>选择优惠券：</view>
+      <view bindtap='coupShow'>不使用优惠券</view>
+    </view>
+  </view>
 </scroll-view>
 
 <scroll-view class="hot-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
@@ -57,7 +62,7 @@
         <checkbox value="1" bindtap='allCheck'/>全选
       </label>
     </view>
-    <view>合计:<text style='color:#F24F50;'>￥{{checkedList.price}}</text></view>
+    <view>合计:<text style='color:#F24F50;'>￥{{realtotal}}</text></view>
     <view>删除</view>
     <view bindtap='payment'>结算</view>
   </view>
