@@ -1,0 +1,6 @@
+<view class="container" wx:if='{{isOpened}}'>
+  <view class='row bg-red'>{{title}}</view>
+  <view wx:for='{{list}}' class='row {{item.disable == 1? "text-gray" : "" }}' wx:key data-idx='{{item.id}}' wx:key data-disable='{{item.disable}}' bindtap='handClick'>{{item.name}}</view>
+  <view class='row text-gray margin-top' bindtap='cancel'>取 消</view>
+</view>
+<view class='mask' wx:if='{{isOpened}}' bindtap='cancel'></view>

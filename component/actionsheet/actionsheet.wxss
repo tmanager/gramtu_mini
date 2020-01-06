@@ -1,0 +1,12 @@
+.mask{
+  background:#000;opacity:0.5;position:fixed;top:0;right:0;bottom: 0;left:0;z-index:600
+}
+.row{
+  width: 100%;text-align: center;line-height: 50px;background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+.text-gray{color: gray}
+.bg-red{color:#000;}
+.margin-top{margin-top:10px}
+.container{background:#f0f0f0;position:fixed;width:100vw;bottom:0;z-index:888;
+  font-size:30rpx;}

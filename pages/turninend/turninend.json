@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "actionsheet": "/component/actionsheet/actionsheet"
+    },
   "navigationBarTitleText": "查重支付"
 }

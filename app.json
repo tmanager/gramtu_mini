@@ -15,8 +15,9 @@
     "pages/turninsettle/turninsettle",
     "pages/turnintype/turnintype",
     "pages/turninfile/turninfile",
-    "pages/payend/payend",
-    "pages/turninend/turninend"
+    "pages/turninend/turninend",
+    "pages/payend/payend"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
