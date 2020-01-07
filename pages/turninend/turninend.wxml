@@ -41,12 +41,13 @@
   <view class="wode_item_wrap">
     <view class="wode_item" style='height: 90rpx; line-height: 90rpx'>
       <view class='wode_name'>优惠券：</view>
-      <view bindtap='coupShow'>不使用优惠券</view>
+      <view wx:if="{{coupon.length != 0}}" bindtap='coupShow'>{{couptitle}}</view>
+      <view wx:if="{{coupon.length == 0}}" style='color:#999;'>没有优惠券</view>
     </view>
     <view wx:if="{{coupamount != 0}}">    
       <view class="wode_item">
-        <view class='wode_name'>对应优惠金额：</view>
-        <view>{{coupamount}}</view>
+        <view class='wode_name'>优惠金额：</view>
+        <view>- {{coupamount}}</view>
       </view>
       <view class="wode_item">
         <view class='wode_name'>实付总价：</view>

@@ -27,7 +27,12 @@
   <view class="wode_item_wrap">
     <view class="wode_item coup_item" style='height: 90rpx; line-height: 90rpx'>
       <view>选择优惠券：</view>
-      <view bindtap='coupShow'>不使用优惠券</view>
+      <view wx:if="{{coupon.length != 0}}" bindtap='coupShow'>{{couptitle}}</view>
+      <view wx:if="{{coupon.length == 0}}" style='color:#999;'>没有优惠券</view>
+    </view>
+    <view class="wode_item coup_item" style='height: 90rpx; line-height: 90rpx'>
+      <view>优惠金额：</view>
+      <view style='color:#F24F50'>- {{coupamount}}</view>
     </view>
   </view>
 </scroll-view>
@@ -67,4 +72,6 @@
     <view bindtap='payment'>结算</view>
   </view>
 </view>
+
+<actionsheet isOpened='{{isOpened}}' list='{{sheetList}}' title='{{title}}' bindselect='selectAction' bindcancel='cancelAction'></actionsheet>
 

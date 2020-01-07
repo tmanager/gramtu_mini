@@ -18,7 +18,8 @@ Page({
     coupon: [],
     coupname: [{ id: "1", name: "111", disable: '0' }, { id: "2", name: "222", disable: '1' }],
     chooseindex: -1,
-    coupamount: 0
+    coupamount: "0.00",
+    couptitle: "不使用优惠券"
   },
 
   /**
@@ -271,8 +272,10 @@ Page({
         if (amount == -1) amount = that.data.total;
         that.setData({
           chooseindex: i,
-          coupamount: (that.data.coupon[i].amount).toFixed(2),
-          realtotal: (that.data.total - amount).toFixed(2)
+          coupamount: Number(that.data.coupon[i].amount).toFixed(2),
+          realtotal: (that.data.total - amount).toFixed(2),
+          isOpened: 0,
+          couptitle: that.data.coupon[i].name
         });
       }
     }
@@ -283,7 +286,8 @@ Page({
     that.setData({
       chooseindex: -1,
       coupamount: "0.00",
-      realtotal: (that.data.total - 0).toFixed(2)
+      realtotal: (that.data.total - 0).toFixed(2),
+      couptitle: "不使用优惠券"
     });
   }
 })

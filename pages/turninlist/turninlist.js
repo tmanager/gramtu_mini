@@ -34,7 +34,8 @@ Page({
     coupon: [],
     coupname: [{ id: "1", name: "111", disable: '0' }, { id: "2", name: "222", disable: '1' }],
     chooseindex: -1,
-    coupamount: 0
+    coupamount: "0.00",
+    couptitle: "不使用优惠券"
   },
 
   /**
@@ -133,6 +134,7 @@ Page({
    */
   checkboxChange: function(e){
     console.info(e);
+    var that = this;
     var price = 0;
     var list = this.data.orderList;
     for(var i=0 ;i<e.detail.value.length; i++){
@@ -142,12 +144,22 @@ Page({
         }
       }
     }
+    //如果checkbox选中的金额小于优惠券的最低金额时
+    if(this.data.chooseindex != -1 && this.data.coupon.length > 0){
+      if (price < Number(this.data.coupon[this.data.chooseindex].upfee)){
+        this.setData({
+          chooseindex: -1,
+          coupamount: "0.00",
+          couptitle: "不使用优惠券"
+        })
+      }
+    }
     var checkedlist = { orderid: [], price: 0 }; 
     checkedlist.orderid = e.detail.value;
     checkedlist.price = price.toFixed(2);
     this.setData({
       checkedList: checkedlist,
-      realtotal: checkedlist.price
+      realtotal: (checkedlist.price - that.data.coupamount).toFixed(2)
     })
   },
   /**
@@ -169,7 +181,7 @@ Page({
       orderList: list,
       select_all: (!that.data.select_all),
       checkedList: checkedlist,
-      realtotal: checkedlist.price
+      realtotal: (checkedlist.price - that.data.coupamount).toFixed(2)
     })
   },
   /**
@@ -189,7 +201,11 @@ Page({
     })
     var amount = this.data.realtotal;
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, amount: amount, orderidlist: this.data.checkedList.orderid, coupid: ""};
+    var coupid = "";
+    if (that.data.chooseindex != -1 && that.data.coupon.length > 0) {
+      coupid = that.data.coupon[that.data.chooseindex].id;
+    }
+    var data = { openid: openid, amount: amount, orderidlist: this.data.checkedList.orderid, coupid: coupid};
     wx.request({
       url: config.serverAddress + 'wxpay/unifiedorder',
       data: util.sendMessageEdit(null, data),
@@ -313,7 +329,7 @@ Page({
     });
     var that = this;
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, checktype: that.data.checktype };
+    var data = { openid: openid, checktype: "0" };
     wx.request({
       url: config.serverAddress + "coupon/query",
       header: {
@@ -344,7 +360,7 @@ Page({
     var coupname = [];
     for (var i = 0; i < couponlist.length; i++) {
       var disable = 1;
-      if (couponlist[i].upfee == -1 || Number(that.data.total) >= couponlist[i].upfee) {
+      if (couponlist[i].upfee == -1 || Number(that.data.checkedList.price) >= couponlist[i].upfee) {
         disable = 0;
       }
       var obj = { id: couponlist[i].id, name: couponlist[i].name, disable: disable };
@@ -364,11 +380,13 @@ Page({
     for (var i = 0; i < that.data.coupon.length; i++) {
       if (that.data.coupon[i].id == e.detail) {
         var amount = that.data.coupon[i].amount;
-        if (amount == -1) amount = that.data.total;
+        if (amount == -1) amount = that.data.checkedList.price;
         that.setData({
           chooseindex: i,
-          coupamount: (that.data.coupon[i].amount).toFixed(2),
-          realtotal: (that.data.total - amount).toFixed(2)
+          coupamount: Number(that.data.coupon[i].amount).toFixed(2),
+          realtotal: (that.data.checkedList.price - amount).toFixed(2),
+          isOpened: 0,
+          couptitle: that.data.coupon[i].name
         });
       }
     }
@@ -379,7 +397,8 @@ Page({
     that.setData({
       chooseindex: -1,
       coupamount: "0.00",
-      realtotal: (that.data.total - 0).toFixed(2)
+      realtotal: (that.data.checkedList.price - 0).toFixed(2),
+      couptitle: "不使用优惠券"
     });
   }
 })
