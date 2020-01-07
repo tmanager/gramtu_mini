@@ -68,7 +68,7 @@ Page({
    */
   gotoList: function(){
     wx.navigateTo({
-      url: '../turninlist/turninlist',
+      url: '../turninlist/turninlist?navbar=1',
     })
   }
 })

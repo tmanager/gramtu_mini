@@ -12,7 +12,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      filename: options.filename,
+      filesize: options.filesize,
+      repetrate: options.repetrate,
+      pdfreporturl: options.pdfreporturl,
+      htmlreporturl: options.htmlreporturl,
+      status: options.status,
+      updtime: options.updtime,
+      wordcnt: options.wordcnt
+    })
   },
 
   /**

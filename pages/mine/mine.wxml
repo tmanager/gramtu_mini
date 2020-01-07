@@ -27,7 +27,7 @@
   </view>
 </view>
 <view class="wode_list">
-  <navigator url="../turninlist/turninlist">
+  <navigator url="../turninlist/turninlist?navbar=0">
     <view><image src="../../images/turnin.png" class='wode_image'></image></view>
     <view>查重列表</view>
   </navigator>

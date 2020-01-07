@@ -5,62 +5,76 @@
 </view>
 <scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
   scroll-y="true" bindscrolltolower="pullUpLoad">
-  <checkbox-group bindchange="checkboxChange">
-    <view class="wode_item_wrap" wx:for="{{orderList}}">
-      <view class="wode_item">
-        <checkbox class='checkbox' checked='{{item.checked}}' value='{{item.orderid}}'/>
-        <view>
-          <navigator url="" class="navi">
-            <view>
-              <view class='turnin-name'>{{item.subtitle}}</view>
-              <view class='turnin-time'>{{item.time}}</view>
+  <view wx:if="{{orderList.length > 0}}">
+    <checkbox-group bindchange="checkboxChange">
+      <view class="wode_item_wrap" wx:for="{{orderList}}">
+        <view class="wode_item">
+          <checkbox class='checkbox' checked='{{item.checked}}' value='{{item.orderid}}'/>
+          <view>
+            <view bindtap="orderDetail" wx:key data-index='{{index}}' class="navi">
+              <view>
+                <view class='turnin-name'>{{item.titile}}</view>
+                <view class='turnin-time'>{{item.updtime}}</view>
+              </view>
+              <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
             </view>
-            <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
-          </navigator>
-          <view class='price'>
-            ￥{{item.price}}
+            <view class='price'>
+              ￥{{item.price}}
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </checkbox-group>
-  <view class="wode_item_wrap">
-    <view class="wode_item coup_item" style='height: 90rpx; line-height: 90rpx'>
-      <view>选择优惠券：</view>
-      <view wx:if="{{coupon.length != 0}}" bindtap='coupShow'>{{couptitle}}</view>
-      <view wx:if="{{coupon.length == 0}}" style='color:#999;'>没有优惠券</view>
-    </view>
-    <view class="wode_item coup_item" style='height: 90rpx; line-height: 90rpx'>
-      <view>优惠金额：</view>
-      <view style='color:#F24F50'>- {{coupamount}}</view>
+    </checkbox-group>
+    <view class="wode_item_wrap">
+      <view class="wode_item coup_item" style='height: 90rpx; line-height: 90rpx'>
+        <view>选择优惠券：</view>
+        <view wx:if="{{coupon.length != 0}}" bindtap='coupShow'>{{couptitle}}</view>
+        <view wx:if="{{coupon.length == 0}}" style='color:#999;'>没有优惠券</view>
+      </view>
+      <view class="wode_item coup_item" style='height: 90rpx; line-height: 90rpx'>
+        <view>优惠金额：</view>
+        <view style='color:#F24F50'>- {{coupamount}}</view>
+      </view>
     </view>
   </view>
+  <view class='no-data' wx:if="{{orderList.length == 0}}">
+    暂无数据
+  </view>
+  
 </scroll-view>
 
 <scroll-view class="hot-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
   scroll-y="true" bindscrolltolower="pullUpLoad">
-  <view class="wode_item_wrap" wx:for="{{orderList}}">
-    <view class="wode_item">
-      <view>
-        <navigator url="" class="navi">
-          <view>
-            <view class='turnin-name'>{{item.subtitle}}</view>
-            <view class='turnin-time'>{{item.time}}</view>
+  <view wx:if="{{orderList.length > 0}}">
+    <view class="wode_item_wrap" wx:for="{{orderList}}">
+      <view class="wode_item">
+        <view>
+          <view bindtap="payDetail" wx:key data-index='{{index}}' class="navi">
+            <view>
+              <view class='turnin-name'>{{item.titile}}</view>
+              <view class='turnin-time'>{{item.updtime}}</view>
+            </view>
+            <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
           </view>
-          <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
-        </navigator>
-        <view class='status' wx:if="{{item.status == 0}}">
-          正在检测中....
-        </view>
-        <view class='status' wx:if="{{item.status == 1}}">
-          重复比率：<text style='color:#F24F50'>{{item.repeat}}</text>
+          <view class='status' wx:if="{{item.status == 2}}">
+            正在检测中....
+          </view>
+          <view class='status' wx:if="{{item.status == 3}}">
+            重复比率：<text style='color:#F24F50'>{{item.repetrate}}</text>
+          </view>
+          <view class='status' wx:if="{{item.status == 4}}">
+            已退款
+          </view>
         </view>
       </view>
     </view>
   </view>
+  <view class='no-data' wx:if="{{orderList.length == 0}}">
+    暂无数据
+  </view>
 </scroll-view>
 
-<view class="{{currentNavbar==0 ? '' : 'hidden'}}">
+<view class="{{currentNavbar==0 && orderList.length > 0 ? '' : 'hidden'}}">
   <view class="tabbar">
     <view>
       <label class="checkbox">

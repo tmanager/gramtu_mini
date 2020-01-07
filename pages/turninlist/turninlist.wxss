@@ -70,7 +70,7 @@ page{
 }
 
 .turnin-name{
-  font-size: 30rpx;
+  font-size: 25rpx;
   padding: 10rpx 0 0 0;
 }
 
@@ -211,6 +211,7 @@ page{
 .coup_item{
   display: flex;
   flex-direction: row;
+  font-size: 25rpx;
 }
 
 .coup_item > view:nth-child(1){
@@ -220,4 +221,11 @@ page{
 
 .coup_item > view:nth-child(2){
   flex: 3;
+}
+
+.no-data{
+  color:#808080;
+  font-size: 35rpx;
+  text-align: center;
+  margin-top: 20rpx;
 }

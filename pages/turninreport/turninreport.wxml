@@ -2,27 +2,26 @@
   <view class="wode_item">
     <view>
       <view class='navi'>
-        <view class='turnin-name'>文章名称：name</view>
-        <view class='turnin-name'>重复比率：<text style='color:#F24F50'>0.00%</text></view>
+        <view class='turnin-name'>文章名称：{{filename}}</view>
+        <view class='turnin-name' wx:if="{{status == 3}}">重复比率：<text style='color:#F24F50'>{{repetrate}}%</text></view>
+        <view class='turnin-name' wx:if="{{status == 2}}">订单状态：<text style='color:#F24F50'>正在检测中</text></view>
+        <view class='turnin-name' wx:if="{{status == 4}}">订单状态：<text style='color:#F24F50'>已退款</text></view>
       </view>
       <view class='detail'>
         <view>
-          重复字数：0字
+          文件大小：{{filesize}}
         </view>
         <view>
-          总字数：168字
+          总字数：{{wordcnt}}字
         </view>
         <view>
-          提交时间：2019-12-26 10:10:10
-        </view>
-        <view>
-          订单编号：ABCCCDDDEEEDD
+          提交时间：{{updtime}}
         </view>
       </view>
     </view>
   </view>
 </view>
-<view style='margin-top: 20rpx; text-align: center'>
+<view style='margin-top: 20rpx; text-align: center' wx:if="{{status == 3}}">
   <button type="primary" bindtap="primary" class='btn-inline'> 下载至手机 </button>
   <button type="warn" bindtap="primary" class='btn-inline' style='background-color:#2489F3'> 发送到邮箱 </button>
 </view>

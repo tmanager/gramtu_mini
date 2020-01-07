@@ -1,16 +1,9 @@
 // pages/turninlist/turninlist.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-var orderList = [
-  { orderid: "1", subtitle: "name1", time: "20191216101010", price: "9.90" },
-  { orderid: "2", subtitle: "name2", time: "20201216101010", price: "10.90" },
-  { orderid: "3", subtitle: "name3", time: "20211216101010", price: "11.00" }
-];
-var payList = [
-  { orderid: "1", subtitle: "name3", time: "20191216101010", status: "0" },
-  { orderid: "2", subtitle: "name4", time: "20201216101010", status: "1", repeat: "30%" },
-  { orderid: "3", subtitle: "name5", time: "20211216101010", status: "1", repeat: "50%" }
-]
+var currentPage = 0;
+var totalPage = 0;
+var pageSize = 5;
 
 Page({
 
@@ -20,11 +13,7 @@ Page({
   data: {
     navbar: ['待付款', '已付款'],
     currentNavbar: '0',
-    orderList:[
-      { orderid: "1", subtitle: "name1", time: "20191216101010", price: "9.90" },
-      { orderid: "2", subtitle: "name2", time: "20201216101010", price: "10.90"  },
-      { orderid: "3", subtitle: "name3", time: "20211216101010", price: "11.00" }
-    ],
+    orderList:[],
     realtotal: "0.00",
     select_all: false,
     checkedList:{
@@ -35,7 +24,11 @@ Page({
     coupname: [{ id: "1", name: "111", disable: '0' }, { id: "2", name: "222", disable: '1' }],
     chooseindex: -1,
     coupamount: "0.00",
-    couptitle: "不使用优惠券"
+    couptitle: "不使用优惠券",
+    //价格信息
+    price:"0.00",       //单价
+    wordnum:"0",        //单价对应的字数
+    discount:"10.0"     //折扣
   },
 
   /**
@@ -43,23 +36,10 @@ Page({
    */
   onLoad: function (options) {
     //TODO:测试
-    if(this.data.currentNavbar == 0){
-      this.setData({
-        orderList: orderList
-      })
-    }else{
-      this.setData({
-        orderList: payList
-      })
-    }
-    //this.getOrderList();
-    var list = this.data.orderList;
-    for(var i=0; i<list.length; i++){
-      list[i].time = util.formatDateTime(list[i].time);
-    }
     this.setData({
-      orderList: list
+      currentNavbar: options.navbar
     })
+    this.getOrderList();
     this.coupListGet();
   },
 
@@ -118,16 +98,10 @@ Page({
     this.setData({
       currentNavbar: e.currentTarget.dataset.idx
     });
-    if (this.data.currentNavbar == 0) {
-      this.setData({
-        orderList: orderList
-      })
-    } else {
-      this.setData({
-        orderList: payList
-      })
-    }
-    //this.getOrderList();
+    this.getOrderList();
+    if (e.currentTarget.dataset.idx == 0){
+      this.coupListGet();
+    }  
   },
   /**
    * checkbox按下后的变化
@@ -288,9 +262,11 @@ Page({
     })
     var nav = this.data.currentNavbar;  //0：未付款，1：已付款
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, checktype: "0", type: nav};
+    var data = {
+      openid: openid, checktype: "0", type: nav, currentpage: currentPage, pagesize: pageSize,
+      startindex: currentPage * pageSize, draw: 1 };
     wx.request({
-      url: config.serverAddress + 'order/query',
+      url: config.serverAddress + 'torder/query',
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
@@ -300,9 +276,29 @@ Page({
         if (res.statusCode == 200) {
           //跳转到支付成功页面
           wx.hideLoading();
+          console.info("获取订单信息");
+          console.info(res);
           if(res.data.retcode == config.SUCCESS){
+            var orderlist = [];
+            if(that.data.currentNavbar == "0"){
+              orderlist = res.data.response.orderlist;
+              var currprice = (res.data.response.price * (res.data.response.discount / 10)).toFixed(2);
+              for (var i = 0; i < orderlist.length; i++) {
+                var count = Math.ceil(orderlist[i].wordcnt / res.data.response.wordnum);
+                orderlist[i].price = (currprice * count).toFixed(2);
+                orderlist[i].updtime = util.formatDateTime(orderlist[i].updtime);
+              }
+            }else{
+              orderlist = res.data.response.paylist;
+              for (var i = 0; i < orderlist.length; i++) {
+                orderlist[i].updtime = util.formatDateTime(orderlist[i].updtime);
+              }
+            }
             that.setData({
-              orderList: res.data.response.orderlist
+              price: res.data.response.price,
+              wordnum: res.data.response.wordnum,
+              discount: res.data.response.discount,
+              orderList: orderlist
             })
           }else{
             wx.showToast({
@@ -400,5 +396,27 @@ Page({
       realtotal: (that.data.checkedList.price - 0).toFixed(2),
       couptitle: "不使用优惠券"
     });
+  },
+  orderDetail:function(e){
+    console.info(e);
+    var i = e.currentTarget.dataset.index;
+    var orderlist = this.data.orderList;
+    var para = "filename=" + orderlist[i].filename +
+      "&filesize=" + orderlist[i].filesize + "&wordcount=" + orderlist[i].wordcnt +
+      "&orderid=" + orderlist[i].orderid + "&checktype=0" +
+      "&price=" + this.data.price + "&wordnum=" + this.data.wordnum +
+      "&discount=" + this.data.discount;
+    wx.navigateTo({ url: "../turninend/turninend?" + para });
+  },
+  payDetail:function(e){
+    var i = e.currentTarget.dataset.index;
+    var orderlist = this.data.orderList;
+    var para = "filename=" + orderlist[i].filename +
+      "&filesize=" + orderlist[i].filesize + "&repetrate=" + orderlist[i].repetrate +
+      "&orderid=" + orderlist[i].orderid + "&pdfreporturl=" + orderlist[i].pdfreporturl + 
+      "&htmlreporturl=" + orderlist[i].htmlreporturl + "&status=" + orderlist[i].status + 
+      "&updtime=" + orderlist[i].updtime + "&wordcnt=" + orderlist[i].wordcnt;
+    wx.navigateTo({ url: "../turninreport/turninreport?" + para });
   }
+
 })

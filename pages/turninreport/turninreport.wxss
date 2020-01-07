@@ -9,7 +9,6 @@ page{
 	border-top: 1px solid #E5E5E5;
 }
 .wode_item {
-  height: 470rpx;
 	border-bottom: 1px solid #E5E5E5;
 	padding: 0 10px;
 	line-height: 40rpx;
@@ -40,12 +39,12 @@ page{
 }
 
 .turnin-name{
-  font-size: 30rpx;
+  font-size: 25rpx;
   padding: 30rpx 0 0 0;
 }
 
 .turnin-name:last-child{
-  padding-bottom: 30rpx;
+  padding: 20rpx 0 20rpx 0;
 }
 
 .navi{
@@ -56,20 +55,20 @@ page{
 .detail{
   color:#8E8E8E;
   margin-left: 10rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
 
 .detail > view{
-  margin-top: 30rpx;
+  margin-top: 20rpx;
 }
 
 .detail > view:last-child{
-  margin-bottom: 20rpx
+  margin-bottom: 30rpx
 }
 
 .btn-inline{
   width: 45%;
   display: inline-block;
   margin: 0 10rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
