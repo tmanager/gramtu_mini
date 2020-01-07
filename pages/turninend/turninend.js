@@ -215,10 +215,8 @@ Page({
       success: function (event) {
         // success
         console.log(event);
-        //通知后端支付成功，跳转到支付成功画面
-        //that.payResultNotify();
         //暂不做通知，直接跳转
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../payend/payend',
         })
       },

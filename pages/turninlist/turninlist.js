@@ -228,10 +228,8 @@ Page({
       success: function (event) {
         // success
         console.log(event);
-        //通知后端支付成功，跳转到支付成功画面
-        //that.payResultNotify();
         //暂不做通知，直接跳转
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../payend/payend',
         })
       },
@@ -280,6 +278,7 @@ Page({
           console.info(res);
           if(res.data.retcode == config.SUCCESS){
             var orderlist = [];
+            totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             if(that.data.currentNavbar == "0"){
               orderlist = res.data.response.orderlist;
               var currprice = (res.data.response.price * (res.data.response.discount / 10)).toFixed(2);
@@ -417,6 +416,25 @@ Page({
       "&htmlreporturl=" + orderlist[i].htmlreporturl + "&status=" + orderlist[i].status + 
       "&updtime=" + orderlist[i].updtime + "&wordcnt=" + orderlist[i].wordcnt;
     wx.navigateTo({ url: "../turninreport/turninreport?" + para });
-  }
+  },
+  onReachBottom: function () {
+    if ((currentPage + 1) >= totalPage) {
+      this.setData({
+        noitem: 1
+      });
+      return;
+    } else {
+      this.setData({
+        noitem: 0
+      });
+    }
+    currentPage++;
+    var that = this;
+    // 显示加载图标
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    that.getOrderList();
+  },
 
 })
