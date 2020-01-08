@@ -37,7 +37,7 @@ Page({
   onLoad: function (options) {
     //TODO:测试
     this.setData({
-      currentNavbar: options.navbar
+      currentNavbar: options.type
     })
     this.getOrderList();
     this.coupListGet();

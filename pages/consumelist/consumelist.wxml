@@ -1,13 +1,14 @@
-<view class="wode_item_wrap">
+<view wx:if="{{consumeList.length > 0}}" class="wode_item_wrap" wx:for="{{consumeList}}">
   <view class="wode_item">
     <view>
       <view class="navi">
-        <view class='turnin-name'>Turnin查重 name</view>
-        <view class='turnin-name'>-1000.00</view>
+        <view class='turnin-name'>{{item.feename}}</view>
+        <view class='turnin-name'>-{{item.totalfee}}</view>
       </view>
       <view class="price">
-        2019-12-16 10:10:10
+        {{item.timeend}}
       </view>
     </view>
   </view>
 </view>
+<view class='no-data' wx:if="{{consumeList.length == 0}}"></view>

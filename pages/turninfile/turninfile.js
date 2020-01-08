@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      checktype: options.type
+      checktype: options.checktype
     })
   },
 

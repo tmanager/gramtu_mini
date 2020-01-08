@@ -163,7 +163,8 @@ Page({
     });
     that.articleListGet();
   },
-  turninCheck: function(){
+  turninCheck: function(e){
+    console.info(e);
     var register = wx.getStorageSync("register");
     if (register == 0){
       wx.showModal({
@@ -173,8 +174,19 @@ Page({
       })
       return
     }
-    wx.navigateTo({
-      url: '../turnintype/turnintype',
-    })
-  }
+    switch(e.currentTarget.dataset.type){
+      case "0":
+      case "1":
+        wx.navigateTo({
+          url: '../turnintype/turnintype?checktype=' + e.currentTarget.dataset.type
+        })
+        break;
+      case "2":
+        wx.navigateTo({
+          url: '../turninfile/turninfile?checktype=' + e.currentTarget.dataset.type
+        })
+        break;
+    }
+    
+  },
 })

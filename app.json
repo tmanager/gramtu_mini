@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/mine/mine",
     "pages/logs/logs",
@@ -9,15 +8,16 @@
     "pages/article/article",
     "pages/gram/gram",
     "pages/turninreport/turninreport",
-    "pages/turninlist/turninlist",
     "pages/suggest/suggest",
     "pages/consumelist/consumelist",
     "pages/turninsettle/turninsettle",
     "pages/turnintype/turnintype",
     "pages/turninfile/turninfile",
     "pages/turninend/turninend",
-    "pages/payend/payend"
-    
+    "pages/turninlist/turninlist",
+    "pages/payend/payend",
+    "pages/markinfo/markinfo",
+    "pages/couplist/couplist"
   ],
   "window": {
     "backgroundTextStyle": "light",

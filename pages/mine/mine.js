@@ -12,7 +12,7 @@ Page({
     showModal: false,//定义登录弹窗,
     userInfoScope: 0,
     userInfo: app.globalData.userInfo,
-    mark:5,
+    mark:0,
     mode: [
       { icon: "../../images/jiang.png", title:"修改降重", url:""},
       { icon: "../../images/runse.png", title: "母语润色", url: "" },
@@ -60,6 +60,8 @@ Page({
         userInfo: app.globalData.userInfo
       });
     }
+    //获取积分
+    this.userMarkGet();
   },
 
   /**
@@ -210,6 +212,46 @@ Page({
       success: function (res) {
         //后台获取手机号码
       }
+    })
+  },
+  /**
+   * 获取积分
+   */
+  userMarkGet: function(){
+    var that = this;
+    var openid = wx.getStorageSync("openid");
+    if(openid == "" || openid == null || openid == undefined) return;
+    wx.request({
+      url: config.serverAddress + 'login/query/mark',
+      data: util.sendMessageEdit(null, { "openid": openid}),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("积分:" + JSON.stringify(res.data));
+          if (res.data.retcode === config.SUCCESS) {
+            that.setData({
+              mark: res.data.response.mark
+            })
+          }
+        }
+      }
+    })
+  },
+  bindUserMark: function(e){
+    var register = wx.getStorageSync("register");
+    if (register == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请先进入[我的]登录后再进行该操作',
+        showCancel: false
+      })
+      return
+    }
+    wx.navigateTo({
+      url: '../markinfo/markinfo',
     })
   }
 })

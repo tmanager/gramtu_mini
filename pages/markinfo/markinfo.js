@@ -1,20 +1,18 @@
-// pages/turnintype/turnintype.js
+// pages/markinfo/markinfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    checktype: "0"
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      checktype: options.checktype
-    })
+
   },
 
   /**
@@ -64,16 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  /**
-   * 按钮事件
-   */
-  turninTypeChoose: function(){
-    //type:"0"：国际查重， "1":UK查重，"2"：语法检测
-    var that = this;
-    wx.navigateTo({
-      url: '../turninfile/turninfile?checktype=' + that.data.checktype
-    })
   }
-
 })

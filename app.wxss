@@ -252,3 +252,10 @@
 .tui-card-head{border-bottom: 1px solid #c8c7cc;}
 .tui-card-foot{color:#777;border-top:1px solid #c8c7cc;}
 .tui-card-btn{color: #007aff;}
+
+.no-data{
+  color:#808080;
+  font-size: 35rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}

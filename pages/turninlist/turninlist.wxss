@@ -222,10 +222,3 @@ page{
 .coup_item > view:nth-child(2){
   flex: 3;
 }
-
-.no-data{
-  color:#808080;
-  font-size: 35rpx;
-  text-align: center;
-  margin-top: 20rpx;
-}

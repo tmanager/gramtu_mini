@@ -24,7 +24,9 @@
           <view><button class="btn-block" style="background-color:#2bb673; color:white; width:90%" bindtap='choosefilefun'><view class='sm-font'>{{addDocument}}</view></button></view>
 				</view>
         <view class="input-item">
-          <text class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到Turnin的文档：</text>
+          <text wx:if="{{checktype==0}}" class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到Turnin的文档：</text>
+          <text wx:if="{{checktype==1}}"  class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到TurninUK的文档：</text>
+          <text wx:if="{{checktype==2}}"  class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到Grammarian的文档：</text>
 				  <view class='upload-btn'> 
             <button class="btn-block" style='background-color:#2489F3; color:white; width: 100%' bindtap='uploadfilefun'>上传</button>
           </view>

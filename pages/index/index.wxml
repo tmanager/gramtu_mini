@@ -19,15 +19,15 @@
   <view class='zzfw'>
     <view class='zzfw-title'>自助服务区</view>
     <view class='zzfw-content'>
-      <view bindtap='turninCheck'>
+      <view bindtap='turninCheck' wx:key data-type='0'>
         <view class='zzfw-icon'>turnin</view>
         <text>turnin国际查重</text>
       </view>
-      <view>
+      <view bindtap='turninCheck' wx:key data-type='1'>
         <view class='zzfw-icon'>turninUK</view>
         <text>turninUK查重</text>
       </view>
-      <view url="../gram/gram">
+      <view bindtap='turninCheck' wx:key data-type='2'>
         <view class='zzfw-icon'>Grammar</view>
         <text>Grammarian语法检测</text>
       </view>
