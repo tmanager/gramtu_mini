@@ -1,2 +1,62 @@
-<!--pages/couplist/couplist.wxml-->
-<text>pages/couplist/couplist.wxml</text>
+<view class="navbar">
+  <view class="navbar-item" wx:for="{{navbar}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="swichNav">
+    <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}}">{{item}}</text>
+  </view>
+</view>
+<scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
+  scroll-y="true" bindscrolltolower="pullUpLoad">
+  <view wx:if="{{couponList.length > 0}}">
+    <view class="wode_item_wrap" wx:for="{{couponList}}">
+      <view class='status'>
+        <image wx:if="{{item.status == 1}}" src="../../images/out-date.png"></image>
+        <image wx:if="{{item.status == 2}}" src="../../images/used.png"></image>
+      </view>
+      <view class="wode_item">
+        <view>
+          <view class='coup-detail'>
+            <view class='turnin-name'>{{item.name}}</view>
+            <view class='price'>￥{{item.amount}}</view>
+          </view>
+          <view class='coup-detail'>
+            <view class='turnin-time'>有效期至{{item.enddate}}</view>
+            <view class='turnin-time'>满{{item.upfee}}元可用</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
+  </view>
+
+  <view class='no-data' wx:if="{{couponList.length == 0}}">
+    暂无数据
+  </view>
+  
+</scroll-view>
+
+<scroll-view class="hot-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
+  scroll-y="true" bindscrolltolower="pullUpLoad">
+  <view wx:if="{{couponList.length > 0}}">
+    <view class="wode_item_wrap" wx:for="{{couponList}}">
+      <view class='status'>
+        <image wx:if="{{item.status == 1}}" src="../../images/out-date.png"></image>
+        <image wx:if="{{item.status == 2}}" src="../../images/used.png"></image>
+      </view>
+      <view class="wode_item">
+        <view>
+          <view class='coup-detail'>
+            <view class='turnin-name'>{{item.name}}</view>
+            <view class='price'>￥{{item.amount}}</view>
+          </view>
+          <view class='coup-detail'>
+            <view class='turnin-time'>有效期至{{item.enddate}}</view>
+            <view class='turnin-time'>满{{item.upfee}}元可用</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
+  </view>
+  <view class='no-data' wx:if="{{couponList.length == 0}}">
+    暂无数据
+  </view>
+</scroll-view>

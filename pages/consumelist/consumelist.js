@@ -10,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    consumeList: []
+    consumeList: [],
+    noitem: 0
   },
 
   /**
@@ -69,7 +70,7 @@ Page({
 
   },
   /**
-   * 获取积分
+   * 获取消费记录
    */
   consumeListGet: function () {
     var that = this;

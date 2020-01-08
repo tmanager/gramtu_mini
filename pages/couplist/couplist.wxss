@@ -1,1 +1,230 @@
-/* pages/couplist/couplist.wxss */
+page{
+  background-color: #F2F3F5;
+}
+.navbar {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+}
+.navbar-item {
+    flex: 1.0;
+    text-align: center;
+    font-size: 30rpx;
+    color: #999;
+    margin-bottom: -1px;
+}
+.navbar-text {
+    display: block;
+    width: 200rpx;
+    padding: 10px;
+    margin: auto;
+}
+.navbar-text.active {
+    border-bottom: 2px solid #000;
+    color: #000;
+    font-weight: bold;
+}
+.hidden {
+    display: none;
+}
+
+.wode_item_wrap {
+	background-color: #FFF;
+	font-size: 14px;
+	margin-top: 3px;
+	border-top: 1px solid #E5E5E5;
+}
+.wode_item {
+	border-bottom: 1px solid #E5E5E5;
+	padding: 0 10px;
+	line-height: 40rpx;
+	position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.wode_item > view{
+  width: 100%
+}
+
+.wode_name{
+  position: absolute;
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  left: 80rpx;
+  top: 0;
+}
+
+.turnin-name{
+  font-size: 30rpx;
+  padding: 20rpx 0 0 0;
+}
+
+.turnin-time{
+  font-size: 25rpx;
+  padding: 10rpx 0;
+  color:#999;
+}
+
+.coup-detail{
+  display: flex;
+  flex-direction: row;
+  margin: 0 20rpx;
+}
+
+.coup-detail > view:nth-child(1){
+  flex: 1
+}
+
+.coup-detail > view:nth-child(2){
+  flex: 1;
+  text-align: right;
+}
+.price{
+  height: 40rpx;
+  line-height: 40rpx;
+  color:#F24F50;
+  font-size: 30rpx;
+  padding: 20rpx 0 0 0;
+}
+
+.status{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  font-size: 25rpx;
+}
+
+.checkbox .wx-checkbox-input {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  border: 2px solid rgba(242, 79, 80, 1);
+}
+
+.checkbox .wx-checkbox-input-disabled {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  background: #f3f3f3;
+  border: 1px solid rgba(201, 201, 201, 1);
+}
+
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: rgba(242, 79, 80, 1);
+}
+
+.checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox .wx-checkbox-input {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  border: 1px solid rgb(199, 199, 199);
+}
+
+.checkbox .wx-checkbox-input-disabled {
+  border-radius: 32rpx; /* 圆角 */
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+  background: #f3f3f3;
+  border: 1px solid rgba(201, 201, 201, 1);
+}
+
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: rgba(242, 79, 80, 1);
+  border: 1px solid rgba(201, 201, 201, 0);
+}
+
+.checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox{
+  margin-top:60rpx;
+}
+
+.tabbar{ 
+  font-size: 25rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 100rpx;
+  border-top: 1px solid #C5C5C5;
+}
+
+.tabbar > view:nth-child(1){
+  flex: 1;
+  line-height: 100rpx;
+  margin-left: 20rpx;
+}
+.tabbar > view:nth-child(2){
+  flex: 2;
+  line-height: 100rpx;
+  text-align: right;
+  font-size:25rpx;
+  padding-right: 20rpx;
+}
+.tabbar > view:nth-child(3){
+  flex: 1;
+  text-align: center;
+  background-color: #C5C5C5;
+  line-height: 100rpx;
+  color: white;
+}
+
+.tabbar > view:nth-child(4){
+  flex: 1;
+  text-align: center;
+  background-color: #F24F50;
+  line-height: 100rpx;
+  color: white;
+}
+
+.coup_item{
+  display: flex;
+  flex-direction: row;
+  font-size: 25rpx;
+}
+
+.coup_item > view:nth-child(1){
+  flex: 1;
+  text-align: right;
+}
+
+.coup_item > view:nth-child(2){
+  flex: 3;
+}
+
+.status{
+  position:absolute; 
+  right:200rpx;
+}
+
+.status image{
+  width: 100rpx; 
+  height: 100rpx;
+  margin-top: 10rpx
+}

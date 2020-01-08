@@ -134,12 +134,3 @@
   font-size: 30rpx;
   text-align: center;
 }
-
-.noitem{
-  height: 70rpx;
-  line-height: 70rpx;
-  text-align: center;
-  width: 100%;
-  font-size: 25rpx;
-  color:#6F6C6C;
-}

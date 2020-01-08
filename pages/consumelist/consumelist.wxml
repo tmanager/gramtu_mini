@@ -6,9 +6,12 @@
         <view class='turnin-name'>-{{item.totalfee}}</view>
       </view>
       <view class="price">
-        {{item.timeend}}
+        <view>交易时间：{{item.timeend}}</view>
+        <view>商户单号：{{item.tradeno}}</view>
+        <view>交易单号：{{item.transactionid}}</view> 
       </view>
     </view>
   </view>
 </view>
+<view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
 <view class='no-data' wx:if="{{consumeList.length == 0}}"></view>
