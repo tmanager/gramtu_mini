@@ -6,20 +6,24 @@
 <scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
   scroll-y="true" bindscrolltolower="pullUpLoad">
   <view wx:if="{{couponList.length > 0}}">
-    <view class="wode_item_wrap" wx:for="{{couponList}}">
+    <view class="wode_item_wrap" wx:for="{{couponList}}" wx:key data-id="{{item.id}}" bindtap="coupGivenDialog">
       <view class='status'>
         <image wx:if="{{item.status == 1}}" src="../../images/out-date.png"></image>
-        <image wx:if="{{item.status == 2}}" src="../../images/used.png"></image>
+        <image wx:if="{{item.status == 2}}" src="../../images/give.png"></image>
+        <image wx:if="{{item.status == 9}}" src="../../images/used.png"></image>
       </view>
-      <view class="wode_item">
+      <view class="wode_item" style="color: {{item.status == 0 ? '' : '#999999!important' }}">
         <view>
           <view class='coup-detail'>
             <view class='turnin-name'>{{item.name}}</view>
-            <view class='price'>￥{{item.amount}}</view>
+            <view class='price' wx:if="{{item.amount != '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">￥{{item.amount}}</view>
+            <view class='price' wx:if="{{item.amount == '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">可抵用任意金额</view>
           </view>
           <view class='coup-detail'>
-            <view class='turnin-time'>有效期至{{item.enddate}}</view>
-            <view class='turnin-time'>满{{item.upfee}}元可用</view>
+            <view class='turnin-time' wx:if="{{item.enddate != '9999/99/99'}}">有效期至{{item.enddate}}</view>
+            <view class='turnin-time' wx:if="{{item.enddate == '9999/99/99'}}">永久有效</view>
+            <view class='turnin-time' wx:if="{{item.upfee != '-1'}}">满{{item.upfee}}元可用</view>
+            <view class='turnin-time' wx:if="{{item.upfee == '-1'}}">任意金额可用</view>
           </view>
         </view>
       </view>
@@ -36,20 +40,24 @@
 <scroll-view class="hot-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
   scroll-y="true" bindscrolltolower="pullUpLoad">
   <view wx:if="{{couponList.length > 0}}">
-    <view class="wode_item_wrap" wx:for="{{couponList}}">
+    <view class="wode_item_wrap" wx:for="{{couponList}}" wx:key data-id="{{item.id}}" bindtap="coupGivenDialog">
       <view class='status'>
         <image wx:if="{{item.status == 1}}" src="../../images/out-date.png"></image>
-        <image wx:if="{{item.status == 2}}" src="../../images/used.png"></image>
+        <image wx:if="{{item.status == 2}}" src="../../images/give.png"></image>
+        <image wx:if="{{item.status == 9}}" src="../../images/used.png"></image>
       </view>
-      <view class="wode_item">
+      <view class="wode_item" style="color: {{item.status == 0 ? '' : '#999999!important' }}">
         <view>
           <view class='coup-detail'>
             <view class='turnin-name'>{{item.name}}</view>
-            <view class='price'>￥{{item.amount}}</view>
+            <view class='price' wx:if="{{item.amount != '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">￥{{item.amount}}</view>
+            <view class='price' wx:if="{{item.amount == '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">可抵用任意金额</view>
           </view>
           <view class='coup-detail'>
-            <view class='turnin-time'>有效期至{{item.enddate}}</view>
-            <view class='turnin-time'>满{{item.upfee}}元可用</view>
+            <view class='turnin-time' wx:if="{{item.enddate != '9999/99/99'}}">有效期至{{item.enddate}}</view>
+            <view class='turnin-time' wx:if="{{item.enddate == '9999/99/99'}}">永久有效</view>
+            <view class='turnin-time' wx:if="{{item.upfee != '-1'}}">满{{item.upfee}}元可用</view>
+            <view class='turnin-time' wx:if="{{item.upfee == '-1'}}">任意金额可用</view>
           </view>
         </view>
       </view>
@@ -60,3 +68,14 @@
     暂无数据
   </view>
 </scroll-view>
+
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-content">
+    <view class="phone-input">
+      <view>转赠手机号</view>
+      <view><input type="text" placeholder="请输入转赠手机号" bindinput='getInputValue' id="phone"></input></view>
+    </view>
+    <button bindtap='coupGiven'>赠送</button>
+  </view>
+</view>

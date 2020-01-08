@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/markinfo/markinfo",
+    
+    
     "pages/index/index",
     "pages/mine/mine",
     "pages/logs/logs",
@@ -17,8 +18,9 @@
     "pages/turninend/turninend",
     "pages/turninlist/turninlist",
     "pages/payend/payend",
-    
+    "pages/markinfo/markinfo",
     "pages/couplist/couplist"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -435,6 +435,9 @@ Page({
       title: '正在加载中',
     });
     that.getOrderList();
+    if (e.currentTarget.dataset.idx == 0) {
+      this.coupListGet();
+    } 
   },
 
 })

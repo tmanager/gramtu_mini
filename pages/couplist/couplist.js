@@ -16,8 +16,12 @@ Page({
       { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 0},
       { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 1 },
       { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 2 },
+      { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 9 }
     ],
-    noitem: 0
+    noitem: 0,
+    showModal: 0,
+    givenId: "",
+    givenPhone:"",
   },
 
   /**
@@ -89,6 +93,8 @@ Page({
    */
   coupListGet: function () {
     var that = this;
+    var openid = wx.getStorageSync("openid");
+    if (openid == "" || openid == null || openid == undefined) return;
     wx.showLoading({
       title: '正在加载中',
     });
@@ -96,14 +102,12 @@ Page({
     if(that.data.currentNavbar == 1){
       checkType = "2";
     }
-    var openid = wx.getStorageSync("openid");
-    if (openid == "" || openid == null || openid == undefined) return;
     var data = {
       openid: openid, checktype: checkType, currentpage: currentPage, pagesize: pageSize,
       startindex: currentPage * pageSize, draw: 1
     }
     wx.request({
-      url: config.serverAddress + 'wxpay/couplist',
+      url: config.serverAddress + 'coupon/query',
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
@@ -142,6 +146,98 @@ Page({
     }
     currentPage++;
     var that = this;
-    that.getOrderList();
+    that.coupListGet();
+  },
+  // 显示一键获取手机号弹窗
+  showDialogBtn: function () {
+    this.setData({
+      showModal: true//修改弹窗状态为true，即显示
+    })
+  },
+  // 隐藏一键获取手机号弹窗
+  hideModal: function () {
+    this.setData({
+      showModal: false//修改弹窗状态为false,即隐藏
+    });
+  },
+  coupGivenDialog: function(e){
+    this.setData({
+      givenId: e.currentTarget.dataset.id,
+      givenPhone: ""
+    });
+    this.showDialogBtn();
+  },
+  coupGiven: function (e) {
+    var that = this;
+    var givenPhone = this.data.givenPhone;
+    if (this.phoneCheck(givenPhone) == ""){
+      wx.showToast({
+        title: '转赠手机号码未输入或者格式不正确！',
+        icon: 'none'
+      })
+      return;
+    }
+    that.hideModal();
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    var openid = wx.getStorageSync("openid");
+    var data = { openid: openid, givenphone: givenPhone, id: this.data.givenId}
+    wx.request({
+      url: config.serverAddress + 'coupon/given',
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          wx.hideLoading();
+          console.info("赠送优惠券:" + JSON.stringify(res.data));
+          if (res.data.retcode === config.SUCCESS) {
+            wx.showToast({
+              title: '优惠券转赠成功！',
+              icon: 'none'
+            });
+            that.coupListGet();
+          }else{
+            wx.showToast({
+              title: '优惠券转赠失败！',
+              icon: 'none'
+            })
+          }
+        }
+      },
+      fail:function(res){
+        wx.hideLoading();
+        wx.showToast({
+          title: '优惠券转赠失败！',
+          icon: 'none'
+        })
+      }
+    })
+  },
+  /**
+   * 输入框输入事件
+   */
+  getInputValue(e) {
+    console.log(e)// {value: "ff", cursor: 2}  
+    switch (e.target.id) {
+      case "phone":
+        this.setData({
+          givenPhone: e.detail.value
+        });
+        break;
+    }
+  },
+  phoneCheck: function(phone){
+    var reg = /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[3-8]{1})|(18[0-9]{1})|(19[0-9]{1})|(14[5-7]{1}))+\d{8})$/;
+    if(phone == "" || phone == undefined){
+      return false;
+    }
+    if (!reg.test(phone)) {
+      return false;
+    }
+    return true;
   }
 })
