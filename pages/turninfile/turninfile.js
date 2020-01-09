@@ -160,6 +160,16 @@ Page({
     }
   },
   /**
+   * 
+   */
+  uploadfile: function(){
+    if(this.data.type == "0"){
+      this.uploadfilefun();
+    }else{
+      this.uploadContentfun();
+    }
+  },
+  /**
    * 上传文件
    */
   uploadfilefun: function () {
@@ -185,25 +195,12 @@ Page({
       })
       return;
     }
-    var filepath= "", filename = "";
-    if(this.data.type == 0){
-      if (uploadfile.length == 0) {
-        wx.showToast({
-          title: '请先添加文件',
-          icon: 'none'
-        })
-        return;
-      }
-      filepath = uploadfile.path;
-      filename = uploadfile.name;
-    }else{
-      if (this.data.content == "") {
-        wx.showToast({
-          title: '文件内容必须输入',
-          icon: 'none'
-        })
-        return;
-      }
+    if (uploadfile.length == 0) {
+      wx.showToast({
+        title: '请先添加文件',
+        icon: 'none'
+      })
+      return;
     }
 
     let $this = this;
@@ -213,7 +210,7 @@ Page({
     var openid = wx.getStorageSync("openid");
     wx.uploadFile({
       url: config.serverAddress + '/busi/upload', // 请求服务端文件,
-      filePath: filepath,
+      filePath: uploadfile.path,
       name: "file",
       formData:{
         firstname: $this.data.firstname,
@@ -221,7 +218,7 @@ Page({
         subtitle: $this.data.subtitle,
         checktype: $this.data.checktype,
         openid: openid,
-        filename: filename,
+        filename: uploadfile.name,
         content: $this.data.content,
         type: $this.data.type
       },
@@ -251,6 +248,8 @@ Page({
         }
       },
       fail: function (res) {
+        console.log("上传文件失败");
+        console.info(res);
         wx.hideLoading();
         wx.showToast({
           title: "上传文件失败",
@@ -259,6 +258,96 @@ Page({
       },
       complete: function (res) {
         
+      }
+    })
+  },
+  /**
+   * 上传剪贴文件
+   */
+  uploadContentfun: function () {
+    if (this.data.firstname == "") {
+      wx.showToast({
+        title: '名必须输入',
+        icon: 'none'
+      })
+      return;
+    }
+    if (this.data.lastname == "") {
+      wx.showToast({
+        title: '姓必须输入',
+        icon: 'none'
+      })
+      return;
+    }
+    if (this.data.subtitle == "") {
+      wx.showToast({
+        title: '文件标题必须输入',
+        icon: 'none'
+      })
+      return;
+    }
+    if (this.data.content == "") {
+      wx.showToast({
+        title: '文件内容必须输入',
+        icon: 'none'
+      })
+      return;
+    }
+
+    let $this = this;
+    wx.showLoading({
+      title: '正在上传剪贴文件',
+    })
+    var openid = wx.getStorageSync("openid");
+    var data = {
+      firstname: $this.data.firstname,
+      lastname: $this.data.lastname,
+      subtitle: $this.data.subtitle,
+      checktype: $this.data.checktype,
+      openid: openid,
+      filename: "",
+      content: $this.data.content,
+      type: $this.data.type
+    }
+    wx.request({
+      url: config.serverAddress + '/busi/upload/content', // 请求服务端文件,
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application / json',
+      },
+      success: function (res) {
+        console.log("上传剪贴文件：");
+        console.log(res);
+        wx.hideLoading();
+        if (res.statusCode == 200) {
+          var resData = JSON.parse(res.data);
+          if (resData.retcode === config.SUCCESS) {
+            var data = { orderid: resData.response.orderid }
+            $this.fileByteGet(data);
+          } else {
+            wx.showToast({
+              title: resData.retmsg,
+              icon: 'none'
+            })
+          }
+        } else {
+          wx.showToast({
+            title: "上传剪贴文件失败",
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) {
+        console.log("上传剪贴文件失败");
+        console.info(res);
+        wx.hideLoading();
+        wx.showToast({
+          title: "上传剪贴文件失败",
+          icon: 'none'
+        })
+      },
+      complete: function (res) {
+
       }
     })
   },
