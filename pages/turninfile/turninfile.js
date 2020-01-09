@@ -14,7 +14,9 @@ Page({
     firstname:"",
     lastname:"",
     subtitle: "",
-    checktype:""
+    checktype:"",
+    type: "0",
+    content: ""
   },
 
   /**
@@ -22,7 +24,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      checktype: options.checktype
+      checktype: options.checktype,
+      type: options.type
     })
   },
 
@@ -95,7 +98,17 @@ Page({
           subtitle: e.detail.value
         });
         break;
+      case "content":
+        this.setData({
+          content: e.detail.value
+        });
+        break;
     }
+  },
+  bindTextAreaBlur: function (e) {
+    this.setData({
+      content: e.detail.value
+    });
   },
   /**
    * 选择文件
@@ -153,14 +166,14 @@ Page({
     let { uploadfile } = this.data;
     if (this.data.firstname == "") {
       wx.showToast({
-        title: '姓必须输入',
+        title: '名必须输入',
         icon: 'none'
       })
       return;
     }
     if (this.data.lastname == "") {
       wx.showToast({
-        title: '名必须输入',
+        title: '姓必须输入',
         icon: 'none'
       })
       return;
@@ -172,13 +185,27 @@ Page({
       })
       return;
     }
-    if (uploadfile.length == 0) {
-      wx.showToast({
-        title: '请先添加文件',
-        icon: 'none'
-      })
-      return;
+    var filepath= "", filename = "";
+    if(this.data.type == 0){
+      if (uploadfile.length == 0) {
+        wx.showToast({
+          title: '请先添加文件',
+          icon: 'none'
+        })
+        return;
+      }
+      filepath = uploadfile.path;
+      filename = uploadfile.name;
+    }else{
+      if (this.data.content == "") {
+        wx.showToast({
+          title: '文件内容必须输入',
+          icon: 'none'
+        })
+        return;
+      }
     }
+
     let $this = this;
     wx.showLoading({
       title: '正在上传文件',
@@ -186,7 +213,7 @@ Page({
     var openid = wx.getStorageSync("openid");
     wx.uploadFile({
       url: config.serverAddress + '/busi/upload', // 请求服务端文件,
-      filePath: uploadfile.path,
+      filePath: filepath,
       name: "file",
       formData:{
         firstname: $this.data.firstname,
@@ -194,7 +221,9 @@ Page({
         subtitle: $this.data.subtitle,
         checktype: $this.data.checktype,
         openid: openid,
-        filename: uploadfile.name,
+        filename: filename,
+        content: $this.data.content,
+        type: $this.data.type
       },
       header: {
         "content-type": "multipart/form-data;charset=UTF-8",
@@ -255,7 +284,7 @@ Page({
         if (res.statusCode == 200) {
           if (res.data.retcode === config.SUCCESS) {
             var response = res.data.response;
-            var para = "filename=" + uploadfile.name +
+            var para = "filename=" + $this.data.subtitle +
               "&filesize=" + response.filesize + "&wordcount=" + response.wordcount +
               "&orderid=" + response.orderid + "&checktype=" + $this.data.checktype + 
               "&price=" + response.price + "&wordnum=" + response.wordnum + 

@@ -60,9 +60,21 @@ const formatDate = date => {
   return date.substr(0, 4) + "/" + date.substr(4, 2) + "/" +
     date.substr(6, 2);
 }
+
+const phoneCheck = phone => {
+  var reg = /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[3-8]{1})|(18[0-9]{1})|(19[0-9]{1})|(14[5-7]{1}))+\d{8})$/;
+  if (phone == "" || phone == undefined) {
+    return false;
+  }
+  if (!reg.test(phone)) {
+    return false;
+  }
+  return true;
+}
 module.exports = {
   formatTime: formatTime,
   sendMessageEdit: sendMessageEdit,
   formatDateTime: formatDateTime,
-  formatDate: formatDate
+  formatDate: formatDate,
+  phoneCheck: phoneCheck
 }

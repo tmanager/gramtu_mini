@@ -149,5 +149,91 @@ Page({
     currentPage++;
     var that = this;
     that.markListGet();
+  },
+  /**
+   * 输入框输入事件
+   */
+  getInputValue(e) {
+    console.log(e)// {value: "ff", cursor: 2}  
+    switch (e.target.id) {
+      case "givenMark":
+        this.setData({
+          givenMark: e.detail.value
+        });
+        break;
+      case "givenPhone":
+        this.setData({
+          givenPhone: e.detail.value
+        });
+        break;
+    }
+  },
+  /**
+   * 赠送积分
+   */
+  markGiven: function (e) {
+    var that = this;
+    var givenPhone = this.data.givenPhone;
+    var givenMark = this.data.givenMark;
+    var mark = this.data.mark;
+    if (givenMark == "" || givenMark == undefined) {
+      wx.showToast({
+        title: '转赠积分数必须输入！',
+        icon: 'none'
+      })
+      return;
+    }
+    if (isNaN(givenMark) || Number(givenMark) > Number(mark) || Number(givenMark) <= 0) {
+      wx.showToast({
+        title: '转赠积分必须输入数字，且应该小于总积分数大于0！',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!util.phoneCheck(givenPhone)) {
+      wx.showToast({
+        title: '转赠手机号码未输入或者格式不正确！',
+        icon: 'none'
+      })
+      return;
+    }
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    var openid = wx.getStorageSync("openid");
+    var data = { openid: openid, givenphone: givenPhone, givenmark: givenPhone }
+    wx.request({
+      url: config.serverAddress + 'mark/given',
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          wx.hideLoading();
+          console.info("赠送积分:" + JSON.stringify(res.data));
+          if (res.data.retcode === config.SUCCESS) {
+            wx.showToast({
+              title: '积分转赠成功！',
+              icon: 'none'
+            });
+            that.markListGet();
+          } else {
+            wx.showToast({
+              title: '积分转赠失败！',
+              icon: 'none'
+            })
+          }
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '积分转赠失败！',
+          icon: 'none'
+        })
+      }
+    })
   }
 })

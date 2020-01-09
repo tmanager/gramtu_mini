@@ -40,10 +40,11 @@ input{
 	width: 100%;
 }
 .input-item.input-item-full textarea{
-	padding: 0;
-	height: 150rpx;
+  margin-top: 20rpx;
+	height: 350rpx;
 	border: 1rpx solid #e8e8e8;
-	padding: 10rpx;
+	padding: 20rpx;
+  width: 95%;
 }
 .input-item.input-item-full .img-upload{
 	padding: 0;

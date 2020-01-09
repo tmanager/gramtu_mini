@@ -69,7 +69,7 @@
   </view>
 </scroll-view>
 
-<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"  bindtap='hideModal'></view>
   <view class="modal-dialog" wx:if="{{showModal}}">
   <view class="modal-content">
     <view class="phone-input">

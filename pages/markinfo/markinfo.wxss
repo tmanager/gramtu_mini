@@ -97,135 +97,76 @@ page{
   font-size: 25rpx;
 }
 
-.checkbox .wx-checkbox-input {
-  border-radius: 32rpx; /* 圆角 */
-  width: 32rpx; /* 背景的宽 */
-  height: 32rpx; /* 背景的高 */
-  border: 2px solid rgba(242, 79, 80, 1);
+input{
+	height: 60rpx;
+	line-height: 60rpx;
+ 	font-family: inherit;
+}
+.input-list{
+	padding: 0 20rpx;
+	margin: 20rpx 0;
+	background: #fff;
+	border-top: 1rpx solid #ddd;
+	border-bottom: 1rpx solid #ddd;
+}
+.input-list .input-item{
+	padding: 20rpx 20rpx;
+	line-height: 2;
+	font-size: 30rpx;
+	border-top: 1rpx solid #e8e8e8;
+}
+.input-list .input-item:first-child{
+	border-top: 0;
+}
+.input-item-label{
+	display: block;
+	color: #000;
+}
+.input-item-content{
+	color: #333;
+	flex:1;
+}
+.input-item.input-item-full{
+	display: block;
+}
+.input-item.input-item-full .input-item-label{
+	width: 100%;
+}
+.input-item.input-item-full .input-item-content{
+	width: 100%;
+}
+.input-item.input-item-full textarea{
+	height: 150rpx;
+	border: 1rpx solid #e8e8e8;
+	padding: 10rpx;
+}
+.input-item.input-item-full .img-upload{
+	padding: 0;
+}
+.input-item.input-item-adaption .input-item-label{
+	width: auto;
+	margin-right: 20rpx;
 }
 
-.checkbox .wx-checkbox-input-disabled {
-  border-radius: 32rpx; /* 圆角 */
-  width: 32rpx; /* 背景的宽 */
-  height: 32rpx; /* 背景的高 */
-  background: #f3f3f3;
-  border: 1px solid rgba(201, 201, 201, 1);
-}
-
-.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-  background: rgba(242, 79, 80, 1);
-}
-
-.checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
-  width: 32rpx;
-  height: 32rpx;
-  line-height: 32rpx;
-  text-align: center;
-  font-size: 24rpx;
-  color: #fff;
-  background: transparent;
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transform: translate(-50%, -50%) scale(1);
-}
-
-.checkbox .wx-checkbox-input {
-  border-radius: 32rpx; /* 圆角 */
-  width: 32rpx; /* 背景的宽 */
-  height: 32rpx; /* 背景的高 */
-  border: 1px solid rgb(199, 199, 199);
-}
-
-.checkbox .wx-checkbox-input-disabled {
-  border-radius: 32rpx; /* 圆角 */
-  width: 32rpx; /* 背景的宽 */
-  height: 32rpx; /* 背景的高 */
-  background: #f3f3f3;
-  border: 1px solid rgba(201, 201, 201, 1);
-}
-
-.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-  background: rgba(242, 79, 80, 1);
-  border: 1px solid rgba(201, 201, 201, 0);
-}
-
-.checkbox  .wx-checkbox-input.wx-checkbox-input-checked::before {
-  width: 32rpx;
-  height: 32rpx;
-  line-height: 32rpx;
-  text-align: center;
-  font-size: 24rpx;
-  color: #fff;
-  background: transparent;
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transform: translate(-50%, -50%) scale(1);
-}
-
-.checkbox{
-  margin-top:60rpx;
-}
-
-.tabbar{ 
-  font-size: 25rpx;
-  background: #fff;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  height: 100rpx;
-  border-top: 1px solid #C5C5C5;
-}
-
-.tabbar > view:nth-child(1){
-  flex: 1;
-  line-height: 100rpx;
-  margin-left: 20rpx;
-}
-.tabbar > view:nth-child(2){
-  flex: 2;
-  line-height: 100rpx;
-  text-align: right;
+.sm-font{
   font-size:25rpx;
-  padding-right: 20rpx;
-}
-.tabbar > view:nth-child(3){
-  flex: 1;
-  text-align: center;
-  background-color: #C5C5C5;
-  line-height: 100rpx;
-  color: white;
 }
 
-.tabbar > view:nth-child(4){
-  flex: 1;
-  text-align: center;
-  background-color: #F24F50;
-  line-height: 100rpx;
-  color: white;
+.xs-font{
+  font-size:20rpx;
 }
 
-.coup_item{
+.gray-font{
+  color:#808080;
+}
+
+.upload-btn{
   display: flex;
   flex-direction: row;
-  font-size: 25rpx;
+  margin-top: 20rpx;
 }
 
-.coup_item > view:nth-child(1){
-  flex: 1;
-  text-align: right;
-}
-
-.coup_item > view:nth-child(2){
-  flex: 3;
-}
-
-.status{
-  position:absolute; 
-  right:200rpx;
-}
-
-.status image{
-  width: 100rpx; 
-  height: 100rpx;
-  margin-top: 10rpx
+.upload-btn > button{
+  padding: 10rpx 0;
+  line-height: 1.5;
 }

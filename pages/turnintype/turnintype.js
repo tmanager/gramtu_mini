@@ -68,11 +68,12 @@ Page({
   /**
    * 按钮事件
    */
-  turninTypeChoose: function(){
+  turninTypeChoose: function(e){
     //type:"0"：国际查重， "1":UK查重，"2"：语法检测
     var that = this;
+    var type = e.currentTarget.dataset.type;
     wx.navigateTo({
-      url: '../turninfile/turninfile?checktype=' + that.data.checktype
+      url: '../turninfile/turninfile?checktype=' + that.data.checktype + "&type=" + type
     })
   }
 

@@ -161,16 +161,34 @@ Page({
     });
   },
   coupGivenDialog: function(e){
+    //TODO:两个-1的不能赠送
+    var id = e.currentTarget.dataset.id;
+    var list = this.data.couponList;
+    var coupid = "";
+    for (var i = 0; i < list.length; i++){
+      if (id == list[i].id){
+        coupid = list[i].couponid;
+        if (list[i].upfee == "-1" && list[i].amount == "-1"){
+          wx.showToast({
+            title: '该优惠券不能转赠！',
+            icon: 'none'
+          });
+          return;
+        }
+      }
+    }
     this.setData({
-      givenId: e.currentTarget.dataset.id,
+      givenId: id,
+      coupId: coupid,
       givenPhone: ""
     });
     this.showDialogBtn();
   },
+
   coupGiven: function (e) {
     var that = this;
     var givenPhone = this.data.givenPhone;
-    if (this.phoneCheck(givenPhone) == ""){
+    if (!util.phoneCheck(givenPhone)){
       wx.showToast({
         title: '转赠手机号码未输入或者格式不正确！',
         icon: 'none'
@@ -182,7 +200,7 @@ Page({
       title: '正在加载中',
     });
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, givenphone: givenPhone, id: this.data.givenId}
+    var data = { openid: openid, phonenumber: givenPhone, id: this.data.givenId, couponid: this.data.coupId}
     wx.request({
       url: config.serverAddress + 'coupon/given',
       data: util.sendMessageEdit(null, data),
@@ -195,10 +213,6 @@ Page({
           wx.hideLoading();
           console.info("赠送优惠券:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
-            wx.showToast({
-              title: '优惠券转赠成功！',
-              icon: 'none'
-            });
             that.coupListGet();
           }else{
             wx.showToast({
@@ -229,15 +243,5 @@ Page({
         });
         break;
     }
-  },
-  phoneCheck: function(phone){
-    var reg = /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[3-8]{1})|(18[0-9]{1})|(19[0-9]{1})|(14[5-7]{1}))+\d{8})$/;
-    if(phone == "" || phone == undefined){
-      return false;
-    }
-    if (!reg.test(phone)) {
-      return false;
-    }
-    return true;
   }
 })
