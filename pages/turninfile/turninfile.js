@@ -162,7 +162,7 @@ Page({
   /**
    * 
    */
-  uploadfile: function(){
+  uploadFileTotal: function(){
     if(this.data.type == "0"){
       this.uploadfilefun();
     }else{
