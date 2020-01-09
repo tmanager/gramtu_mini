@@ -4,6 +4,9 @@ var util = require('../../utils/util.js');
 var currentPage = 0;
 var totalPage = 0;
 var pageSize = 10;
+var currentPageCoup = 0;
+var totalPageCoup = 0;
+var pageSizeCoup = 10;
 Page({
 
   /**
@@ -12,12 +15,13 @@ Page({
   data: {
     navbar: ['积分列表', '积分赠送','积分兑换'],
     currentNavbar: '0',
-    couponList: [
+    coupList: [
       { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 0 },
       { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 1 },
       { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 2 },
     ],
     noitem: 0,
+    noitemCoup: 0,
     mark: 0
   },
 
@@ -85,12 +89,17 @@ Page({
       currentNavbar: idx
     });
     if(idx == 0){
+      //查询积分列表
       this.markListGet();
+    }
+    if(idx == 2){
+      //查询可以进行兑换的优惠券后展示
+      this.coupListGet();
     }
     
   },
   /**
-   * 获取优惠券记录
+   * 获取积分记录
    */
   markListGet: function () {
     var that = this;
@@ -136,19 +145,36 @@ Page({
     })
   },
   onReachBottom: function () {
-    if ((currentPage + 1) >= totalPage) {
-      this.setData({
-        noitem: 1
-      });
-      return;
-    } else {
-      this.setData({
-        noitem: 0
-      });
+    if(this.data.currentNavbar == 0){
+      if ((currentPage + 1) >= totalPage) {
+        this.setData({
+          noitem: 1
+        });
+        return;
+      } else {
+        this.setData({
+          noitem: 0
+        });
+      }
+      currentPage++;
+      var that = this;
+      that.markListGet();
+    }else{
+      if ((currentPageCoup + 1) >= totalPageCoup) {
+        this.setData({
+          noitemCoup: 1
+        });
+        return;
+      } else {
+        this.setData({
+          noitemCoup: 0
+        });
+      }
+      currentPageCoup++;
+      var that = this;
+      that.coupListGet();
     }
-    currentPage++;
-    var that = this;
-    that.markListGet();
+
   },
   /**
    * 输入框输入事件
@@ -233,6 +259,124 @@ Page({
           title: '积分转赠失败！',
           icon: 'none'
         })
+      }
+    })
+  },
+  /**
+   * 获取可以兑换的优惠券记录
+   */
+  coupListGet: function () {
+    var that = this;
+    var openid = wx.getStorageSync("openid");
+    if (openid == "" || openid == null || openid == undefined) return;
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    var data = {currentpage: currentPage, pagesize: pageSize,
+      startindex: currentPage * pageSize, draw: 1
+    }
+    wx.request({
+      url: config.serverAddress + 'coupon/query',
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("优惠券记录:" + JSON.stringify(res.data));
+          if (res.data.retcode === config.SUCCESS) {
+            totalPageCoup = Math.ceil(res.data.response.totalcount / pageSizeCoup);
+            var couplist = res.data.response.couponlist;
+            for (var i = 0; i < couplist.length; i++) {
+              couplist[i].updtime = util.formatDateTime(couplist[i].updtime);
+            }
+            that.setData({
+              //coupList: res.data.response.couponlist
+            })
+          }
+        }
+      },
+      complete: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
+  /**
+   * 优惠券兑换
+   */
+  coupGivenExchangeDialog: function(e){
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    var coupList = this.data.coupList;
+    var usermark = 0;
+    for(var i=0; i<coupList.length; i++){
+      if(id == coupList[i].id){
+        usemark = coupList[i].usemark;
+      }
+    }
+    if(Number(usermak) > Number(this.data.mark)){
+      wx.showToast({
+        title: '积分不足，不能进行兑换！',
+        icon: 'none'
+      })
+      return;
+    }
+    wx.showModal({
+      title: '提示',
+      content: '需要花费' + usemark + '积分，确认要进行兑换？',
+      success(res) {
+        if (res.confirm) {
+          this.coupGivenExchange(id);
+        } else if (res.cancel) {
+          
+        }
+      }
+    })
+  },
+  /**
+   * 积分兑换优惠券
+   */
+  coupGivenExchange: function(id){
+    var that = this;
+    var openid = wx.getStorageSync("openid");
+    if (openid == "" || openid == null || openid == undefined) return;
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    var data = {openid: openid, coupid: id}
+    wx.request({
+      url: config.serverAddress + 'coupon/exchange',
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("积分兑换优惠券:" + JSON.stringify(res.data));
+          if (res.data.retcode === config.SUCCESS) {
+            wx.showToast({
+              title: '兑换成功！',
+              icon: 'none'
+            });
+            that.markListGet();
+          }else{
+            wx.showToast({
+              title: '兑换失败！',
+              icon: 'none'
+            })
+          }
+        }
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '兑换失败！',
+          icon: 'none'
+        })
+      },
+      complete: function (res) {
+        wx.hideLoading();
       }
     })
   }

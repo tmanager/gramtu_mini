@@ -183,7 +183,7 @@ Page({
         break;
       case "2":
         wx.navigateTo({
-          url: '../turninfile/turninfile?checktype=' + e.currentTarget.dataset.type
+          url: '../turninfile/turninfile?checktype=' + e.currentTarget.dataset.type + '&type=0'
         })
         break;
     }

@@ -53,3 +53,29 @@
     </view>
   </view>
 </scroll-view>
+
+<scroll-view class="hot-item-container {{currentNavbar==2 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
+  scroll-y="true" bindscrolltolower="pullUpLoad">
+  <view class="wode_item_wrap" wx:for="{{coupList}}" wx:key data-id="{{item.id}}" bindtap="coupGivenExchangeDialog">
+    <view class="wode_item" style="color: {{item.status == 0 ? '' : '#999999!important' }}">
+      <view>
+        <view class='coup-detail'>
+          <view class='turnin-name'>{{item.name}}</view>
+          <view class='price' wx:if="{{item.amount != '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">￥{{item.amount}}</view>
+          <view class='price' wx:if="{{item.amount == '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">可抵用任意金额</view>
+        </view>
+        <view class='coup-detail'>
+          <view class='turnin-time' wx:if="{{item.enddate != '9999/99/99'}}">有效期至{{item.enddate}}</view>
+          <view class='turnin-time' wx:if="{{item.enddate == '9999/99/99'}}">永久有效</view>
+          <view class='turnin-time' wx:if="{{item.upfee != '-1'}}">满{{item.upfee}}元可用</view>
+          <view class='turnin-time' wx:if="{{item.upfee == '-1'}}">任意金额可用</view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
+  </view>
+
+  <view class='no-data' wx:if="{{coupList.length == 0}}">
+    暂无数据
+  </view>
+</scroll-view>

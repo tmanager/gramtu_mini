@@ -174,26 +174,28 @@ Page({
    */
   uploadfilefun: function () {
     let { uploadfile } = this.data;
-    if (this.data.firstname == "") {
-      wx.showToast({
-        title: '名必须输入',
-        icon: 'none'
-      })
-      return;
-    }
-    if (this.data.lastname == "") {
-      wx.showToast({
-        title: '姓必须输入',
-        icon: 'none'
-      })
-      return;
-    }
-    if (this.data.subtitle == "") {
-      wx.showToast({
-        title: '文件标题必须输入',
-        icon: 'none'
-      })
-      return;
+    if(this.data.checktype != 2){
+      if (this.data.firstname == "") {
+        wx.showToast({
+          title: '名必须输入',
+          icon: 'none'
+        })
+        return;
+      }
+      if (this.data.lastname == "") {
+        wx.showToast({
+          title: '姓必须输入',
+          icon: 'none'
+        })
+        return;
+      }
+      if (this.data.subtitle == "") {
+        wx.showToast({
+          title: '文件标题必须输入',
+          icon: 'none'
+        })
+        return;
+      }
     }
     if (uploadfile.length == 0) {
       wx.showToast({
@@ -313,14 +315,15 @@ Page({
       url: config.serverAddress + '/busi/upload/content', // 请求服务端文件,
       data: util.sendMessageEdit(null, data),
       header: {
-        'content-type': 'application / json',
+        'content-type': 'application/json',
       },
+      method: "post",
       success: function (res) {
         console.log("上传剪贴文件：");
         console.log(res);
         wx.hideLoading();
         if (res.statusCode == 200) {
-          var resData = JSON.parse(res.data);
+          var resData = res.data;
           if (resData.retcode === config.SUCCESS) {
             var data = { orderid: resData.response.orderid }
             $this.fileByteGet(data);
