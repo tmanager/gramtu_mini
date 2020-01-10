@@ -18,6 +18,7 @@
     "pages/turninlist/turninlist",
     "pages/payend/payend",
     "pages/markinfo/markinfo",
+    "pages/perfectInfo/perfectInfo",
     "pages/couplist/couplist"
     
   ],

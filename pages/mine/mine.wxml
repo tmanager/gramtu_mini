@@ -24,6 +24,9 @@
       <view><image src="../../images/mark.png"></image></view>
       <view bindtap='bindUserMark'>积分: {{mark}}</view>
     </view>
+    <view wx:if="{{userInfo}}" class="nickname" style='margin-top: 0'>
+      <button bindtap="perfectInfo" style='font-size: 25rpx'>完善信息</button>
+    </view>
   </view>
 </view>
 <view class="wode_list">

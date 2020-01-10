@@ -240,6 +240,9 @@ Page({
       }
     })
   },
+  /**
+   * 查询积分
+   */
   bindUserMark: function(e){
     var register = wx.getStorageSync("register");
     if (register == 0) {
@@ -252,6 +255,23 @@ Page({
     }
     wx.navigateTo({
       url: '../markinfo/markinfo',
+    })
+  },
+  /**
+   * 完善信息
+   */
+  perfectInfo: function(e){
+    var register = wx.getStorageSync("register");
+    if (register == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请先进入[我的]登录后再进行该操作',
+        showCancel: false
+      })
+      return
+    }
+    wx.navigateTo({
+      url: '../perfectInfo/perfectInfo',
     })
   }
 })

@@ -14,7 +14,7 @@
   </view>
   <view class='oneLine'>
     <view><image src="../../images/wechat.png" class='tipImage smallImage'></image></view>
-    <view><view class="contactService">点击联系微信客服</view></view>
+    <view><button class="contactService" open-type="contact" bindcontact="handleContact" style='margin: 0;'>点击联系微信客服</button></view>
   </view>
   
 </view>

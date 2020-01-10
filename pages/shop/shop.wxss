@@ -39,4 +39,7 @@
   padding:5rpx 60rpx;
   border-radius: 5rpx;
   color:white;
+  font-size: 35rpx;
+  line-height: 1.8;
+  box-sizing: content-box;
 }
