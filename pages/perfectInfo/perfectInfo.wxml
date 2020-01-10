@@ -1,0 +1,22 @@
+<view class="group-body">
+  <view class="input-list">
+    <view class="input-item">
+      <text class="input-item-label">居住国家：</text>
+      <view class="input-item-content">
+        <input type="text" placeholder="请输入居住国家" bindinput='getInputValue' id="country" value="{{country}}"></input>
+      </view>
+    </view>
+    <view class="input-item">
+      <text class="input-item-label">毕业院校：</text>
+      <input type="text" placeholder="请输入毕业院校" bindinput='getInputValue' id="university" value="{{university}}"></input>
+    </view>
+    <view class="input-item">
+      <text class="input-item-label" style='font-size:25rpx;color:#F24F50'>注：首次完善信息将会赠送免费查重和免费语法检测优惠券</text>
+    </view>
+    <view class="input-item">
+      <view class='upload-btn'> 
+        <button class="btn-block" style='background-color:#2489F3; color:white; width: 100%' bindtap='saveUserInfo'>保存信息</button>
+      </view>
+    </view>
+  </view>
+</view>

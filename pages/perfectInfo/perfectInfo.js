@@ -1,0 +1,180 @@
+// pages/perfectInfo/perfectInfo.js
+var config = require('../../utils/config.js')
+var util = require('../../utils/util.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    university:"",
+    country:""
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getUserInfo();
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  /**
+   * 获取用户信息
+   */
+  getUserInfo: function(){
+    var that = this;
+    var openid = wx.getStorageSync("openid");
+    if (openid == "" || openid == null || openid == undefined) return;
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    var data = {openid: openid}
+    wx.request({
+      url: config.serverAddress + 'user/query',
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("用户信息:" + JSON.stringify(res.data));
+          if (res.data.retcode === config.SUCCESS) {
+            that.setData({
+              university: res.data.response.university,
+              country: res.data.response.country
+            })
+          }
+        }
+      },
+      complete: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
+  /**
+   * 保存信息
+   */
+  saveUserInfo: function () {
+    var that = this;
+    if (this.data.country == "") {
+      wx.showToast({
+        title: '居住国必须输入',
+        icon: 'none'
+      })
+      return;
+    }
+    if (this.data.university == "") {
+      wx.showToast({
+        title: '毕业院校必须输入',
+        icon: 'none'
+      })
+      return;
+    }
+    var openid = wx.getStorageSync("openid");
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    var data = { openid: openid, university: this.data.university, country: this.data.country };
+    wx.request({
+      url: config.serverAddress + 'user/save',
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          console.info("用户信息:" + JSON.stringify(res.data));
+          if (res.data.retcode === config.SUCCESS) {
+            wx.showToast({
+              title: '保存信息成功！',
+              icon: 'none'
+            })
+          }
+        }else{
+          wx.showToast({
+            title: '保存信息失败！',
+            icon: 'none'
+          })
+        }
+      },
+      fail: function(res){
+        console.info(res);
+        wx.showToast({
+          title: '保存信息失败！',
+          icon: 'none'
+        })
+      },
+      complete: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
+  /**
+   * 输入框输入事件
+   */
+  getInputValue(e) {
+    console.log(e)// {value: "ff", cursor: 2}  
+    switch (e.target.id) {
+      case "university":
+        this.setData({
+          university: e.detail.value
+        });
+        break;
+      case "country":
+        this.setData({
+          country: e.detail.value
+        });
+        break;
+    }
+  },
+})

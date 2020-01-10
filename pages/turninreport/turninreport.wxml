@@ -22,7 +22,7 @@
   </view>
 </view>
 <view style='margin-top: 20rpx; text-align: center' wx:if="{{status == 3}}">
-  <button type="primary" bindtap="primary" class='btn-inline'> 下载至手机 </button>
+  <button type="primary" bindtap="downloadFile" class='btn-inline'> 下载至手机 </button>
   <button type="warn" bindtap="primary" class='btn-inline' style='background-color:#2489F3'> 发送到邮箱 </button>
 </view>
 
