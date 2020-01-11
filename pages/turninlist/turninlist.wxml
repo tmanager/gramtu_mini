@@ -60,9 +60,12 @@
             正在检测中....
           </view>
           <view class='status' wx:if="{{item.status == 3}}">
-            重复比率：<text style='color:#F24F50'>{{item.repetrate}}</text>
+            报告下载中....
           </view>
           <view class='status' wx:if="{{item.status == 4}}">
+            重复比率：<text style='color:#F24F50'>{{item.repetrate}}</text>
+          </view>
+          <view class='status' wx:if="{{item.status == 9}}">
             已退款
           </view>
         </view>
