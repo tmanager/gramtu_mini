@@ -28,7 +28,8 @@ Page({
     //价格信息
     price:"0.00",       //单价
     wordnum:"0",        //单价对应的字数
-    discount:"10.0"     //折扣
+    discount:"10.0",     //折扣
+    checkType: "0"
   },
 
   /**
@@ -37,8 +38,14 @@ Page({
   onLoad: function (options) {
     //TODO:测试
     this.setData({
-      currentNavbar: options.type
+      currentNavbar: options.type,
+      checkType: options.checktype
     })
+    if(this.data.checkType == "2"){
+      wx.setNavigationBarTitle({
+        title: '语法检测列表'
+      })
+    }
     this.getOrderList();
     this.coupListGet();
   },
@@ -261,10 +268,14 @@ Page({
     var nav = this.data.currentNavbar;  //0：未付款，1：已付款
     var openid = wx.getStorageSync("openid");
     var data = {
-      openid: openid, checktype: "0", type: nav, currentpage: currentPage, pagesize: pageSize,
+      openid: openid, checktype: this.data.checkType, type: nav, currentpage: currentPage, pagesize: pageSize,
       startindex: currentPage * pageSize, draw: 1 };
+    var url = 'torder/query';
+    if(this.data.checkType == "2"){
+      url = 'gorder/query';
+    }
     wx.request({
-      url: config.serverAddress + 'torder/query',
+      url: config.serverAddress + url,
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
@@ -324,7 +335,7 @@ Page({
     });
     var that = this;
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, checktype: "0" };
+    var data = { openid: openid, checktype: this.data.checkType };
     wx.request({
       url: config.serverAddress + "coupon/query",
       header: {
@@ -402,7 +413,7 @@ Page({
     var orderlist = this.data.orderList;
     var para = "filename=" + orderlist[i].filename +
       "&filesize=" + orderlist[i].filesize + "&wordcount=" + orderlist[i].wordcnt +
-      "&orderid=" + orderlist[i].orderid + "&checktype=0" +
+      "&orderid=" + orderlist[i].orderid + "&checktype=" + this.data.checkType + 
       "&price=" + this.data.price + "&wordnum=" + this.data.wordnum +
       "&discount=" + this.data.discount;
     wx.navigateTo({ url: "../turninend/turninend?" + para });
@@ -414,7 +425,8 @@ Page({
       "&filesize=" + orderlist[i].filesize + "&repetrate=" + orderlist[i].repetrate +
       "&orderid=" + orderlist[i].orderid + "&pdfreporturl=" + orderlist[i].pdfreporturl + 
       "&htmlreporturl=" + orderlist[i].htmlreporturl + "&status=" + orderlist[i].status + 
-      "&updtime=" + orderlist[i].updtime + "&wordcnt=" + orderlist[i].wordcnt;
+      "&updtime=" + orderlist[i].updtime + "&wordcnt=" + orderlist[i].wordcnt + 
+      "&email=" + orderlist[i].email;
     wx.navigateTo({ url: "../turninreport/turninreport?" + para });
   },
   onReachBottom: function () {

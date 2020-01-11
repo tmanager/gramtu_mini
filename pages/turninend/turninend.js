@@ -203,6 +203,7 @@ Page({
    */
   doWxPay: function (param) {
     //小程序发起微信支付
+    var checktype = this.data.checktype;
     wx.showLoading({
       title: '正在发起支付',
     })
@@ -217,7 +218,7 @@ Page({
         console.log(event);
         //暂不做通知，直接跳转
         wx.redirectTo({
-          url: '../payend/payend',
+          url: '../payend/payend?checktype=' + checktype,
         })
       },
       fail: function (error) {

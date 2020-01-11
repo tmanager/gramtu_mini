@@ -23,7 +23,18 @@
   </view>
 </view>
 <view style='margin-top: 20rpx; text-align: center' wx:if="{{status == 4}}">
-  <button type="primary" bindtap="downloadFile" class='btn-inline'> 下载至手机 </button>
-  <button type="warn" bindtap="primary" class='btn-inline' style='background-color:#2489F3'> 发送到邮箱 </button>
+  <button type="primary" bindtap="OpenFile" class='btn-inline'> 查看报告 </button>
+  <button type="warn" bindtap="sendMailDialog" class='btn-inline' style='background-color:#2489F3'> 发送到邮箱 </button>
+</view>
+
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"  bindtap='hideModal'></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-content">
+    <view class="phone-input">
+      <view>邮箱</view>
+      <view><input type="text" placeholder="请输入邮箱" bindinput='getInputValue' id="email" value="{{email}}"></input></view>
+    </view>
+    <button bindtap='sendMail'>发送</button>
+  </view>
 </view>
 

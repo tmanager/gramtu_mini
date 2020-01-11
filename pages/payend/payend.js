@@ -12,7 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      checktype: options.checktype
+    })
   },
 
   /**
@@ -67,8 +69,9 @@ Page({
    * 按钮点击事件
    */
   gotoList: function(){
+    var checktype = this.data.checktype;
     wx.navigateTo({
-      url: '../turninlist/turninlist?type=1',
+      url: '../turninlist/turninlist?type=1&checktype=' + checktype
     })
   }
 })

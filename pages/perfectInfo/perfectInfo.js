@@ -7,8 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    university:"",
-    country:""
+    major:"",
+    country:"",
+    email:""
   },
 
   /**
@@ -89,8 +90,9 @@ Page({
           console.info("用户信息:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
             that.setData({
-              university: res.data.response.university,
-              country: res.data.response.country
+              major: res.data.response.major,
+              country: res.data.response.country,
+              email: res.data.response.email
             })
           }
         }
@@ -107,14 +109,21 @@ Page({
     var that = this;
     if (this.data.country == "") {
       wx.showToast({
-        title: '居住国必须输入',
+        title: '毕业院校所在国家必须输入',
         icon: 'none'
       })
       return;
     }
-    if (this.data.university == "") {
+    if (this.data.major == "") {
       wx.showToast({
-        title: '毕业院校必须输入',
+        title: '专业必须输入',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!this.validateMail(this.data.email)){
+      wx.showToast({
+        title: '邮箱为空或者邮箱格式不正确！',
         icon: 'none'
       })
       return;
@@ -123,7 +132,7 @@ Page({
     wx.showLoading({
       title: '正在加载中',
     });
-    var data = { openid: openid, university: this.data.university, country: this.data.country };
+    var data = { openid: openid, major: this.data.major, country: this.data.country, email: this.data.email };
     wx.request({
       url: config.serverAddress + 'user/save',
       data: util.sendMessageEdit(null, data),
@@ -165,9 +174,9 @@ Page({
   getInputValue(e) {
     console.log(e)// {value: "ff", cursor: 2}  
     switch (e.target.id) {
-      case "university":
+      case "major":
         this.setData({
-          university: e.detail.value
+          major: e.detail.value
         });
         break;
       case "country":
@@ -175,6 +184,20 @@ Page({
           country: e.detail.value
         });
         break;
+      case "email":
+        this.setData({
+          email: e.detail.value
+        });
+        break;
     }
   },
+  //校验邮箱
+  validateMail: function (mail) {
+    if (mail == "") return false;
+    var strRegex = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+    if (!strRegex.test(mail)) {
+      return false;
+    }
+    return true;
+  }
 })

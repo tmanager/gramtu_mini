@@ -1,17 +1,21 @@
 <view class="group-body">
   <view class="input-list">
     <view class="input-item">
-      <text class="input-item-label">居住国家：</text>
+      <text class="input-item-label">毕业院校所属国家：</text>
       <view class="input-item-content">
-        <input type="text" placeholder="请输入居住国家" bindinput='getInputValue' id="country" value="{{country}}"></input>
+        <input type="text" placeholder="请输入毕业院校所属国家" bindinput='getInputValue' id="country" value="{{country}}"></input>
       </view>
     </view>
     <view class="input-item">
-      <text class="input-item-label">毕业院校：</text>
-      <input type="text" placeholder="请输入毕业院校" bindinput='getInputValue' id="university" value="{{university}}"></input>
+      <text class="input-item-label">专业：</text>
+      <input type="text" placeholder="请输入专业" bindinput='getInputValue' id="major" value="{{major}}"></input>
     </view>
     <view class="input-item">
-      <text class="input-item-label" style='font-size:25rpx;color:#F24F50'>注：首次完善信息将会赠送免费查重和免费语法检测优惠券</text>
+      <text class="input-item-label">个人电子邮箱：</text>
+      <input type="text" placeholder="请输入个人电子邮箱" bindinput='getInputValue' id="email" value="{{email}}"></input>
+    </view>
+    <view class="input-item">
+      <text class="input-item-label" style='font-size:25rpx;color:#F24F50'>注：首次完善信息将会赠送免费查重优惠券</text>
     </view>
     <view class="input-item">
       <view class='upload-btn'> 

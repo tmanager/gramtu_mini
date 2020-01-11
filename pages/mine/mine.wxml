@@ -30,11 +30,11 @@
   </view>
 </view>
 <view class="wode_list">
-  <navigator url="../turninlist/turninlist?type=0">
+  <navigator url="../turninlist/turninlist?type=0&checktype=0">
     <view><image src="../../images/turnin.png" class='wode_image'></image></view>
     <view>查重列表</view>
   </navigator>
-  <navigator>
+  <navigator url="../turninlist/turninlist?type=0&checktype=2">
     <view><image src="../../images/gramm.png" class='wode_image'></image></view>
     <view>语法检测列表</view>
   </navigator>

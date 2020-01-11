@@ -1,11 +1,13 @@
 // pages/turninreport/turninreport.js
+var config = require('../../utils/config.js');
+var util = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    status: 3
+    status: 4
   },
 
   /**
@@ -20,7 +22,9 @@ Page({
       htmlreporturl: options.htmlreporturl,
       status: options.status,
       updtime: options.updtime,
-      wordcnt: options.wordcnt
+      wordcnt: options.wordcnt,
+      email: options.email,
+      orderid: options.orderid,
     })
   },
 
@@ -75,32 +79,120 @@ Page({
   /**
    * 下载文件到本地
    */
-  downloadFile: function(){
-    var report = "https://www.gramtu.com/public/manager/assets/global/img/loading-spinner-grey.gif";//this.data.pdfreporturl;
+  OpenFile: function(){
+    var report = this.data.pdfreporturl;
     wx.downloadFile({
       url: report, 
       success(res) {
         // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
         if (res.statusCode === 200) {
-          var savePath = wx.env.USER_DATA_PATH + "/1.gif";
+          var savePath = wx.env.USER_DATA_PATH + report.substr(report.lastIndexOf("/"));
           console.info(savePath);
-          wx.getFileSystemManager().saveFile({
-            tempFilePath: res.tempFilePath,
-            filePath: savePath,
+          wx.openDocument({
+            //tempFilePath: res.tempFilePath,
+            filePath: res.tempFilePath,
             success(res) {
               console.info(res);
-              //手机\内部存储\tencent\MicroMsg\wxanewfiles\xxxx\
-              const savedFilePath = res.savedFilePath
             },
             fail(res){
               console.info(res);
+              wx.showToast({
+                title: '打开文件失败！',
+                icon: 'none'
+              })
             }
           })
-          /*wx.playVoice({
-            filePath: res.tempFilePath
-          })*/
         }
+      },
+      fail(res){
+        console.info(res);
+        wx.showToast({
+          title: '下载文件失败！',
+          icon: 'none'
+        })
       }
     })
+  },
+  // 显示一键获取手机号弹窗
+  showDialogBtn: function () {
+    this.setData({
+      showModal: true//修改弹窗状态为true，即显示
+    })
+  },
+  // 隐藏一键获取手机号弹窗
+  hideModal: function () {
+    this.setData({
+      showModal: false//修改弹窗状态为false,即隐藏
+    });
+  },
+  /**
+   * 确认邮箱
+   */
+  sendMailDialog: function(){
+    this.showDialogBtn();
+  },
+   /**
+   * 输入框输入事件
+   */
+  getInputValue(e) {
+    console.log(e)// {value: "ff", cursor: 2}  
+    switch (e.target.id) {
+      case "email":
+        this.setData({
+          email: e.detail.value
+        });
+        break;
+    }
+  },
+  /**
+   * 发送邮件
+   */
+  sendMail: function () {
+    if(!this.validateMail(this.data.email)){
+      wx.showToast({
+        title: '邮箱为空或者邮箱格式不正确！',
+        icon: 'none'
+      })
+      return;
+    }
+    this.hideModal();
+    wx.showLoading({
+      title: '正在加载中',
+    });
+    var data = { orderid: this.data.orderid, email: this.data.email, pdfreporturl: this.data.pdfreporturl }
+    wx.request({
+      url: config.serverAddress + 'email/send',
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        if (res.statusCode == 200) {
+          wx.hideLoading();
+          console.info("发送邮件:" + JSON.stringify(res.data));
+          wx.showToast({
+            title: '邮件发送成功！',
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '邮件发送失败，请重试！',
+          icon: 'none'
+        })
+      }
+    })
+  },
+  //校验邮箱
+  validateMail: function (mail){
+    if(mail == "") return false;
+    var strRegex = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+    if (!strRegex.test(mail)) {
+      return false;
+    }
+    return true;
   }
 })
