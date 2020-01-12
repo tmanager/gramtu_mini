@@ -8,7 +8,7 @@ Page({
    */
   data: {
     major:"",
-    country:"",
+    learncountry:"",
     email:""
   },
 
@@ -79,7 +79,7 @@ Page({
     });
     var data = {openid: openid}
     wx.request({
-      url: config.serverAddress + 'user/query',
+      url: config.serverAddress + 'login/user/perinfo',
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
@@ -91,7 +91,7 @@ Page({
           if (res.data.retcode === config.SUCCESS) {
             that.setData({
               major: res.data.response.major,
-              country: res.data.response.country,
+              learncountry: res.data.response.learncountry,
               email: res.data.response.email
             })
           }
@@ -107,7 +107,7 @@ Page({
    */
   saveUserInfo: function () {
     var that = this;
-    if (this.data.country == "") {
+    if (this.data.learncountry == "") {
       wx.showToast({
         title: '毕业院校所在国家必须输入',
         icon: 'none'
@@ -132,9 +132,9 @@ Page({
     wx.showLoading({
       title: '正在加载中',
     });
-    var data = { openid: openid, major: this.data.major, country: this.data.country, email: this.data.email };
+    var data = { openid: openid, major: this.data.major, learncountry: this.data.learncountry, email: this.data.email };
     wx.request({
-      url: config.serverAddress + 'user/save',
+      url: config.serverAddress + 'login/user/saveperinfo',
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
@@ -179,9 +179,9 @@ Page({
           major: e.detail.value
         });
         break;
-      case "country":
+      case "learncountry":
         this.setData({
-          country: e.detail.value
+          learncountry: e.detail.value
         });
         break;
       case "email":
