@@ -21,7 +21,7 @@ Page({
       price: "0.00"
     },
     coupon: [],
-    coupname: [{ id: "1", name: "111", disable: '0' }, { id: "2", name: "222", disable: '1' }],
+    coupname: [{ id: "1", filename: "111", disable: '0' }, { id: "2", filename: "222", disable: '1' }],
     chooseindex: -1,
     coupamount: "0.00",
     couptitle: "不使用优惠券",
@@ -426,7 +426,8 @@ Page({
       "&orderid=" + orderlist[i].orderid + "&pdfreporturl=" + orderlist[i].pdfreporturl + 
       "&htmlreporturl=" + orderlist[i].htmlreporturl + "&status=" + orderlist[i].status + 
       "&updtime=" + orderlist[i].updtime + "&wordcnt=" + orderlist[i].wordcnt + 
-      "&email=" + orderlist[i].email;
+      "&email=" + orderlist[i].email + "&title=" + orderlist[i].titile + "&checktype=" + orderlist[i].checktype + 
+      "&openid=" + orderlist[i].openid;
     wx.navigateTo({ url: "../turninreport/turninreport?" + para });
   },
   onReachBottom: function () {

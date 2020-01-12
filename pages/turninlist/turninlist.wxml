@@ -51,7 +51,7 @@
         <view>
           <view bindtap="payDetail" wx:key data-index='{{index}}' class="navi">
             <view>
-              <view class='turnin-name'>{{item.titile}}</view>
+              <view class='turnin-name'>{{item.filename}}</view>
               <view class='turnin-time'>{{item.updtime}}</view>
             </view>
             <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>

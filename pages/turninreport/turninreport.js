@@ -22,10 +22,17 @@ Page({
       htmlreporturl: options.htmlreporturl,
       status: options.status,
       updtime: options.updtime,
-      wordcnt: options.wordcnt,
+      wordcnt: this.format(options.wordcnt),
       email: options.email,
       orderid: options.orderid,
+      checktype: options.checktype,
+      title: options.title,
+      openid: options.openid
     })
+  },
+  format: function (num) {
+    var reg = /\d{1,3}(?=(\d{3})+$)/g;
+    return (num + '').replace(reg, '$&,');
   },
 
   /**
@@ -159,7 +166,7 @@ Page({
     wx.showLoading({
       title: '正在加载中',
     });
-    var data = { orderid: this.data.orderid, email: this.data.email, pdfreporturl: this.data.pdfreporturl }
+    var data = { orderid: this.data.orderid, email: this.data.email, pdfreporturl: this.data.pdfreporturl, title: this.data.title, checktype: this.data.checktype, openid: this.data.openid }
     wx.request({
       url: config.serverAddress + 'email/send',
       data: util.sendMessageEdit(null, data),
