@@ -85,7 +85,7 @@
       </label>
     </view>
     <view>合计:<text style='color:#F24F50;'>￥{{realtotal}}</text></view>
-    <view>删除</view>
+    <view bindtap='deleteOrderDialog'>删除</view>
     <view bindtap='payment'>结算</view>
   </view>
 </view>

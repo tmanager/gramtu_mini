@@ -507,5 +507,88 @@ Page({
   sortNumber: function (a, b)
   {
     return a - b;
+  },
+  /**
+   * 删除订单弹框
+   */
+  deleteOrderDialog: function(){
+    var that = this;
+    if(that.data.checkedList.orderid.length = 0){
+      return;
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确认要删除所选的订单？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.deleteOrder();
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  /**
+   * 删除订单列表
+   */
+  deleteOrder: function () {
+    var that = this;
+    wx.showLoading({
+      title: '正在删除订单信息',
+    })
+    var nav = this.data.currentNavbar;  //0：未付款，1：已付款
+    var openid = wx.getStorageSync("openid");
+    var data = {
+      openid: openid, orderidlist: that.data.checkedList.orderid
+    };
+    var url = 'torder/del';
+    if (this.data.checkType == "2") {
+      url = 'gorder/del';
+    }
+    wx.request({
+      url: config.serverAddress + url,
+      data: util.sendMessageEdit(null, data),
+      header: {
+        'content-type': 'application/json'
+      },
+      method: "POST",
+      success: function (res) {
+        if (res.statusCode == 200) {
+          //跳转到支付成功页面
+          wx.hideLoading();
+          console.info("获取订单信息");
+          console.info(res);
+          if (res.data.retcode == config.SUCCESS) {
+            that.setData({
+              chooseindex: -1,
+              coupamount: "0.00",
+              realtotal: "0.00",
+              couptitle: "不使用优惠券",
+              select_all: false,
+              checkedList: {
+                orderid: [],
+                price: "0.00"
+              },
+              coupon: []
+            });
+            that.getOrderList();
+            that.coupListGet();
+          }else{
+            wx.showToast({
+              title: "删除订单信息失败！",
+              icon: 'none'
+            });
+          }
+        }
+      },
+      fail: function (err) {
+        wx.hideLoading();
+        wx.showToast({
+          title: "删除订单信息失败！",
+          icon: 'none'
+        });
+      }
+    })
   }
 })

@@ -376,7 +376,11 @@ Page({
         if (res.statusCode == 200) {
           if (res.data.retcode === config.SUCCESS) {
             var response = res.data.response;
-            var para = "filename=" + $this.data.subtitle +
+            var filename = $this.data.subtitle;
+            if($this.data.type == "0"){
+              filename = uploadfile.name;
+            }
+            var para = "filename=" + filename +
               "&filesize=" + response.filesize + "&wordcount=" + response.wordcount +
               "&orderid=" + response.orderid + "&checktype=" + $this.data.checktype + 
               "&price=" + response.price + "&wordnum=" + response.wordnum + 

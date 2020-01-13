@@ -81,27 +81,32 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    
   },
   /**
    * 下载文件到本地
    */
   OpenFile: function(){
-    var report = this.data.pdfreporturl;
+    var report = this.data.pdfreporturl; 
+    //"https://www.gramtu.com/group1/M00/00/03/rBBVI14cCTKAUrRGABwb-o-7Ns0997.pdf";
+    wx.showLoading({
+      title: '正在加载中',
+    });
     wx.downloadFile({
       url: report, 
       success(res) {
-        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容  
+        console.info(res);
         if (res.statusCode === 200) {
-          var savePath = wx.env.USER_DATA_PATH + report.substr(report.lastIndexOf("/"));
-          console.info(savePath);
           wx.openDocument({
-            //tempFilePath: res.tempFilePath,
             filePath: res.tempFilePath,
+            fileType: 'pdf',
             success(res) {
+              wx.hideLoading();
               console.info(res);
             },
             fail(res){
+              wx.hideLoading();
               console.info(res);
               wx.showToast({
                 title: '打开文件失败！',
@@ -112,6 +117,7 @@ Page({
         }
       },
       fail(res){
+        wx.hideLoading();
         console.info(res);
         wx.showToast({
           title: '下载文件失败！',
