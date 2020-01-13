@@ -271,8 +271,8 @@ Page({
         if (amount == -1) amount = that.data.total;
         that.setData({
           chooseindex: i,
-          coupamount: Number(that.data.coupon[i].amount).toFixed(2),
-          realtotal: (that.data.total - amount).toFixed(2),
+          coupamount: Number(amount).toFixed(2),
+          realtotal: (Number(that.data.total) - Number(amount)).toFixed(2),
           isOpened: 0,
           couptitle: that.data.coupon[i].name
         });

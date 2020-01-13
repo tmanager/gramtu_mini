@@ -81,7 +81,7 @@
   <view class="tabbar">
     <view>
       <label class="checkbox">
-        <checkbox value="1" bindtap='allCheck'/>全选
+        <checkbox value="1" bindtap='allCheck' checked='{{select_all}}' />全选
       </label>
     </view>
     <view>合计:<text style='color:#F24F50;'>￥{{realtotal}}</text></view>

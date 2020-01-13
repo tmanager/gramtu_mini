@@ -125,14 +125,52 @@ Page({
         }
       }
     }
+    if (price == 0) {
+      this.setData({
+        select_all: false
+      })
+    } else {
+      this.setData({
+        select_all: (e.detail.value.length == list.length)
+      })
+    }
+    var checkOrder = e.detail.value;
+    var orderList = that.data.orderList;
+    var priceList = [];
+    //获取价格表
+    for (var i = 0; i < checkOrder.length; i++) {
+      for (var j = 0; j < orderList.length; j++) {
+        if (checkOrder[i] == orderList[j].orderid) {
+          priceList.push(orderList[j].price);
+        }
+      }
+    }
+    //价格排序
+    priceList.sort(that.sortNumber);
     //如果checkbox选中的金额小于优惠券的最低金额时
     if(this.data.chooseindex != -1 && this.data.coupon.length > 0){
-      if (price < Number(this.data.coupon[this.data.chooseindex].upfee)){
-        this.setData({
-          chooseindex: -1,
-          coupamount: "0.00",
-          couptitle: "不使用优惠券"
-        })
+      var upfee = this.data.coupon[this.data.chooseindex].upfee;
+      if(upfee == -1){
+        if(price == 0){
+          this.setData({
+            chooseindex: -1,
+            coupamount: "0.00",
+            couptitle: "不使用优惠券"
+          })
+        }else{
+          var amount = priceList[0];
+          this.setData({
+            coupamount: amount
+          })
+        }
+      }else{
+        if (price < Number(this.data.coupon[this.data.chooseindex].upfee)) {
+          this.setData({
+            chooseindex: -1,
+            coupamount: "0.00",
+            couptitle: "不使用优惠券"
+          })
+        }
       }
     }
     var checkedlist = { orderid: [], price: 0 }; 
@@ -383,14 +421,28 @@ Page({
   },
   selectAction: function (e) {
     var that = this;
+    var checkOrder = that.data.checkedList.orderid;
+    var orderList = that.data.orderList;
+    var priceList = [];
+    //获取价格表
+    for (var i = 0; i < checkOrder.length; i++){
+      for(var j=0; j<orderList.length; j++){
+        if(checkOrder[i] == orderList[j].orderid){
+          priceList.push(orderList[j].price);
+        }
+      }
+    }
+    //价格排序
+    priceList.sort(that.sortNumber);
     for (var i = 0; i < that.data.coupon.length; i++) {
       if (that.data.coupon[i].id == e.detail) {
         var amount = that.data.coupon[i].amount;
-        if (amount == -1) amount = that.data.checkedList.price;
+        if (amount == -1) amount = priceList[0];
+        if (priceList.length == 0) amount = "0.00";
         that.setData({
           chooseindex: i,
-          coupamount: Number(that.data.coupon[i].amount).toFixed(2),
-          realtotal: (that.data.checkedList.price - amount).toFixed(2),
+          coupamount: Number(amount).toFixed(2),
+          realtotal: (Number(that.data.checkedList.price) - Number(amount)).toFixed(2),
           isOpened: 0,
           couptitle: that.data.coupon[i].name
         });
@@ -452,5 +504,8 @@ Page({
       this.coupListGet();
     } 
   },
-
+  sortNumber: function (a, b)
+  {
+    return a - b;
+  }
 })

@@ -141,6 +141,7 @@ Page({
       },
       method: 'post',
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
           console.info("用户信息:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
@@ -158,13 +159,11 @@ Page({
       },
       fail: function(res){
         console.info(res);
+        wx.hideLoading();
         wx.showToast({
           title: '保存信息失败！',
           icon: 'none'
         })
-      },
-      complete: function (res) {
-        wx.hideLoading();
       }
     })
   },

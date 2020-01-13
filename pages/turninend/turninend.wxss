@@ -86,9 +86,6 @@ page{
   margin: 0;
 	line-height: 60rpx;
 	position: relative;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .wode_item{
@@ -102,6 +99,9 @@ page{
 
 .wode_item > view:nth-child(2){
   flex: 3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hidden {
