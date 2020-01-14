@@ -8,9 +8,9 @@
   <view wx:if="{{couponList.length > 0}}">
     <view class="wode_item_wrap" wx:for="{{couponList}}" wx:key data-id="{{item.id}}" bindtap="coupGivenDialog">
       <view class='status'>
-        <image wx:if="{{item.status == 1}}" src="../../images/out-date.png"></image>
+        <image wx:if="{{item.status == 1}}" src="../../images/used.png"></image>
         <image wx:if="{{item.status == 2}}" src="../../images/give.png"></image>
-        <image wx:if="{{item.status == 9}}" src="../../images/used.png"></image>
+        <image wx:if="{{item.status == 9}}" src="../../images/out-date.png"></image>
       </view>
       <view class="wode_item" style="color: {{item.status == 0 ? '' : '#999999!important' }}">
         <view>
@@ -42,9 +42,9 @@
   <view wx:if="{{couponList.length > 0}}">
     <view class="wode_item_wrap" wx:for="{{couponList}}" wx:key data-id="{{item.id}}" bindtap="coupGivenDialog">
       <view class='status'>
-        <image wx:if="{{item.status == 1}}" src="../../images/out-date.png"></image>
+        <image wx:if="{{item.status == 1}}" src="../../images/used.png"></image>
         <image wx:if="{{item.status == 2}}" src="../../images/give.png"></image>
-        <image wx:if="{{item.status == 9}}" src="../../images/used.png"></image>
+        <image wx:if="{{item.status == 9}}" src="../../images/out-date.png"></image>
       </view>
       <view class="wode_item" style="color: {{item.status == 0 ? '' : '#999999!important' }}">
         <view>

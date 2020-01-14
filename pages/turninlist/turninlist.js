@@ -389,8 +389,14 @@ Page({
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS) {
             var response = res.data.response;
+            var list = [];
+            for (var i = 0; i < response.couponlist.length; i++) {
+              if (response.couponlist[i].status == 0) {
+                list.push(response.couponlist[i]);
+              }
+            }
             that.setData({
-              coupon: response.couponlist
+              coupon: list
             });
           }
         }
