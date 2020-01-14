@@ -220,7 +220,7 @@ page{
 
 .status{
   position:absolute; 
-  right:200rpx;
+  right:300rpx;
 }
 
 .status image{
