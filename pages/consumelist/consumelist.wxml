@@ -1,17 +1,19 @@
-<view wx:if="{{consumeList.length > 0}}" class="wode_item_wrap" wx:for="{{consumeList}}">
-  <view class="wode_item">
-    <view>
-      <view class="navi">
-        <view class='turnin-name'>{{item.feename}}</view>
-        <view class='turnin-name'>-{{item.totalfee}}</view>
-      </view>
-      <view class="price">
-        <view>交易时间：{{item.timeend}}</view>
-        <view>商户单号：{{item.tradeno}}</view>
-        <view>交易单号：{{item.transactionid}}</view> 
+<view wx:if="{{consumeList.length > 0}}">
+  <view wx:if="{{consumeList.length > 0}}" class="wode_item_wrap" wx:for="{{consumeList}}">
+    <view class="wode_item">
+      <view>
+        <view class="navi">
+          <view class='turnin-name'>{{item.feename}}</view>
+          <view class='turnin-name'>-{{item.totalfee}}</view>
+        </view>
+        <view class="price">
+          <view>交易时间：{{item.timeend}}</view>
+          <view>商户单号：{{item.tradeno}}</view>
+          <view>交易单号：{{item.transactionid}}</view> 
+        </view>
       </view>
     </view>
   </view>
+  <view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
 </view>
-<view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
-<view class='no-data' wx:if="{{consumeList.length == 0}}"></view>
+<view class='no-data' wx:if="{{consumeList.length == 0}}">暂无数据</view>
