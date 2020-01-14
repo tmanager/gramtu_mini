@@ -74,7 +74,7 @@
         </view>
       </view> 
     </view>
-    <view wx:if="{{noitemCoup == 0}}" class='noitemCoup'>没有更多内容了~</view>
+    <view wx:if="{{noitemCoup == 0}}" class='noitem'>没有更多内容了~</view>
   </view>
   <view class='no-data' wx:if="{{coupList.length == 0}}">
     暂无数据

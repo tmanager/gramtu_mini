@@ -187,18 +187,28 @@ Page({
       },
       method: "POST",
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
           console.info("获取支付需要的信息：");
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS) {
-            wx.hideLoading();
             that.doWxPay(res.data.response);
+          } else if (res.data.retcode === "0001"){
+            //无需发起支付，直接跳到支付成功画面。
+            wx.redirectTo({
+              url: '../payend/payend?checktype=' + that.data.checktype,
+            })
           }else{
             wx.showToast({
               icon: "none",
               title: res.data.retmsg
             })
           }
+        }else{
+          wx.showToast({
+            icon: "none",
+            title: "服务器异常，清稍候再试"
+          })
         }
       },
       fail: function (err) {
