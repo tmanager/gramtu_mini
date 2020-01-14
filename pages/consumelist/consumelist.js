@@ -1,8 +1,6 @@
 // pages/consumelist/consumelist.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-var currentPage = 0;
-var totalPage = 0;
 var pageSize = 10;
 Page({
 
@@ -11,7 +9,9 @@ Page({
    */
   data: {
     consumeList: [],
-    noitem: 0
+    noitem: 0,
+    currentPage: 0,
+    totalPage: 0
   },
 
   /**
@@ -79,8 +79,9 @@ Page({
     });
     var openid = wx.getStorageSync("openid");
     if (openid == "" || openid == null || openid == undefined) return;
-    var data = {openid: openid , currentpage: currentPage, pagesize: pageSize,
-      startindex: currentPage * pageSize, draw: 1 }
+    var data = {
+      openid: openid, currentpage: that.data.currentPage, pagesize: pageSize,
+      startindex: that.data.currentPage * pageSize, draw: 1 }
     wx.request({
       url: config.serverAddress + 'wxpay/consumelist',
       data: util.sendMessageEdit(null, data),
@@ -92,7 +93,7 @@ Page({
         if (res.statusCode == 200) {
           console.info("消费记录:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
-            totalPage = Math.ceil(res.data.response.totalcount / pageSize);
+            that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             var consumelist = res.data.response.consumelist;
             for(var i=0; i<consumelist.length; i++){
               consumelist[i].timeend = util.formatDateTime(consumelist[i].timeend);
@@ -110,7 +111,7 @@ Page({
     })
   },
   onReachBottom: function () {
-    if ((currentPage + 1) >= totalPage) {
+    if ((this.data.currentPage + 1) >= this.data.totalPage) {
       this.setData({
         noitem: 1
       });
@@ -120,7 +121,7 @@ Page({
         noitem: 0
       });
     }
-    currentPage++;
+    this.data.currentPage++;
     var that = this;
     that.getOrderList();
   }

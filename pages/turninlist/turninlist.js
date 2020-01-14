@@ -1,8 +1,6 @@
 // pages/turninlist/turninlist.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-var currentPage = 0;
-var totalPage = 0;
 var pageSize = 5;
 
 Page({
@@ -30,7 +28,9 @@ Page({
     price:"0.00",       //单价
     wordnum:"0",        //单价对应的字数
     discount:"10.0",     //折扣
-    checkType: "0"
+    checkType: "0",
+    currentPage: 0,
+    totalPage: 0
   },
 
   /**
@@ -104,7 +104,9 @@ Page({
    */
   swichNav(e) {
     this.setData({
-      currentNavbar: e.currentTarget.dataset.idx
+      currentNavbar: e.currentTarget.dataset.idx,
+      currentPage: 0,
+      totalPage: 0
     });
     this.getOrderList();
     if (e.currentTarget.dataset.idx == 0){
@@ -317,8 +319,8 @@ Page({
     var nav = this.data.currentNavbar;  //0：未付款，1：已付款
     var openid = wx.getStorageSync("openid");
     var data = {
-      openid: openid, checktype: this.data.checkType, type: nav, currentpage: currentPage, pagesize: pageSize,
-      startindex: currentPage * pageSize, draw: 1 };
+      openid: openid, checktype: this.data.checkType, type: nav, currentpage: that.data.currentPage, pagesize: pageSize,
+      startindex: that.data.currentPage * pageSize, draw: 1 };
     var url = 'torder/query';
     if(this.data.checkType == "2"){
       url = 'gorder/query';
@@ -338,7 +340,7 @@ Page({
           console.info(res);
           if(res.data.retcode == config.SUCCESS){
             var orderlist = [];
-            totalPage = Math.ceil(res.data.response.totalcount / pageSize);
+            that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             if(that.data.currentNavbar == "0"){
               orderlist = res.data.response.orderlist;
               var currprice = (res.data.response.price * (res.data.response.discount / 10)).toFixed(2);
@@ -502,7 +504,7 @@ Page({
     wx.navigateTo({ url: "../turninreport/turninreport?" + para });
   },
   onReachBottom: function () {
-    if ((currentPage + 1) >= totalPage) {
+    if ((this.data.currentPage + 1) >= this.data.totalPage) {
       this.setData({
         noitem: 1
       });
@@ -512,7 +514,7 @@ Page({
         noitem: 0
       });
     }
-    currentPage++;
+    this.data.currentPage++;
     var that = this;
     that.getOrderList();
     if (e.currentTarget.dataset.idx == 0) {

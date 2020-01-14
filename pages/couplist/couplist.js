@@ -1,8 +1,6 @@
 // pages/couplist/couplist.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-var currentPage = 0;
-var totalPage = 0;
 var pageSize = 10;
 Page({
 
@@ -12,16 +10,13 @@ Page({
   data: {
     navbar: ['查重', '语法检测'],
     currentNavbar: '0',
-    couponList: [
-      { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 0},
-      { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 1 },
-      { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 2 },
-      { "name": "3元优惠券", enddate: "2020/01/08", amount: 3, upfee: 10, status: 9 }
-    ],
+    couponList: [],
     noitem: 0,
     showModal: 0,
     givenId: "",
     givenPhone:"",
+    currentPage: 0,
+    totalPage: 0
   },
 
   /**
@@ -84,7 +79,9 @@ Page({
    */
   swichNav(e) {
     this.setData({
-      currentNavbar: e.currentTarget.dataset.idx
+      currentNavbar: e.currentTarget.dataset.idx,
+      currentPage: 0,
+      totalPage: 0
     });
     this.coupListGet();
   },
@@ -103,8 +100,8 @@ Page({
       checkType = "2";
     }
     var data = {
-      openid: openid, checktype: checkType, currentpage: currentPage, pagesize: pageSize,
-      startindex: currentPage * pageSize, draw: 1
+      openid: openid, checktype: checkType, currentpage: that.data.currentPage, pagesize: pageSize,
+      startindex: that.data.currentPage * pageSize, draw: 1
     }
     wx.request({
       url: config.serverAddress + 'coupon/query',
@@ -117,7 +114,7 @@ Page({
         if (res.statusCode == 200) {
           console.info("优惠券记录:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
-            totalPage = Math.ceil(res.data.response.totalcount / pageSize);
+            that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             var couponlist = res.data.response.couponlist;
             for (var i = 0; i < couponlist.length; i++) {
               couponlist[i].enddate = util.formatDate(couponlist[i].enddate);
@@ -134,7 +131,7 @@ Page({
     })
   },
   onReachBottom: function () {
-    if ((currentPage + 1) >= totalPage) {
+    if ((this.data.currentPage + 1) >= this.data.totalPage) {
       this.setData({
         noitem: 1
       });
@@ -144,7 +141,7 @@ Page({
         noitem: 0
       });
     }
-    currentPage++;
+    this.data.currentPage++;
     var that = this;
     that.coupListGet();
   },

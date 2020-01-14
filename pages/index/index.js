@@ -61,8 +61,6 @@ var galleryList = [
   }
 ];
 
-var currentPage = 0;
-var totalPage = 0;
 var pageSize = 5;
 Page({
   data: {
@@ -78,7 +76,9 @@ Page({
     galleryList: galleryList,
     abroadList:[],
     newbornList: [{ id: "1", title: "新人福利新人福利" }, { id: "2", title: "成为GramTu会员送免费查重" }],
-    noitem:0
+    noitem:0,
+    currentPage: 0,
+    totalPage: 0
   },
   onLoad: function () {
     this.indexListGet();
@@ -117,8 +117,8 @@ Page({
   //获取文章列表
   articleListGet: function () {
     var that = this;
-    var data = { title: "", currentpage: currentPage, pagesize: pageSize, 
-      startindex: currentPage * pageSize, draw: 1 };
+    var data = { title: "", currentpage: that.data.currentPage, pagesize: pageSize, 
+      startindex: that.data.currentPage * pageSize, draw: 1 };
     wx.request({
       url: config.serverAddress + "index/article/query",
       header: {
@@ -131,7 +131,7 @@ Page({
           console.info("获取文章信息：");
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS) {
-            totalPage = Math.ceil(res.data.response.totalcount / pageSize);
+            that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             var artList = res.data.response.artlist;
             that.setData({
               galleryList: artList
@@ -145,7 +145,7 @@ Page({
     })
   },
   onReachBottom: function () {
-    if((currentPage + 1) >= totalPage){
+    if ((this.data.currentPage + 1) >= this.data.totalPage){
       this.setData({
         noitem: 1
       });
@@ -155,7 +155,7 @@ Page({
         noitem: 0
       });
     }
-    currentPage ++;
+    this.data.currentPage ++;
     var that = this;
     // 显示加载图标
     wx.showLoading({
