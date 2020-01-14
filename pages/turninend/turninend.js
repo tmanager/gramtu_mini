@@ -39,6 +39,12 @@ Page({
       cwordcount: that.format(options.wordcount)
     });
     
+    if (this.data.checktype == "2") {
+      wx.setNavigationBarTitle({
+        title: '语法检测支付'
+      })
+    }
+
     this.setData({
       cdiscount: this.discountNumberChange(this.data.discount),
       currprice: (this.data.price * (this.data.discount / 10)).toFixed(2),
@@ -251,7 +257,7 @@ Page({
       if (couponlist[i].upfee == -1 || Number(that.data.total) >= couponlist[i].upfee){
         disable = 0;
       }
-      var obj = { id: couponlist[i].id, name: couponlist[i].name, disable: disable };
+      var obj = { id: couponlist[i].id, name: couponlist[i].name, disable: disable, amount: couponlist[i].amount, upfee: couponlist[i].upfee  };
       coupname.push(obj);
     }
     if (coupname.length == 0){

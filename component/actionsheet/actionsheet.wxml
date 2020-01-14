@@ -1,7 +1,17 @@
 <view class="container" wx:if='{{isOpened}}'>
   <view class='row bg-red'>{{title}}</view>
   <view style='max-height: 500rpx; overflow:scroll'>
-    <view wx:for='{{list}}' class='row {{item.disable == 1? "text-gray" : "" }}' wx:key data-idx='{{item.id}}' wx:key data-disable='{{item.disable}}' bindtap='handClick'>{{item.name}}</view>
+    <view wx:for='{{list}}' class='row {{item.disable == 1? "text-gray" : "" }}' wx:key data-idx='{{item.id}}' wx:key data-disable='{{item.disable}}' bindtap='handClick'>
+      <view class='content'>
+        <view wx:if='{{item.amount != -1}}'>￥{{item.amount}}</view>
+        <view wx:if='{{item.amount == -1}}'>任意金额</view>
+        <view>
+          <view>{{item.name}}</view>
+          <view class='upfee' wx:if='{{item.upfee != -1}}'>满{{item.upfee}}元可用</view>
+          <view class='upfee'  wx:if='{{item.upfee == -1}}'>任意金额可用</view>
+        </view>
+      </view>
+    </view>
     <view class='row text-gray margin-top' bindtap='cancel'>取 消</view>
   </view>
 

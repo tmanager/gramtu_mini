@@ -21,7 +21,8 @@ Page({
       price: "0.00"
     },
     coupon: [],
-    coupname: [{ id: "1", filename: "111", disable: '0' }, { id: "2", filename: "222", disable: '1' }],
+    sheetList: [],
+    coupname: [],
     chooseindex: -1,
     coupamount: "0.00",
     couptitle: "不使用优惠券",
@@ -407,7 +408,7 @@ Page({
       if (couponlist[i].upfee == -1 || Number(that.data.checkedList.price) >= couponlist[i].upfee) {
         disable = 0;
       }
-      var obj = { id: couponlist[i].id, name: couponlist[i].name, disable: disable };
+      var obj = { id: couponlist[i].id, name: couponlist[i].name, disable: disable, amount: couponlist[i].amount, upfee: couponlist[i].upfee };
       coupname.push(obj);
     }
     if (coupname.length == 0) {
@@ -513,7 +514,7 @@ Page({
    */
   deleteOrderDialog: function(){
     var that = this;
-    if(that.data.checkedList.orderid.length = 0){
+    if(that.data.checkedList.orderid.length == 0){
       return;
     }
     wx.showModal({
@@ -557,7 +558,7 @@ Page({
         if (res.statusCode == 200) {
           //跳转到支付成功页面
           wx.hideLoading();
-          console.info("获取订单信息");
+          console.info("删除订单信息");
           console.info(res);
           if (res.data.retcode == config.SUCCESS) {
             that.setData({

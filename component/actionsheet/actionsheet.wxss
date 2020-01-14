@@ -10,3 +10,23 @@
 .margin-top{margin-top:10px}
 .container{background:#f0f0f0;position:fixed;width:100vw;bottom:0;z-index:888;
   font-size:30rpx;}
+
+.content{
+  display: flex;
+  flex-direction: row;
+}
+
+.content > view:nth-child(1){
+  flex: 1;
+  color:#F24F50;
+}
+
+.content > view:nth-child(2){
+  flex: 2;
+  line-height: 1.5;
+}
+
+.upfee{
+  font-size: 20rpx;
+  color:#808080;
+}
