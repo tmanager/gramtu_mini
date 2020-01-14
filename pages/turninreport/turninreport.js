@@ -29,6 +29,11 @@ Page({
       title: options.title,
       openid: options.openid
     })
+    if (this.data.checktype == "2") {
+      wx.setNavigationBarTitle({
+        title: '语法检测报告'
+      })
+    }
   },
   format: function (num) {
     var reg = /\d{1,3}(?=(\d{3})+$)/g;
@@ -181,8 +186,8 @@ Page({
       },
       method: 'post',
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
-          wx.hideLoading();
           console.info("发送邮件:" + JSON.stringify(res.data));
           wx.showToast({
             title: '邮件发送成功！',

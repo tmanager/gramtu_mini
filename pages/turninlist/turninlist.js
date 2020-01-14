@@ -234,11 +234,11 @@ Page({
       },
       method: "POST",
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
           console.info("获取支付需要的信息：");
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS) {
-            wx.hideLoading();
             that.doWxPay(res.data.response);
           } else {
             wx.showToast({
@@ -281,7 +281,6 @@ Page({
       },
       fail: function (error) {
         // fail
-        wx.hideLoading();
         console.log("支付失败")
         console.log(error)
         wx.showToast({
@@ -321,9 +320,9 @@ Page({
       },
       method: "POST",
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
           //跳转到支付成功页面
-          wx.hideLoading();
           console.info("获取订单信息");
           console.info(res);
           if(res.data.retcode == config.SUCCESS){
@@ -358,6 +357,8 @@ Page({
         }
       },
       fail: function (err) {
+        console.info(err);
+        wx.hideLoading();
         wx.showToast({
           title: "获取订单信息失败！",
           icon: 'none'
@@ -496,10 +497,6 @@ Page({
     }
     currentPage++;
     var that = this;
-    // 显示加载图标
-    wx.showLoading({
-      title: '正在加载中',
-    });
     that.getOrderList();
     if (e.currentTarget.dataset.idx == 0) {
       this.coupListGet();
@@ -555,9 +552,9 @@ Page({
       },
       method: "POST",
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
           //跳转到支付成功页面
-          wx.hideLoading();
           console.info("删除订单信息");
           console.info(res);
           if (res.data.retcode == config.SUCCESS) {

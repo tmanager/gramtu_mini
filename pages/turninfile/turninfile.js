@@ -387,10 +387,17 @@ Page({
               "&discount=" + response.discount ;
             wx.navigateTo({ url: "../turninend/turninend?" + para });
           } else {
-            wx.showToast({
-              title: res.data.retmsg,
-              icon: 'none'
-            })
+            if(res.data.retcode === "9999"){
+              wx.showToast({
+                title: "解析字数超时！",
+                icon: 'none'
+              })
+            }else{
+              wx.showToast({
+                title: res.data.retmsg,
+                icon: 'none'
+              })
+            }
           }
         } else {
           wx.showToast({
@@ -400,10 +407,23 @@ Page({
         }
       },
       fail: function(res){
-        wx.showToast({
-          title: "解析文件字数失败",
-          icon: 'none'
-        })
+        console.info(res);
+        if(res.errMsg == "request:fail timeout"){
+          var type = "查重";
+          if ($this.data.checktype == 2){
+            type = "语法检测";
+          }
+          wx.showToast({
+            title: "解析字数结果不明，请进入" + type + "列表中查看详细信息！",
+            icon: 'none',
+            duration: 5000
+          })
+        }else{
+          wx.showToast({
+            title: "解析文件字数失败",
+            icon: 'none'
+          })
+        }
       },
       complete: function(res){
         wx.hideLoading();

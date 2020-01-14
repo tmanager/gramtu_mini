@@ -236,8 +236,8 @@ Page({
       },
       method: 'post',
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
-          wx.hideLoading();
           console.info("赠送积分:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
             wx.showToast({

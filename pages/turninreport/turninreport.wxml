@@ -3,7 +3,8 @@
     <view>
       <view class='navi'>
         <view class='turnin-name'>论文名称：{{filename}}</view>
-        <view class='turnin-name' wx:if="{{status == 4}}">重复比率：<text style='color:#F24F50'>{{repetrate}}</text></view>
+        <view class='turnin-name' wx:if="{{checktype != 2 &&  status == 4}}">重复比率：<text style='color:#F24F50'>{{repetrate}}</text></view>
+        <view class='turnin-name' wx:if="{{checktype == 2 &&  status == 4}}">订单状态：<text style='color:#F24F50'>检测完成</text></view>
         <view class='turnin-name' wx:if="{{status == 2}}">订单状态：<text style='color:#F24F50'>正在检测中</text></view>
         <view class='turnin-name' wx:if="{{status == 3}}">订单状态：<text style='color:#F24F50'>报告下载中</text></view>
         <view class='turnin-name' wx:if="{{status == 9}}">订单状态：<text style='color:#F24F50'>已退款</text></view>
