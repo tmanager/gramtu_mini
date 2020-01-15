@@ -37,12 +37,12 @@
   <view class='zzfw' style='height:{{tsHeight}}rpx'>
     <view class='zzfw-title'>特色服务区</view>
     <view class='zzfw-content' style='height:{{tsContentHeight}}rpx'>
-      <view wx:for-items="{{tsfwList}}" url="../article/article?servid={{item.servid}}&servtype={{item.servtype}}&url={{item.servlink}}">
+      <navigator wx:for-items="{{tsfwList}}" url="../article/article?servid={{item.servid}}&servtype={{item.servtype}}&url={{item.servlink}}">
         <view class='zzfw-icon'>
           <image src="{{item.servimage}}"></image>
         </view>
         <text>{{item.servname}}</text>
-      </view>
+      </navigator>
     </view>
   </view>
   <view class='zzfw' style='height: 180rpx'>
