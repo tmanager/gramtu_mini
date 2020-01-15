@@ -1,8 +1,7 @@
 // pages/couplist/couplist.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-var pageSize = 10;
-var pageSizeCoup = 10;
+
 Page({
 
   /**
@@ -12,8 +11,8 @@ Page({
     navbar: ['积分列表', '积分赠送','积分兑换'],
     currentNavbar: '0',
     coupList: [],
-    noitem: 0,
-    noitemCoup: 0,
+    noitem: 1,
+    noitemCoup: 1,
     mark: 0
   },
 
@@ -104,7 +103,7 @@ Page({
     if (that.data.currentNavbar == 1) {
       checkType = "2";
     }
-    var data = {openid: openid, checktype: checkType}
+    var data = { openid: openid, checktype: checkType, currentpage: "0", pagesize: "10", startindex: "0", draw: 1}
     wx.request({
       url: config.serverAddress + 'mark/query',
       data: util.sendMessageEdit(null, data),
@@ -228,7 +227,7 @@ Page({
     wx.showLoading({
       title: '正在加载中',
     });
-    var data = {}
+    var data = {currentpage: "0", pagesize: "10", startindex: "0", draw: 1}
     wx.request({
       url: config.serverAddress + 'coupon/query',
       data: util.sendMessageEdit(null, data),

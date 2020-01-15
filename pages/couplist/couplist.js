@@ -95,7 +95,7 @@ Page({
     if(that.data.currentNavbar == 1){
       checkType = "2";
     }
-    var data = {openid: openid, checktype: checkType}
+    var data = { openid: openid, checktype: checkType, currentpage: "0", pagesize: "10", startindex: "0", draw: 1}
     wx.request({
       url: config.serverAddress + 'coupon/query',
       data: util.sendMessageEdit(null, data),

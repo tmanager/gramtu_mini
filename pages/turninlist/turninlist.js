@@ -317,7 +317,7 @@ Page({
     })
     var nav = this.data.currentNavbar;  //0：未付款，1：已付款
     var openid = wx.getStorageSync("openid");
-    var data = {openid: openid, checktype: this.data.checkType, type: nav };
+    var data = { openid: openid, checktype: this.data.checkType, type: nav, currentpage: "0", pagesize: "10", startindex: "0", draw: 1 };
     var url = 'torder/query';
     if(this.data.checkType == "2"){
       url = 'gorder/query';
@@ -384,7 +384,7 @@ Page({
     });
     var that = this;
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, checktype: this.data.checkType };
+    var data = { openid: openid, checktype: this.data.checkType, currentpage: "0", pagesize: "10", startindex: "0", draw: 1 };
     wx.request({
       url: config.serverAddress + "coupon/query",
       header: {

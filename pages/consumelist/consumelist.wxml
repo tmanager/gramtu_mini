@@ -14,6 +14,6 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
+  <view wx:if="{{noitem == 1}}" class='noitem'>没有更多内容了~</view>
 </view>
 <view class='no-data' wx:if="{{consumeList.length == 0}}">暂无数据</view>

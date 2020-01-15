@@ -8,7 +8,7 @@ Page({
    */
   data: {
     consumeList: [],
-    noitem: 0
+    noitem: 1
   },
 
   /**
@@ -76,7 +76,7 @@ Page({
     });
     var openid = wx.getStorageSync("openid");
     if (openid == "" || openid == null || openid == undefined) return;
-    var data = {openid: openid}
+    var data = { openid: openid, currentpage: "0", pagesize: "10", startindex: "0", draw: 1 }
     wx.request({
       url: config.serverAddress + 'wxpay/consumelist',
       data: util.sendMessageEdit(null, data),
