@@ -202,7 +202,8 @@ Page({
             that.markListGet();
           } else {
             wx.showToast({
-              title: '积分转赠失败！',
+              //title: '积分转赠失败！',
+              title: '积分转赠失败:' + res.data.retmsg,
               icon: 'none'
             })
           }
@@ -229,7 +230,7 @@ Page({
     });
     var data = {currentpage: "0", pagesize: "10", startindex: "0", draw: 1}
     wx.request({
-      url: config.serverAddress + 'coupon/query',
+      url: config.serverAddress + 'mark/coupon/query',
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
@@ -241,10 +242,10 @@ Page({
           if (res.data.retcode === config.SUCCESS) {
             var couplist = res.data.response.couponlist;
             for (var i = 0; i < couplist.length; i++) {
-              couplist[i].updtime = util.formatDateTime(couplist[i].updtime);
+              couplist[i].enddate = util.formatDate(couplist[i].enddate);
             }
             that.setData({
-              //coupList: res.data.response.couponlist
+              coupList: res.data.response.couponlist
             })
           }
         }
@@ -261,13 +262,13 @@ Page({
     var that = this;
     var id = e.currentTarget.dataset.id;
     var coupList = this.data.coupList;
-    var usermark = 0;
+    var usemark = 0;
     for(var i=0; i<coupList.length; i++){
       if(id == coupList[i].id){
         usemark = coupList[i].usemark;
       }
     }
-    if(Number(usermak) > Number(this.data.mark)){
+    if (Number(usemark) > Number(this.data.mark)){
       wx.showToast({
         title: '积分不足，不能进行兑换！',
         icon: 'none'

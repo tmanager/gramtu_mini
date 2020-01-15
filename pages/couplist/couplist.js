@@ -190,7 +190,7 @@ Page({
             that.coupListGet();
           }else{
             wx.showToast({
-              title: '优惠券转赠失败！',
+              title: '优惠券转赠失败:' + res.data.retmsg,
               icon: 'none'
             })
           }
