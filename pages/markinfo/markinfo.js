@@ -14,11 +14,7 @@ Page({
     coupList: [],
     noitem: 0,
     noitemCoup: 0,
-    mark: 0,
-    currentPage: 0,
-    totalPage: 0,
-    currentPageCoup: 0,
-    totalPageCoup: 0
+    mark: 0
   },
 
   /**
@@ -82,11 +78,7 @@ Page({
   swichNav(e) {
     var idx = e.currentTarget.dataset.idx;
     this.setData({
-      currentNavbar: idx,
-      currentPage: 0,
-      totalPage: 0,
-      currentPageCoup: 0,
-      totalPageCoup: 0
+      currentNavbar: idx
     });
     if(idx == 0){
       //查询积分列表
@@ -112,10 +104,7 @@ Page({
     if (that.data.currentNavbar == 1) {
       checkType = "2";
     }
-    var data = {
-      openid: openid, checktype: checkType, currentpage: that.data.currentPage, pagesize: pageSize,
-      startindex: that.data.currentPage * pageSize, draw: 1
-    }
+    var data = {openid: openid, checktype: checkType}
     wx.request({
       url: config.serverAddress + 'mark/query',
       data: util.sendMessageEdit(null, data),
@@ -127,7 +116,6 @@ Page({
         if (res.statusCode == 200) {
           console.info("积分记录:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
-            that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             var marklist = res.data.response.marklist;
             for (var i = 0; i < marklist.length; i++) {
               marklist[i].updtime = util.formatDateTime(marklist[i].updtime);
@@ -143,38 +131,6 @@ Page({
         wx.hideLoading();
       }
     })
-  },
-  onReachBottom: function () {
-    if(this.data.currentNavbar == 0){
-      if ((this.data.currentPage + 1) >= this.data.totalPage) {
-        this.setData({
-          noitem: 1
-        });
-        return;
-      } else {
-        this.setData({
-          noitem: 0
-        });
-      }
-      this.data.currentPage++;
-      var that = this;
-      that.markListGet();
-    }else{
-      if ((this.data.currentPageCoup + 1) >= this.data.totalPageCoup) {
-        this.setData({
-          noitemCoup: 1
-        });
-        return;
-      } else {
-        this.setData({
-          noitemCoup: 0
-        });
-      }
-      this.data.currentPageCoup++;
-      var that = this;
-      that.coupListGet();
-    }
-
   },
   /**
    * 输入框输入事件
@@ -227,7 +183,7 @@ Page({
       title: '正在加载中',
     });
     var openid = wx.getStorageSync("openid");
-    var data = { openid: openid, givenphone: givenPhone, givenmark: givenPhone }
+    var data = { openid: openid, givenphone: givenPhone, givenmark: givenMark }
     wx.request({
       url: config.serverAddress + 'mark/given',
       data: util.sendMessageEdit(null, data),
@@ -272,10 +228,7 @@ Page({
     wx.showLoading({
       title: '正在加载中',
     });
-    var data = {
-      currentpage: that.data.currentPageCoup, pagesize: pageSize,
-      startindex: that.data.currentPageCoup * pageSize, draw: 1
-    }
+    var data = {}
     wx.request({
       url: config.serverAddress + 'coupon/query',
       data: util.sendMessageEdit(null, data),
@@ -287,7 +240,6 @@ Page({
         if (res.statusCode == 200) {
           console.info("优惠券记录:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
-            that.data.totalPageCoup = Math.ceil(res.data.response.totalcount / pageSizeCoup);
             var couplist = res.data.response.couponlist;
             for (var i = 0; i < couplist.length; i++) {
               couplist[i].updtime = util.formatDateTime(couplist[i].updtime);

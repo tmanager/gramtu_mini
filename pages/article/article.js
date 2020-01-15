@@ -24,7 +24,8 @@ Page({
       adtype: options.adtype || '',
       servtype: options.servtype || '',
       innerurl: options.url || '',
-      servlink: options.servlink || ''
+      servlink: options.servlink || '',
+      manmadeid: options.manmadeid || ''
     });
     if (this.data.artid != ""){
       this.setData({
@@ -62,6 +63,11 @@ Page({
     if (this.data.newbornid != "") {
       this.setData({
         template: config.articleAddress + "?newbornid=" + this.data.newbornid
+      })
+    }
+    if (this.data.manmadeid != "") {
+      this.setData({
+        template: config.articleAddress + "?manmadeid=" + this.data.manmadeid
       })
     }
   },

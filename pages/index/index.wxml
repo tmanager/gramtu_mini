@@ -62,15 +62,17 @@
   </view>
   <view class="tui-list-box">
     <view class="tui-list-head">推荐阅读</view>
-    <view class="tui-gallery-list" wx:for="{{galleryList}}">
-      <navigator url="../article/article?artid={{item.artid}}">
-        <image class="gallery-img tui-fr" src="{{item.coverimage}}"></image>
-        <view class="gallery-box gallery-right">
-          <text class="gallery-name">{{item.title}}</text>
-          <text class="gallery-detail">{{item.readcount}} 阅读</text>
-        </view>
-      </navigator>
-    </view>
+    <scroll-view style='height: {{sHeight}}rpx' scroll-y="true" bindscrolltolower="pullUpLoad" bindscrolltoupper="pullDownLoad">
+      <view class="tui-gallery-list" wx:for="{{galleryList}}">
+        <navigator url="../article/article?artid={{item.artid}}">
+          <image class="gallery-img tui-fr" src="{{item.coverimage}}"></image>
+          <view class="gallery-box gallery-right">
+            <text class="gallery-name">{{item.title}}</text>
+            <text class="gallery-detail">{{item.readcount}} 阅读</text>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
   </view>
   <view wx:if="{{noitem}}" class='noitem'>没有更多内容了~</view>
 </view>

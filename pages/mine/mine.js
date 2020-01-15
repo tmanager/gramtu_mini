@@ -14,10 +14,10 @@ Page({
     userInfo: app.globalData.userInfo,
     mark:0,
     mode: [
-      { icon: "../../images/jiang.png", title:"修改降重", url:""},
-      { icon: "../../images/runse.png", title: "母语润色", url: "" },
-      { icon: "../../images/rengong1.png", title: "人工翻译", url: "" },
-      { icon: "../../images/xiezuo.png", title: "Essay写作", url: "" }
+      { icon: "../../images/jiang.png", title: "修改降重", url:"../article/article?manmadeid=35bee0df2afb11eaa17b00163e0bcfd2"},
+      { icon: "../../images/runse.png", title: "母语润色", url: "../article/article?manmadeid=4a2c4d5336ba11eab4b500163e0bcfd2" },
+      { icon: "../../images/rengong1.png", title: "人工翻译", url: "../article/article?manmadeid=5f08da6e36ba11eab4b500163e0bcfd2" },
+      { icon: "../../images/xiezuo.png", title: "Essay写作", url: "../article/article?manmadeid=6db2fb1636ba11eab4b500163e0bcfd2" }
       ]
   },
 

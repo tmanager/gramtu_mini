@@ -132,9 +132,11 @@ Page({
           console.log(res.data) //获取openid
           if (res.data.retcode === config.SUCCESS) {
             that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
+            that.noitemJudge();
             var artList = res.data.response.artlist;
             that.setData({
-              galleryList: artList
+              galleryList: artList,
+              sHeight: (artList.length * 105 * 2) - 5
             })
           }
         }
@@ -144,24 +146,49 @@ Page({
       }
     })
   },
-  onReachBottom: function () {
-    if ((this.data.currentPage + 1) >= this.data.totalPage){
+  /**
+   * 上拉刷新
+   */
+  pullUpLoad: function () {
+    console.info("pullUpLoad");
+    if ((this.data.currentPage + 1) < this.data.totalPage) {
+      this.data.currentPage ++;
+      var that = this;
+      // 显示加载图标
+      wx.showLoading({
+        title: '正在加载中',
+      });
+      that.articleListGet();
+    }
+  },
+  /**
+   * 下拉刷新
+   */
+  pullDownLoad: function () {
+    console.info("pullDownLoad");
+    if (this.data.currentPage > 0){
+      this.data.currentPage--;
+      var that = this;
+      // 显示加载图标
+      wx.showLoading({
+        title: '正在加载中',
+      });
+      that.articleListGet();
+    }
+  },
+  /**
+   * 是否显示没有更多内容
+   */
+  noitemJudge: function(){
+    if ((this.data.currentPage + 1) >= this.data.totalPage) {
       this.setData({
         noitem: 1
       });
-      return;
-    }else{
+    } else {
       this.setData({
         noitem: 0
       });
     }
-    this.data.currentPage ++;
-    var that = this;
-    // 显示加载图标
-    wx.showLoading({
-      title: '正在加载中',
-    });
-    that.articleListGet();
   },
   turninCheck: function(e){
     console.info(e);

@@ -291,6 +291,9 @@ Page({
       if (that.data.coupon[i].id == e.detail){
         var amount = that.data.coupon[i].amount;
         if (amount == -1) amount = that.data.total;
+        if (Number(amount) > Number(that.data.total)){
+          amount = that.data.total;
+        }
         that.setData({
           chooseindex: i,
           coupamount: Number(amount).toFixed(2),

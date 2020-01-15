@@ -1,7 +1,6 @@
 // pages/couplist/couplist.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-var pageSize = 10;
 Page({
 
   /**
@@ -11,12 +10,10 @@ Page({
     navbar: ['查重', '语法检测'],
     currentNavbar: '0',
     couponList: [],
-    noitem: 0,
+    noitem: 1,
     showModal: 0,
     givenId: "",
-    givenPhone:"",
-    currentPage: 0,
-    totalPage: 0
+    givenPhone:""
   },
 
   /**
@@ -24,6 +21,7 @@ Page({
    */
   onLoad: function (options) {
     this.coupListGet();
+    wx.getSystemInfoSync()
   },
 
   /**
@@ -79,9 +77,7 @@ Page({
    */
   swichNav(e) {
     this.setData({
-      currentNavbar: e.currentTarget.dataset.idx,
-      currentPage: 0,
-      totalPage: 0
+      currentNavbar: e.currentTarget.dataset.idx
     });
     this.coupListGet();
   },
@@ -99,10 +95,7 @@ Page({
     if(that.data.currentNavbar == 1){
       checkType = "2";
     }
-    var data = {
-      openid: openid, checktype: checkType, currentpage: that.data.currentPage, pagesize: pageSize,
-      startindex: that.data.currentPage * pageSize, draw: 1
-    }
+    var data = {openid: openid, checktype: checkType}
     wx.request({
       url: config.serverAddress + 'coupon/query',
       data: util.sendMessageEdit(null, data),
@@ -114,7 +107,6 @@ Page({
         if (res.statusCode == 200) {
           console.info("优惠券记录:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
-            that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             var couponlist = res.data.response.couponlist;
             for (var i = 0; i < couponlist.length; i++) {
               couponlist[i].enddate = util.formatDate(couponlist[i].enddate);
@@ -129,21 +121,6 @@ Page({
         wx.hideLoading();
       }
     })
-  },
-  onReachBottom: function () {
-    if ((this.data.currentPage + 1) >= this.data.totalPage) {
-      this.setData({
-        noitem: 1
-      });
-      return;
-    } else {
-      this.setData({
-        noitem: 0
-      });
-    }
-    this.data.currentPage++;
-    var that = this;
-    that.coupListGet();
   },
   // 显示一键获取手机号弹窗
   showDialogBtn: function () {

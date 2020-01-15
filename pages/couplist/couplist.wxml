@@ -3,8 +3,8 @@
     <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}}">{{item}}</text>
   </view>
 </view>
-<scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
-  scroll-y="true" bindscrolltolower="pullUpLoad">
+<scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}"
+  scroll-y="true">
   <view wx:if="{{couponList.length > 0}}">
     <view class="wode_item_wrap" wx:for="{{couponList}}" wx:key data-id="{{item.id}}" bindtap="coupGivenDialog">
       <view class='status'>
@@ -28,7 +28,7 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
+    <view wx:if="{{noitem == 1}}" class='noitem'>没有更多内容了~</view>
   </view>
 
   <view class='no-data' wx:if="{{couponList.length == 0}}">
@@ -62,7 +62,7 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{noitem == 0}}" class='noitem'>没有更多内容了~</view>
+    <view wx:if="{{noitem == 1}}" class='noitem'>没有更多内容了~</view>
   </view>
   <view class='no-data' wx:if="{{couponList.length == 0}}">
     暂无数据

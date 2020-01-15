@@ -1,7 +1,6 @@
 // pages/turninlist/turninlist.js
 var config = require('../../utils/config.js');
 var util = require('../../utils/util.js');
-var pageSize = 5;
 
 Page({
 
@@ -28,9 +27,7 @@ Page({
     price:"0.00",       //单价
     wordnum:"0",        //单价对应的字数
     discount:"10.0",     //折扣
-    checkType: "0",
-    currentPage: 0,
-    totalPage: 0
+    checkType: "0"
   },
 
   /**
@@ -104,9 +101,7 @@ Page({
    */
   swichNav(e) {
     this.setData({
-      currentNavbar: e.currentTarget.dataset.idx,
-      currentPage: 0,
-      totalPage: 0
+      currentNavbar: e.currentTarget.dataset.idx
     });
     this.getOrderList();
     if (e.currentTarget.dataset.idx == 0){
@@ -179,9 +174,13 @@ Page({
     var checkedlist = { orderid: [], price: 0 }; 
     checkedlist.orderid = e.detail.value;
     checkedlist.price = price.toFixed(2);
+    var amount = Number(that.data.coupamount);
+    if (amount > Number(checkedlist.price)){
+      amount = checkedlist.price; 
+    }
     this.setData({
       checkedList: checkedlist,
-      realtotal: (checkedlist.price - that.data.coupamount).toFixed(2)
+      realtotal: (checkedlist.price - amount).toFixed(2)
     })
   },
   /**
@@ -318,9 +317,7 @@ Page({
     })
     var nav = this.data.currentNavbar;  //0：未付款，1：已付款
     var openid = wx.getStorageSync("openid");
-    var data = {
-      openid: openid, checktype: this.data.checkType, type: nav, currentpage: that.data.currentPage, pagesize: pageSize,
-      startindex: that.data.currentPage * pageSize, draw: 1 };
+    var data = {openid: openid, checktype: this.data.checkType, type: nav };
     var url = 'torder/query';
     if(this.data.checkType == "2"){
       url = 'gorder/query';
@@ -340,7 +337,6 @@ Page({
           console.info(res);
           if(res.data.retcode == config.SUCCESS){
             var orderlist = [];
-            that.data.totalPage = Math.ceil(res.data.response.totalcount / pageSize);
             if(that.data.currentNavbar == "0"){
               orderlist = res.data.response.orderlist;
               var currprice = (res.data.response.price * (res.data.response.discount / 10)).toFixed(2);
@@ -460,6 +456,9 @@ Page({
         var amount = that.data.coupon[i].amount;
         if (amount == -1) amount = priceList[0];
         if (priceList.length == 0) amount = "0.00";
+        if (Number(amount) > that.data.checkedList.price){
+          amount = that.data.checkedList.price;
+        }
         that.setData({
           chooseindex: i,
           coupamount: Number(amount).toFixed(2),
@@ -502,24 +501,6 @@ Page({
       "&email=" + orderlist[i].email + "&title=" + orderlist[i].titile + "&checktype=" + orderlist[i].checktype + 
       "&openid=" + orderlist[i].openid;
     wx.navigateTo({ url: "../turninreport/turninreport?" + para });
-  },
-  onReachBottom: function () {
-    if ((this.data.currentPage + 1) >= this.data.totalPage) {
-      this.setData({
-        noitem: 1
-      });
-      return;
-    } else {
-      this.setData({
-        noitem: 0
-      });
-    }
-    this.data.currentPage++;
-    var that = this;
-    that.getOrderList();
-    if (e.currentTarget.dataset.idx == 0) {
-      this.coupListGet();
-    } 
   },
   sortNumber: function (a, b)
   {
