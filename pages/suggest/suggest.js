@@ -124,7 +124,15 @@ Page({
           if (res.data.retcode === config.SUCCESS) {
             wx.showToast({
               title: '投诉建议提交成功！',
-              icon: 'none'
+              icon: 'none',
+              duration: 1500,
+              complete(res) {
+                setTimeout(function () {
+                  wx.switchTab({
+                    url:"../mine/mine"
+                  })
+                }, 1500);
+              }
             });
           } else {
             wx.showToast({

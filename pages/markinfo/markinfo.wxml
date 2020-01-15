@@ -62,8 +62,8 @@
         <view>
           <view class='coup-detail'>
             <view class='turnin-name'>{{item.name}}</view>
-            <view class='price' wx:if="{{item.amount != '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">￥{{item.amount}}</view>
-            <view class='price' wx:if="{{item.amount == '-1'}}" style="color: {{item.status == 0 ? '' : '#999999!important' }}">可抵用任意金额</view>
+            <view class='price' wx:if="{{item.amount != '-1'}}">￥{{item.famount}}</view>
+            <view class='price' wx:if="{{item.amount == '-1'}}">可抵用任意金额</view>
           </view>
           <view class='coup-detail'>
             <view class='turnin-time' wx:if="{{item.enddate != '9999/99/99'}}">有效期至:{{item.enddate}}</view>

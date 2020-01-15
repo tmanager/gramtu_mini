@@ -197,9 +197,14 @@ Page({
           if (res.data.retcode === config.SUCCESS) {
             wx.showToast({
               title: '积分转赠成功！',
-              icon: 'none'
+              icon: 'none',
+              duration: 1500,
+              complete(res){
+                setTimeout(function () {
+                  that.markListGet();
+                }, 1500);
+              }
             });
-            that.markListGet();
           } else {
             wx.showToast({
               //title: '积分转赠失败！',
@@ -243,6 +248,7 @@ Page({
             var couplist = res.data.response.couponlist;
             for (var i = 0; i < couplist.length; i++) {
               couplist[i].enddate = util.formatDate(couplist[i].enddate);
+              couplist[i].famount = util.formatCurrency(couplist[i].amount);
             }
             that.setData({
               coupList: res.data.response.couponlist
@@ -306,14 +312,20 @@ Page({
       },
       method: 'post',
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
           console.info("积分兑换优惠券:" + JSON.stringify(res.data));
           if (res.data.retcode === config.SUCCESS) {
             wx.showToast({
               title: '兑换成功！',
-              icon: 'none'
+              icon: 'none',
+              duration: 1500,
+              complete(res) {
+                setTimeout(function () {
+                  that.markListGet();
+                }, 1500);
+              }
             });
-            that.markListGet();
           }else{
             wx.showToast({
               title: '兑换失败！',
@@ -323,13 +335,11 @@ Page({
         }
       },
       fail: function(res){
+        wx.hideLoading();
         wx.showToast({
           title: '兑换失败！',
           icon: 'none'
         })
-      },
-      complete: function (res) {
-        wx.hideLoading();
       }
     })
   }

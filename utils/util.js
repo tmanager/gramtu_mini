@@ -48,6 +48,18 @@ function getTimeStamp() {
   return y.toString() + (m < 10 ? "0" + m : m) + (d < 10 ? "0" + d : d) + now.toTimeString().substr(0, 8).replace(/:/g, "");
 }
 
+function fillStringAfter(strOrignal, strPad, len) {
+
+  var i;
+  var strTmp = strOrignal;
+  if (strOrignal.length >= len)
+    return strTmp;
+  for (i = 0; i < len - strOrignal.length; i++) {
+    strTmp += strPad;
+  }
+  return strTmp;
+}
+
 const formatDateTime = datetime => {
   if (datetime.length < 14) return datetime;
   return datetime.substr(0, 4) + "/" + datetime.substr(4, 2) + "/" +
@@ -71,10 +83,38 @@ const phoneCheck = phone => {
   }
   return true;
 }
+const formatCurrency = num => {
+  if (num === "") return num;
+  var negative = 0;
+  if (Number(num) < 0) {
+    negative = 1;
+    num = Math.abs(Number(num));
+  }
+  var str = num.toString();
+  var point = ".00";
+  if (str.indexOf(".") != -1) {
+    num = str.substr(0, str.indexOf("."));
+    point = str.substr(str.indexOf("."));
+    point = fillStringAfter(point, "0", 3);
+    point = (Number(point).toFixed(2)).toString();
+    point = point.substr(point.indexOf("."));
+  }
+  num = num.toString().replace(/\$|\,/g, '');
+  if (isNaN(num))
+    num = "0";
+  for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+    num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+      num.substring(num.length - (4 * i + 3));
+  if (negative == 1) num = "-" + num;
+  return num + point;
+}
+
 module.exports = {
   formatTime: formatTime,
   sendMessageEdit: sendMessageEdit,
   formatDateTime: formatDateTime,
   formatDate: formatDate,
-  phoneCheck: phoneCheck
+  phoneCheck: phoneCheck,
+  formatCurrency: formatCurrency
+
 }
