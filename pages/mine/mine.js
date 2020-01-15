@@ -60,8 +60,7 @@ Page({
         userInfo: app.globalData.userInfo
       });
     }
-    //获取积分
-    this.userMarkGet();
+    
   },
 
   /**
@@ -75,7 +74,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //获取积分
+    this.userMarkGet();
   },
 
   /**
