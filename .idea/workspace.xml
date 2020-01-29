@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0478e187-71e5-47d8-9209-a8fe7befe384" name="Default Changelist" comment="登录及首页接口文档提交">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/article/article.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/article/article.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/mine.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mine/mine.js" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,50 +15,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="386" />
-    <option name="y" value="63" />
-    <option name="width" value="1300" />
-    <option name="height" value="807" />
-  </component>
+  <component name="ProjectId" id="1X3KRrrjFT9UisfJai0BZcLZETZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="gramtu_mini" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gramtu_mini" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -87,6 +54,9 @@
       <workItem from="1577787925320" duration="579000" />
       <workItem from="1577936321655" duration="206000" />
       <workItem from="1577948826509" duration="2877000" />
+      <workItem from="1580269335625" duration="646000" />
+      <workItem from="1580270968817" duration="6000" />
+      <workItem from="1580274760417" duration="617000" />
     </task>
     <task id="LOCAL-00001" summary="首次提交">
       <created>1575539587715</created>
@@ -238,31 +208,6 @@
     <option name="localTasksCounter" value="22" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14284000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24968314" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32974428" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32974428" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -272,20 +217,7 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -314,5 +246,19 @@
     <MESSAGE value="登录及首页接口文档提交" />
     <MESSAGE value="上传url和name修改" />
     <option name="LAST_COMMIT_MESSAGE" value="上传url和name修改" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="369" y="32" key="CommitChangelistDialog2" timestamp="1580274770898">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="369" y="32" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1580274770898" />
+    <state x="570" y="203" key="FileChooserDialogImpl" timestamp="1580270972228">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="570" y="203" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1580270972228" />
+    <state x="419" y="0" width="840" height="1008" key="search.everywhere.popup" timestamp="1580269379844">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="419" y="0" width="840" height="1008" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1580269379844" />
   </component>
 </project>

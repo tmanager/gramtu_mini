@@ -25,7 +25,8 @@ Page({
       servtype: options.servtype || '',
       innerurl: options.url || '',
       servlink: options.servlink || '',
-      manmadeid: options.manmadeid || ''
+      manmadeid: options.manmadeid || '',
+      title: options.title || ''
     });
     if (this.data.artid != ""){
       this.setData({
@@ -41,6 +42,9 @@ Page({
         this.setData({
           template: config.articleAddress + "?adid=" + this.data.adid
         })
+        wx.setNavigationBarTitle({
+          title: this.data.title
+        })
       }
 
     }
@@ -53,21 +57,33 @@ Page({
         this.setData({
           template: config.articleAddress + "?servid=" + this.data.servid
         })
+        wx.setNavigationBarTitle({
+          title: "特色服务"
+        })
       }
     }
     if (this.data.abroadid != "") {
       this.setData({
         template: config.articleAddress + "?abroadid=" + this.data.abroadid
       })
+      wx.setNavigationBarTitle({
+        title: "海外招募"
+      })
     }
     if (this.data.newbornid != "") {
       this.setData({
         template: config.articleAddress + "?newbornid=" + this.data.newbornid
       })
+      wx.setNavigationBarTitle({
+        title: "新人专区"
+      })
     }
     if (this.data.manmadeid != "") {
       this.setData({
         template: config.articleAddress + "?manmadeid=" + this.data.manmadeid
+      })
+      wx.setNavigationBarTitle({
+        title: this.data.title
       })
     }
   },

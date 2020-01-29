@@ -7,7 +7,7 @@
       <block wx:for-items="{{banner_url}}">
         <swiper-item>
           <block wx:if="{{item}}">
-            <navigator url="../article/article?adid={{item.adid}}&adtype={{item.adtype}}&url={{item.innerurl}}"><image class="tui-img" src="{{item.adimage}}"  mode="scaleToFill "/></navigator>
+            <navigator url="../article/article?adid={{item.adid}}&adtype={{item.adtype}}&url={{item.innerurl}}&&title={{item.title}}&"><image class="tui-img" src="{{item.adimage}}"  mode="scaleToFill "/></navigator>
           </block>
           <block wx:else>
             <navigator><image src="../../images/ceshi/ad.png" mode="scaleToFill "></image></navigator>
