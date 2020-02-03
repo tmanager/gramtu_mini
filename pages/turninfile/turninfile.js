@@ -122,10 +122,14 @@ Page({
         success(res) {
           console.log(_that, ' :this');
           console.log(res, " :res");
-          //合法大小。不能超过100M
-          if(res.tempFiles[0].size > 100 * 1024 * 1024){
+          //合法大小。Gram不能超过4M，Turnin不能超过100M
+          var filesize = 100;
+          if(_that.data.checktype == 2){
+            filesize = 4;
+          }
+          if (res.tempFiles[0].size > filesize * 1024 * 1024){
             wx.showToast({
-              title: '文件不能超过100M！',
+              title: '文件不能超过' + filesize + 'M！',
               icon: 'none'
             })
             return
@@ -376,7 +380,26 @@ Page({
         if (res.statusCode == 200) {
           if (res.data.retcode === config.SUCCESS) {
             var response = res.data.response;
-            var filename = $this.data.subtitle;
+            var filename = $this.data.subtitle; 
+            var count = response.wordcount;
+            //Gram文件字数最小50个，最大14000个,Turnin文件无限制
+            if ($this.data.checktype == 2){
+              if (isNaN(count) || Number(count) < 50){
+                wx.showToast({
+                  title: "文件字数不能少于50个！",
+                  icon: 'none'
+                })
+                return;
+              }
+              if (isNaN(count) || Number(count) > 14000) {
+                wx.showToast({
+                  title: "文件字数不能大于14000个",
+                  icon: 'none'
+                })
+                return;
+              }
+            }
+
             if($this.data.type == "0"){
               filename = uploadfile.name;
             }
