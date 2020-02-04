@@ -71,7 +71,7 @@
             <view class='turnin-time' wx:if="{{item.upfee != '-1'}}">满{{item.upfee}}元可用</view>
             <view class='turnin-time' wx:if="{{item.upfee == '-1'}}">任意金额可用</view>
           </view>
-          <view class='coup-detail' style="margin: -20rpx 20rpx 20rpx">
+          <view class='coup-detail' style="margin: -20rpx 20rpx 20rpx; font-weight:bold">
             <view class='turnin-name' style="color:#F24F50">使用积分</view>
             <view class='price'>{{item.usemark}}</view>
           </view>
