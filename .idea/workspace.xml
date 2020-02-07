@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0478e187-71e5-47d8-9209-a8fe7befe384" name="Default Changelist" comment="登录及首页接口文档提交">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/article/article.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/article/article.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/mine.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mine/mine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markinfo/markinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markinfo/markinfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +16,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1X3KRrrjFT9UisfJai0BZcLZETZ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -26,6 +28,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -57,6 +60,12 @@
       <workItem from="1580269335625" duration="646000" />
       <workItem from="1580270968817" duration="6000" />
       <workItem from="1580274760417" duration="617000" />
+      <workItem from="1580692704529" duration="1867000" />
+      <workItem from="1580730688024" duration="600000" />
+      <workItem from="1580776390353" duration="1847000" />
+      <workItem from="1580800951781" duration="628000" />
+      <workItem from="1580802541119" duration="15000" />
+      <workItem from="1580808145577" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="首次提交">
       <created>1575539587715</created>
@@ -252,10 +261,23 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="369" y="32" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1580274770898" />
-    <state x="570" y="203" key="FileChooserDialogImpl" timestamp="1580270972228">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1580802283066">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580802283066" />
+    <state x="651" y="209" key="FileChooserDialogImpl" timestamp="1580808152079">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="570" y="203" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1580270972228" />
+    <state x="651" y="209" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1580808152079" />
+    <state x="766" y="162" key="RollbackChangesDialog" timestamp="1580793239293">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="766" y="162" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580793239293" />
+    <state x="574" y="264" key="git4idea.merge.GitPullDialog" timestamp="1580802263601">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="574" y="264" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580802263601" />
     <state x="419" y="0" width="840" height="1008" key="search.everywhere.popup" timestamp="1580269379844">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

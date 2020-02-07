@@ -286,7 +286,7 @@ Page({
       content: '需要花费' + usemark + '积分，确认要进行兑换？',
       success(res) {
         if (res.confirm) {
-          this.coupGivenExchange(id);
+          that.coupGivenExchange(id);
         } else if (res.cancel) {
           
         }
@@ -305,7 +305,7 @@ Page({
     });
     var data = {openid: openid, coupid: id}
     wx.request({
-      url: config.serverAddress + 'coupon/exchange',
+      url: config.serverAddress + 'mark/coupon/exchange',
       data: util.sendMessageEdit(null, data),
       header: {
         'content-type': 'application/json'
