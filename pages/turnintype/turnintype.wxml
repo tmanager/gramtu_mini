@@ -4,4 +4,27 @@
     <button class="btn-block" wx:key data-type='0' style="background-color:#2489F3; color:white; width: 45%" bindtap="turninTypeChoose">单独文件查重</button>
     <button bindtap='turninTypeChoose' wx:key data-type='1'  class="btn-block"style="background-color:#2bb673; color:white; width: 45%">剪贴文本查重</button>
   </view>
+  <view class="hengxian-type" style="margin:20rpx; color:#808080;">----------------------------------------</view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;"><span style="color:#e28a8a;">*</span>测前必读：
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">1.上传文档-->在微信聊天窗口选择待检测文档-->可通过“微信文件传输助手”实现；
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">2.允许的文档类型：Microsoft word、PDF、txt纯文字
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">3.文档大小限制：≤50MB，如超过限制，请删除或压缩影像以减小文件大小。如您的文档是PDF格式，请选择【剪贴文本】方式检测。
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">4.单篇检测字数限制：20~80000字(words)
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">5.单篇检测时长：5~15分钟左右，字数越多，检测时间越长；
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">6.三个重要的问题：
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;"><span style="color:#212020;">①本程序检测不收录、不留痕，请放心检测；</span>
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;"><span style="color:#212020;">②测完重复率100%？</span>已经发表过的文章，或是提前在校检测过的学生文稿（一般会被学校收录到“学生文稿库”），使用本系统再次检测，重复率可能是100%。<span style="color:#e28a8a;">请联系我们的在线客服，帮您手动排除并重新生成一份报告。报告将会在线发送给您。</span>
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;"><span style="color:#212020;">③Reference list要不要带着？</span>除非学校有特殊要求，否则<span style="color:#e28a8a;">一定要带着！</span>如果不带参考文献只检测正文，可能会导致某些内容无法被侦测出来，从而跟学校结果产生较大的差别。
+  </view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">7.微信客服24小时在线，有问题请随时联系客服处理
+  </view>
 </view>

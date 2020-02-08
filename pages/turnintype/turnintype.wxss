@@ -2,6 +2,7 @@
 .type-title{
   color:#808080;
   font-size: 25rpx;
+  margin-left:20rpx;
 }
 .turnin-type{
   display: flex;
@@ -13,4 +14,11 @@
 .turnin-type button{
   font-size: 25rpx;
   padding: 10rpx;
+}
+
+.hengxian-type{
+  margin:40rpx;
+  white-space:nowrap;
+  overflow:hidden;
+  font-size:30rpx;
 }

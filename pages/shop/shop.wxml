@@ -2,7 +2,7 @@
 <view class="service">
   <view class='oneLine'>
     <view><image src="../../images/QQ.png" class='tipImage smallImage'></image></view>
-    <view>客服QQ: 888888888888</view>
+    <view>客服QQ: 3148736632</view>
   </view>
   <view class='oneLine'>
     <view><image src="../../images/tele.png" class='tipImage'></image></view>

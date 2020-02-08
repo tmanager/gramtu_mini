@@ -4,7 +4,6 @@
     <list default="true" id="0478e187-71e5-47d8-9209-a8fe7befe384" name="Default Changelist" comment="登录及首页接口文档提交">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markinfo/markinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markinfo/markinfo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +31,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -66,6 +66,8 @@
       <workItem from="1580800951781" duration="628000" />
       <workItem from="1580802541119" duration="15000" />
       <workItem from="1580808145577" duration="8000" />
+      <workItem from="1581086608095" duration="161000" />
+      <workItem from="1581136481269" duration="613000" />
     </task>
     <task id="LOCAL-00001" summary="首次提交">
       <created>1575539587715</created>
@@ -214,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577954211847</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="修改提示信息">
+      <created>1581086673486</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1581086673487</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,30 +263,40 @@
     <MESSAGE value="查重类型页面显示" />
     <MESSAGE value="登录及首页接口文档提交" />
     <MESSAGE value="上传url和name修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="上传url和name修改" />
+    <MESSAGE value="修改提示信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改提示信息" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="369" y="32" key="CommitChangelistDialog2" timestamp="1580274770898">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state x="422" y="33" key="CommitChangelistDialog2" timestamp="1581086672775">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="369" y="32" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1580274770898" />
+    <state x="422" y="33" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1581086672775" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1580802283066">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580802283066" />
-    <state x="651" y="209" key="FileChooserDialogImpl" timestamp="1580808152079">
+    <state x="651" y="209" key="FileChooserDialogImpl" timestamp="1581137270431">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="570" y="203" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1580270972228" />
-    <state x="651" y="209" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1580808152079" />
+    <state x="651" y="209" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581137270431" />
     <state x="766" y="162" key="RollbackChangesDialog" timestamp="1580793239293">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="766" y="162" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580793239293" />
-    <state x="574" y="264" key="git4idea.merge.GitPullDialog" timestamp="1580802263601">
+    <state x="330" y="75" key="SettingsEditor" timestamp="1581086745962">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="574" y="264" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580802263601" />
+    <state x="330" y="75" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581086745962" />
+    <state x="452" y="187" key="Vcs.Push.Dialog.v2" timestamp="1581086758968">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="452" y="187" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1581086758968" />
+    <state x="574" y="264" key="git4idea.merge.GitPullDialog" timestamp="1581086751741">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="574" y="264" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581086751741" />
     <state x="419" y="0" width="840" height="1008" key="search.everywhere.popup" timestamp="1580269379844">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
