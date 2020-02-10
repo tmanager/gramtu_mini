@@ -2,6 +2,65 @@
 var config = require('../../utils/config.js')
 var util = require('../../utils/util.js');
 
+// 注意此代码应该在调用原生api之前执行
+let isShowLoading = false;
+let isShowToast = false;
+const {
+  showLoading,
+  hideLoading,
+  showToast,
+  hideToast
+} = wx;
+Object.defineProperty(wx, 'showLoading', {
+  configurable: true, // 是否可以配置
+  enumerable: true, // 是否可迭代
+  writable: true, // 是否可重写
+  value(...param) {
+    if (isShowToast) { // Toast优先级更高
+      return;
+    }
+    isShowLoading = true;
+    console.log('--------showLoading--------')
+    return showLoading.apply(this, param); // 原样移交函数参数和this
+  }
+});
+Object.defineProperty(wx, 'hideLoading', {
+  configurable: true, // 是否可以配置
+  enumerable: true, // 是否可迭代
+  writable: true, // 是否可重写
+  value(...param) {
+    if (isShowToast) { // Toast优先级更高
+      return;
+    }
+    isShowLoading = false;
+    console.log('--------hideLoading--------')
+    return hideLoading.apply(this, param); // 原样移交函数参数和this
+  }
+});
+Object.defineProperty(wx, 'showToast', {
+  configurable: true, // 是否可以配置
+  enumerable: true, // 是否可迭代
+  writable: true, // 是否可重写
+  value(...param) {
+    if (isShowLoading) { // Toast优先级更高
+      wx.hideLoading();
+    }
+    isShowToast = true;
+    console.log('--------showToast--------')
+    return showToast.apply(this, param); // 原样移交函数参数和this
+  }
+});
+Object.defineProperty(wx, 'hideToast', {
+  configurable: true, // 是否可以配置
+  enumerable: true, // 是否可迭代
+  writable: true, // 是否可重写
+  value(...param) {
+    isShowToast = false;
+    console.log('--------hideToast--------')
+    return hideToast.apply(this, param); // 原样移交函数参数和this
+  }
+});
+
 Page({
 
   /**
@@ -439,7 +498,7 @@ Page({
           wx.showToast({
             title: "解析字数结果不明，请进入" + type + "列表中查看详细信息！",
             icon: 'none',
-            duration: 5000
+            duration: 3000
           })
         }else{
           wx.showToast({
