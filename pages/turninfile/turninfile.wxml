@@ -61,9 +61,9 @@
 	</view>
 </view>
 <!-- 遮罩层 -->
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<cover-view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></cover-view>
 <!-- 弹出层 -->
-<view class="modalDlg" wx:if="{{showModal}}">
-  <text class="text">{{errMsg}}</text>
-  <view bindtap="ok" class="ok">确定</view>
-</view>
+<cover-view class="modalDlg" wx:if="{{showModal}}">
+  <cover-view class="text">{{errMsg}}</cover-view>
+  <button bindtap="ok" class="ok">确定</button>
+</cover-view>

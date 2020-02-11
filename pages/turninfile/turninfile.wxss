@@ -144,4 +144,7 @@ input{
   color: #666;
   width: 180px;
   margin-top: 10px;
+  word-break: break-all;
+  word-wrap:break-word;
+  white-space:pre-line;
 }
