@@ -44,19 +44,26 @@
       <view wx:if="{{checktype != 2}}" class="input-list sm-font" style='padding: 20rpx 30rpx; line-height:2; word-break:break-all'>
         <view class='sm-font'>上传文件要求</view>
        <view class='gray-font'>1. 允许的文件类型：Microsoft Word、PDF、txt纯文字</view>
-        <view class='gray-font'>2. 单篇检测字数限制：20字~8万字（words)</view>
-        <view class='gray-font'>3. 文件大小：≤50MB，如超过限制，请删除或压缩影像，以减小文件大小。如您的文档是PDF且超过50MB限制，请选择【剪贴文本】方式检测。</view>
-        <view class='gray-font'>4. 文件上传缓冲时间：15~200秒左右，字数越多，缓冲时间越长。请耐心等待~</view>
-        <view class='gray-font'>5. 单篇检测时长：5~15分钟左右</view>
+        <view class='gray-font'>2. 单篇检测字数限制：20~80000字（words)</view>
+        <view class='gray-font'>3. 文件大小：≤50MB，如超限请删除或压缩影像</view>
+        <view class='gray-font'><span style="font-weight:bold;">4. 文件上传缓冲时间：</span><span style="color:#e28a8a;">15~60秒左右，若缓冲结束未弹出付费页，请至“我的”-->"查重列表"-->“待付款”中查看。若“待付款”列表中没有，请再等待10秒左右，刷新一下就有了。</span></view>
+        <view class='gray-font'>5. 单篇检测时长：5~20分钟左右，字数越多时间越长</view>
       </view>
       <view wx:if="{{checktype == 2}}"  class="input-list sm-font" style='padding: 20rpx 30rpx; line-height:2; word-break:break-all'>
         <view class='sm-font'>上传文件要求</view>
         <view class='gray-font'>1. 允许的文件类型：Microsoft Word、txt纯文字</view>
-        <view class='gray-font'>2. 单篇检测字数限制：40字~1.4万字（words)，为了提高使用感受，建议您每次检测的字数控制在2000字以内；</view>
+        <view class='gray-font'><span style="color:#e28a8a;">2. 单篇检测字数限制：40~14000 words，为了提高您的使用感受，建议每次检测不超过2000字的内容</span></view>
         <view class='gray-font'>3. 文档大小限制：≤4MB</view>
         <view class='gray-font'>4. 文件上传缓冲时间：15~60秒左右，字数越多，缓冲时间越长。请耐心等待~</view>
         <view class='gray-font'>2. 单篇检测时长：1~5分钟左右</view>
       </view>
 		</view>
 	</view>
+  <!-- 遮罩层 -->
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <!-- 弹出层 -->
+  <view class="modalDlg" wx:if="{{showModal}}">
+    <text class="text">{{errMsg}}</text>
+    <view bindtap="ok" class="ok">确定</view>
+  </view>
 </view>

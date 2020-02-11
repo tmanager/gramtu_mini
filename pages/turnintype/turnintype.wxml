@@ -11,11 +11,11 @@
   </view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080;">2.允许的文档类型：Microsoft word、PDF、txt纯文字
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">3.文档大小限制：≤50MB，如超过限制，请删除或压缩影像以减小文件大小。如您的文档是PDF格式，请选择【剪贴文本】方式检测。
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">3.文档大小限制：≤50MB，超限请删除或压缩影像
   </view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080;">4.单篇检测字数限制：20~80000字(words)
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">5.单篇检测时长：5~15分钟左右，字数越多，检测时间越长；
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">5.单篇检测时长：5~20分钟左右，字数越多时间越长；
   </view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080;">6.三个重要的问题：
   </view>

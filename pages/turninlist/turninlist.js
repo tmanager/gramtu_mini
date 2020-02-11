@@ -379,9 +379,9 @@ Page({
   * 获取拥有的优惠券
   */
   coupListGet: function () {
-    wx.showLoading({
-      title: '正在获取优惠券信息',
-    });
+    // wx.showLoading({
+    //   title: '正在获取优惠券信息',
+    // });
     var that = this;
     var openid = wx.getStorageSync("openid");
     var data = { openid: openid, checktype: this.data.checkType, currentpage: "0", pagesize: "10", startindex: "0", draw: 1 };
@@ -411,7 +411,7 @@ Page({
         }
       },
       complete: function (res) {
-        wx.hideLoading();
+        // wx.hideLoading();
       }
     })
   },

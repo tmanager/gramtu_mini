@@ -2,65 +2,6 @@
 var config = require('../../utils/config.js')
 var util = require('../../utils/util.js');
 
-// 注意此代码应该在调用原生api之前执行
-let isShowLoading = false;
-let isShowToast = false;
-const {
-  showLoading,
-  hideLoading,
-  showToast,
-  hideToast
-} = wx;
-Object.defineProperty(wx, 'showLoading', {
-  configurable: true, // 是否可以配置
-  enumerable: true, // 是否可迭代
-  writable: true, // 是否可重写
-  value(...param) {
-    if (isShowToast) { // Toast优先级更高
-      return;
-    }
-    isShowLoading = true;
-    console.log('--------showLoading--------')
-    return showLoading.apply(this, param); // 原样移交函数参数和this
-  }
-});
-Object.defineProperty(wx, 'hideLoading', {
-  configurable: true, // 是否可以配置
-  enumerable: true, // 是否可迭代
-  writable: true, // 是否可重写
-  value(...param) {
-    if (isShowToast) { // Toast优先级更高
-      return;
-    }
-    isShowLoading = false;
-    console.log('--------hideLoading--------')
-    return hideLoading.apply(this, param); // 原样移交函数参数和this
-  }
-});
-Object.defineProperty(wx, 'showToast', {
-  configurable: true, // 是否可以配置
-  enumerable: true, // 是否可迭代
-  writable: true, // 是否可重写
-  value(...param) {
-    if (isShowLoading) { // Toast优先级更高
-      wx.hideLoading();
-    }
-    isShowToast = true;
-    console.log('--------showToast--------')
-    return showToast.apply(this, param); // 原样移交函数参数和this
-  }
-});
-Object.defineProperty(wx, 'hideToast', {
-  configurable: true, // 是否可以配置
-  enumerable: true, // 是否可迭代
-  writable: true, // 是否可重写
-  value(...param) {
-    isShowToast = false;
-    console.log('--------hideToast--------')
-    return hideToast.apply(this, param); // 原样移交函数参数和this
-  }
-});
-
 Page({
 
   /**
@@ -75,7 +16,9 @@ Page({
     subtitle: "",
     checktype:"",
     type: "0",
-    content: ""
+    content: "",
+    showModal: false,
+    errMsg: ""
   },
 
   /**
@@ -434,7 +377,8 @@ Page({
       data: util.sendMessageEdit(null, data),
       method: 'post',
       success: function (res) {
-        console.log("解析文件：");
+        wx.hideLoading();
+        console.log("解析文件>>>>>>>>>>>>");
         console.log(res);
         if (res.statusCode == 200) {
           if (res.data.retcode === config.SUCCESS) {
@@ -470,41 +414,48 @@ Page({
             wx.navigateTo({ url: "../turninend/turninend?" + para });
           } else {
             if(res.data.retcode === "9999"){
-              wx.showToast({
-                title: "解析字数超时！",
-                icon: 'none'
-              })
-            }else{
-              wx.showToast({
-                title: res.data.retmsg,
-                icon: 'none'
-              })
+              $this.setData({
+                errMsg: res.data.retmsg,
+                showModal: true
+              });
+            } else {
+              $this.setData({
+                errMsg: res.data.retmsg,
+                showModal: true
+              });
             }
           }
         } else {
-          wx.showToast({
-            title: "解析文件字数失败",
-            icon: 'none'
-          })
+          console.log("11111111111111111111")
+          $this.setData({
+            errMsg: "解析字数异常，请重新提交！",
+            showModal: true
+          });
         }
       },
       fail: function(res){
-        console.info(res);
-        if(res.errMsg == "request:fail timeout"){
+        wx.hideLoading();
+        console.info("解析失败=========>" + res);
+        if (res.errMsg == "request:fail timeout" || res.errMsg.indexOf("请求超时") > 0) {
           var type = "查重";
           if ($this.data.checktype == 2){
             type = "语法检测";
           }
-          wx.showToast({
-            title: "解析字数结果不明，请进入" + type + "列表中查看详细信息！",
-            icon: 'none',
-            duration: 3000
-          })
-        }else{
-          wx.showToast({
-            title: "解析文件字数失败",
-            icon: 'none'
-          })
+          // wx.showToast({
+          //   title: "解析字数结果不明，请进入" + type + "列表中查看详细信息！",
+          //   icon: 'none',
+          //   duration: 3000
+          // })
+          $this.setData({
+            errMsg: "解析字数结果不明，请进入" + type + "列表中查看详细信息！",
+            showModal: true
+          });
+        } else {
+          console.log("22222222222222222222222")
+          $this.setData({
+            errMsg: "解析字数异常，请重新提交！",
+            showModal: true
+          });
         }
       },
       complete: function(res){
@@ -514,5 +465,10 @@ Page({
         wx.navigateTo({ url: "../turninend/turninend?" + para });*/
       }
     })
+  },
+  ok: function() {
+    this.setData({
+      showModal: false
+    });
   }
 })
