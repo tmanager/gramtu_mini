@@ -79,6 +79,14 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  /**
+   * 弹出框蒙层截断touchmove事件
+   */
+  preventTouchMove: function () {
+
+  },
+
   /**
    * 输入框输入事件
    */
