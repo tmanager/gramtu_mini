@@ -490,6 +490,7 @@ Page({
     console.info(e);
     var i = e.currentTarget.dataset.index;
     var orderlist = this.data.orderList;
+    if(orderlist[i].status == 0) return;
     var para = "filename=" + orderlist[i].filename +
       "&filesize=" + orderlist[i].filesize + "&wordcount=" + orderlist[i].wordcnt +
       "&orderid=" + orderlist[i].orderid + "&checktype=" + this.data.checkType + 

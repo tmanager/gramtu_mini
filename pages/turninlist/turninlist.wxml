@@ -17,7 +17,7 @@
                 <view class='turnin-name'>{{item.filename}}</view>
                 <view class='turnin-time'>{{item.updtime}}</view>
               </view>
-              <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
+              <view wx:if="{{item.status != 0}}" class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
             </view>
             <view wx:if="{{item.status != 0}}" class='price'>
               ￥{{item.price}}

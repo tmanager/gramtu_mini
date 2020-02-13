@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/mine/mine",
     "pages/logs/logs",
@@ -20,7 +19,6 @@
     "pages/markinfo/markinfo",
     "pages/perfectInfo/perfectInfo",
     "pages/couplist/couplist"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -51,5 +49,6 @@
         "selectedIconPath": "images/tab/mine-se.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
