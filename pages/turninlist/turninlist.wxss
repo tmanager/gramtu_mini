@@ -168,6 +168,11 @@ page{
   margin-top:60rpx;
 }
 
+.coverview{
+  width: 32rpx; /* 背景的宽 */
+  height: 32rpx; /* 背景的高 */
+}
+
 .tabbar{ 
   font-size: 25rpx;
   background: #fff;
@@ -182,17 +187,25 @@ page{
 
 .tabbar > view:nth-child(1){
   flex: 1;
+  text-align: center;
+  background-color: #2bb673;
+  line-height: 100rpx;
+  color: white;
+}
+
+.tabbar > view:nth-child(2){
+  flex: 1;
   line-height: 100rpx;
   margin-left: 20rpx;
 }
-.tabbar > view:nth-child(2){
+.tabbar > view:nth-child(3){
   flex: 2;
   line-height: 100rpx;
   text-align: right;
   font-size:25rpx;
   padding-right: 20rpx;
 }
-.tabbar > view:nth-child(3){
+.tabbar > view:nth-child(4){
   flex: 1;
   text-align: center;
   background-color: #C5C5C5;
@@ -200,7 +213,7 @@ page{
   color: white;
 }
 
-.tabbar > view:nth-child(4){
+.tabbar > view:nth-child(5){
   flex: 1;
   text-align: center;
   background-color: #F24F50;

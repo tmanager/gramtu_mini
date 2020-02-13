@@ -18,7 +18,8 @@ Page({
     type: "0",
     content: "",
     showModal: false,
-    errMsg: ""
+    errMsg: "",
+    timeout: 0
   },
 
   /**
@@ -456,7 +457,8 @@ Page({
           // })
           $this.setData({
             errMsg: "解析字数结果不明，请进入" + type + "列表中查看详细信息！",
-            showModal: true
+            showModal: true,
+            timeout: 1
           });
         } else {
           console.log("22222222222222222222222")
@@ -474,9 +476,15 @@ Page({
       }
     })
   },
-  ok: function() {
-    this.setData({
-      showModal: false
-    });
+  ok: function() {   
+    if(this.data.timeout == 1){
+      var checktype = this.data.checktype;
+      wx.navigateTo({
+        url: "../turninlist/turninlist?type=0&checktype=" + checktype});
+    }else{
+      this.setData({
+        showModal: false
+      });
+    }
   }
 })

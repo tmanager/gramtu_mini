@@ -73,14 +73,20 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    wx.switchTab({
+      url: '../mine/mine'
+    })
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getOrderList();
+    if (this.data.currentNavbar == 0){
+      this.coupListGet();
+    }
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -191,6 +197,7 @@ Page({
     var list = this.data.orderList;
     var checkedlist = { orderid: [], price: 0 };    
     for(var i=0; i<list.length; i++){
+      if(list[i].status != 1) continue;
       list[i].checked = !that.data.select_all;
       if (!that.data.select_all){
         checkedlist.orderid.push(list[i].orderid);
@@ -588,5 +595,8 @@ Page({
         });
       }
     })
+  },
+  backToIndex:function(){
+    wx.switchTab({ url: '../index/index'})
   }
 })

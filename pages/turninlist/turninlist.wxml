@@ -9,7 +9,8 @@
     <checkbox-group bindchange="checkboxChange">
       <view class="wode_item_wrap" wx:for="{{orderList}}">
         <view class="wode_item">
-          <checkbox class='checkbox' checked='{{item.checked}}' value='{{item.orderid}}'/>
+          <checkbox wx:if="{{item.status != 0}}" class='checkbox' checked='{{item.checked}}' value='{{item.orderid}}'/>
+          <cover-view wx:if="{{item.status == 0}}" class="coverview"></cover-view>
           <view>
             <view bindtap="orderDetail" wx:key data-index='{{index}}' class="navi">
               <view>
@@ -18,8 +19,11 @@
               </view>
               <view class="arrow_wrap"><image src="../../images/icon-arrow.png"></image></view>
             </view>
-            <view class='price'>
+            <view wx:if="{{item.status != 0}}" class='price'>
               ￥{{item.price}}
+            </view>
+            <view wx:if="{{item.status == 0}}" class='price' style="text-align: left; padding-left:20rpx; font-size:25rpx">
+              正在解析中...
             </view>
           </view>
         </view>
@@ -80,8 +84,11 @@
   </view>
 </scroll-view>
 
-<view class="{{currentNavbar==0 && orderList.length > 0 ? '' : 'hidden'}}">
+<view class="{{currentNavbar==0 > 0 ? '' : 'hidden'}}">
   <view class="tabbar">
+    <view bindtap='backToIndex'>
+      <image src="../../images/index.png" style="width:50rpx; height: 50rpx; margin-top:25rpx"></image>
+    </view>
     <view>
       <label class="checkbox">
         <checkbox value="1" bindtap='allCheck' checked='{{select_all}}' />全选
@@ -90,6 +97,13 @@
     <view>合计:<text style='color:#F24F50;'>￥{{realtotal}}</text></view>
     <view bindtap='deleteOrderDialog'>删除</view>
     <view bindtap='payment'>结算</view>
+  </view>
+</view>
+<view class="{{currentNavbar==1 ? '' : 'hidden'}}">
+  <view class="tabbar">
+    <view bindtap='backToIndex'>
+      <image src="../../images/index.png" style="width:50rpx; height: 50rpx; margin-top:25rpx"></image>
+    </view>
   </view>
 </view>
 

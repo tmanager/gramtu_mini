@@ -2,5 +2,6 @@
   "usingComponents": {
     "actionsheet": "/component/actionsheet/actionsheet"
   },
-  "navigationBarTitleText": "查重列表"
+  "navigationBarTitleText": "查重列表",
+  "enablePullDownRefresh": true
 }
