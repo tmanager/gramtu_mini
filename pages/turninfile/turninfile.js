@@ -479,7 +479,7 @@ Page({
   ok: function() {   
     if(this.data.timeout == 1){
       var checktype = this.data.checktype;
-      wx.navigateTo({
+      wx.redirectTo({
         url: "../turninlist/turninlist?type=0&checktype=" + checktype});
     }else{
       this.setData({
