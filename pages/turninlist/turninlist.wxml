@@ -68,6 +68,8 @@
           </view>
           <view class='status' wx:if="{{checkType !=2 && item.status == 4}}">
             重复比率：<text style='color:#F24F50'>{{item.repetrate}}</text>
+            <text class='type_name' wx:if="{{item.checktype == 0}}">turnin-国际</text>
+            <text class='type_name' wx:if="{{item.checktype == 1}}">turnin-U K</text>
           </view>
           <view class='status' wx:if="{{checkType ==2 && item.status == 4}}">
             检测完成

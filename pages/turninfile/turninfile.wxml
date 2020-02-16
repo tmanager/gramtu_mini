@@ -5,19 +5,19 @@
 			<view class="input-list">
         <view wx:if="{{checktype!=2}}"  >
           <view class="input-item">
-            <text class="input-item-label">名</text>
+            <text class="input-item-label"><text style="color:#e28a8a;">*</text>名</text>
             <view class="input-item-content">
               <input type="text" placeholder="请输入名" bindinput='getInputValue' id="firstname"></input>
             </view>
           </view>
           <view class="input-item">
-            <text class="input-item-label">姓</text>
+            <text class="input-item-label"><text style="color:#e28a8a;">*</text>姓</text>
             <view class="input-item-content">
               <input type="text" placeholder="请输入姓" bindinput='getInputValue' id="lastname"></input>
             </view>
           </view>
           <view class="input-item">
-            <text class="input-item-label">文件标题</text>
+            <text class="input-item-label"><text style="color:#e28a8a;">*</text>文件标题</text>
             <input type="text" placeholder="请输入文件标题" value="{{subtitle}}" bindinput='getInputValue' id="subtitle"></input>
           </view>
         </view>
@@ -32,9 +32,9 @@
 				</view>
         <view class="input-item">
           <view wx:if="{{type==0}}" >
-            <text wx:if="{{checktype==0}}" class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到Turnin的文档：</text>
-            <text wx:if="{{checktype==1}}"  class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到TurninUK的文档：</text>
-            <text wx:if="{{checktype==2}}"  class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择您要上传到Grammarian的文档：</text>
+            <text wx:if="{{checktype==0}}" class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择上传到<text style="color:#ff0000;">Turnin-国际版</text>的文档：</text>
+            <text wx:if="{{checktype==1}}"  class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择上传到<text style="color:#ff0000;">Turnin-UK版</text>的文档：</text>
+            <text wx:if="{{checktype==2}}"  class="input-item-label" style='padding:20rpx 0 5rpx 0; line-height:0.5'>选择上传到<text style="color:#ff0000;">Grammarian</text>的文档：</text>
           </view>
           <view class='upload-btn'> 
             <button class="btn-block" style='background-color:#2489F3; color:white; width: 100%' bindtap='uploadFileTotal'>上传</button>
@@ -44,18 +44,19 @@
       <view wx:if="{{checktype != 2}}" class="input-list sm-font" style='padding: 20rpx 30rpx; line-height:2; word-break:break-all'>
         <view class='sm-font'>上传文件要求</view>
        <view class='gray-font'>1. 允许的文件类型：Microsoft Word、PDF、txt纯文字</view>
-        <view class='gray-font'>2. 单篇检测字数限制：20~80000字（words)</view>
-        <view class='gray-font'>3. 文件大小：≤50MB，如超限请删除或压缩影像</view>
-        <view class='gray-font'><span style="font-weight:bold;">4. 文件上传缓冲时间：</span><span style="color:#e28a8a;">15~60秒左右，若缓冲结束未弹出付费页，请至“我的”-->"查重列表"-->“待付款”中查看。若“待付款”列表中没有，请再等待10秒左右，刷新一下就有了。</span></view>
-        <view class='gray-font'>5. 单篇检测时长：5~20分钟左右，字数越多时间越长</view>
+        <view class='gray-font'>2. 字数限制：≤80000 words（字)</view>
+        <view class='gray-font'>3. 文件大小：≤15MB，超限请删除图片，或选择剪贴上传</view>
+        <view class='gray-font'><span style="font-weight:bold;">4. 文件解析时长：</span><span style="color:#e28a8a;">15~200秒左右，时间超60s时，将转至“待付款列表”继续缓冲，请至“我的”-->"查重列表"-->“待付款”中查看。</span></view>
+        <view class='gray-font'><span style="color:#e28a8a;">5. 反复上传文档失败的，请另行选择“剪贴上传“</span></view>
+        <view class='gray-font'>6. 单篇检测时长：5~20分钟左右</view>
       </view>
       <view wx:if="{{checktype == 2}}"  class="input-list sm-font" style='padding: 20rpx 30rpx; line-height:2; word-break:break-all'>
         <view class='sm-font'>上传文件要求</view>
         <view class='gray-font'>1. 允许的文件类型：Microsoft Word、txt纯文字</view>
-        <view class='gray-font'><span style="color:#e28a8a;">2. 单篇检测字数限制：40~14000 words，为了提高您的使用感受，建议每次检测不超过2000字的内容</span></view>
+        <view class='gray-font'><span style="color:#e28a8a;">2. 单篇检测字数限制：40~14000 words，为了提高您的使用感受，建议每次检查不超过【2000字】的内容</span></view>
         <view class='gray-font'>3. 文档大小限制：≤4MB</view>
         <view class='gray-font'>4. 文件上传缓冲时间：15~60秒左右，字数越多，缓冲时间越长。请耐心等待~</view>
-        <view class='gray-font'>2. 单篇检测时长：1~5分钟左右</view>
+        <view class='gray-font'>5. 单篇检测时长：1~5分钟左右</view>
       </view>
 		</view>
 	</view>

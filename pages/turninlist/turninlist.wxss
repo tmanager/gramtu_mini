@@ -235,3 +235,8 @@ page{
 .coup_item > view:nth-child(2){
   flex: 3;
 }
+
+.type_name {
+  margin-right:5px;
+  float:right;
+}

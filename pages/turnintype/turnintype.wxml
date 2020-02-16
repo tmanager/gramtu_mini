@@ -7,24 +7,23 @@
   <view class="hengxian-type" style="margin:20rpx; color:#808080;">----------------------------------------</view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080;"><span style="color:#e28a8a;">*</span>测前必读：
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">1.上传文档-->在微信聊天窗口选择待检测文档-->可通过“微信文件传输助手”实现；
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;line-height:200%;">1.上传文档-->在微信聊天窗口选择待检测文档-->可通过“微信文件传输助手”实现；
   </view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080;">2.允许的文档类型：Microsoft word、PDF、txt纯文字
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">3.文档大小限制：≤50MB，超限请删除或压缩影像
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">3.大小限制：≤15MB，超限请删除图片，或选择剪贴上传
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">4.单篇检测字数限制：20~80000字(words)
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">4.字数限制：≤80000 words(字)
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">5.单篇检测时长：5~20分钟左右，字数越多时间越长；
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">5.单篇检测时长：5~20分钟左右
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">6.三个重要的问题：
+  <view class="hengxian-type" style="margin:20rpx; color:#808080;">----------------------------------------</view>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">☆温馨提示：
   </view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;"><span style="color:#212020;">①本程序检测不收录、不留痕，请放心检测；</span>
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;"><span style="color:#212020;">②测完重复率100%？</span>已经发表过的文章，或是提前在校检测过的学生文稿（一般会被学校收录到“学生文稿库”），使用本系统再次检测，重复率可能是100%。<span style="color:#e28a8a;">请联系我们的在线客服，帮您手动排除并重新生成一份报告。报告将会在线发送给您。</span>
+  <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;line-height:200%;"><span style="color:#212020;">②测完重复率100%？</span>已发表的文章、已在校检测过的文稿（一般会被学校收录到“学生文稿库”），检测结果可能是100%。<span style="color:#e28a8a;">请联系我们的在线客服，帮您手动排除并重新生成一份报告。报告将会在线发送给您。</span>
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;"><span style="color:#212020;">③Reference list要不要带着？</span>除非学校有特殊要求，否则<span style="color:#e28a8a;">一定要带着！</span>如果不带参考文献只检测正文，可能会导致某些内容无法被侦测出来，从而跟学校结果产生较大的差别。
-  </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">7.微信客服24小时在线，有问题请随时联系客服处理
+  <view style="font-size:25rpx;margin:20rpx;color:#808080; text-indent:20rpx;line-height:200%;"><span style="color:#212020;">③Reference list要不要带着？</span>除非学校有特殊要求，否则<span style="color:#e28a8a;">一定要带着！</span>如果不带参考文献只检测正文，可能会导致某些内容无法被侦测出来。
   </view>
 </view>

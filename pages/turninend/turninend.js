@@ -19,7 +19,8 @@ Page({
     coupname: [{ id: "1", name: "111", disable: '0' }, { id: "2", name: "222", disable: '1' }],
     chooseindex: -1,
     coupamount: "0.00",
-    couptitle: "不使用优惠券"
+    couptitle: "不使用优惠券",
+    checktype: ""
   },
 
   /**
@@ -36,6 +37,7 @@ Page({
       wordnum: options.wordnum,
       discount: options.discount,
       price: options.price,
+      checktype: options.checktype,
       cwordcount: that.format(options.wordcount)
     });
     

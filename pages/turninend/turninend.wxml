@@ -2,6 +2,12 @@
 <view>
   <view class="wode_item_wrap">
     <view class="wode_item">
+      <view class='wode_name'>类型：</view>
+      <view wx:if="{{checktype == 0}}">turnin-国际</view>
+      <view wx:if="{{checktype == 1}}">turnin-U K</view>
+      <view wx:if="{{checktype == 2}}">语 法 检 测</view>
+    </view>
+    <view class="wode_item">
       <view class='wode_name'>文件：</view>
       <view>{{filename}}</view>
     </view>
