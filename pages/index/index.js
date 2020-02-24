@@ -84,6 +84,12 @@ Page({
     this.indexListGet();
     this.articleListGet();
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
   //获取广告图片列表
   indexListGet:function(){
     var that = this;

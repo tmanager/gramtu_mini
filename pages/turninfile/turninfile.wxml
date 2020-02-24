@@ -52,7 +52,8 @@
       </view>
       <view wx:if="{{checktype == 2}}"  class="input-list sm-font" style='padding: 20rpx 30rpx; line-height:2; word-break:break-all'>
         <view class='sm-font'>上传文件要求</view>
-        <view class='gray-font'>1. 允许的文件类型：Microsoft Word、txt纯文字</view>
+        <view class='gray-font'>1. 允许的文件类型：Microsoft Word、txt纯文字;</view>
+        <view class='gray-font' style="font-weight:bold;">提醒：文章不可处于修订状态、不可带批注，否则无法检出结果。</view>
         <view class='gray-font'><span style="color:#e28a8a;">2. 单篇检测字数限制：40~14000 words，为了提高您的使用感受，建议每次检查不超过【2000字】的内容</span></view>
         <view class='gray-font'>3. 文档大小限制：≤4MB</view>
         <view class='gray-font'>4. 文件上传缓冲时间：15~60秒左右，字数越多，缓冲时间越长。请耐心等待~</view>

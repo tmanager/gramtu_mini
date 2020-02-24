@@ -16,9 +16,9 @@
       </block>
     </swiper>
   </view>
-  <view class='zzfw'>
+  <view class='zzfwzz'>
     <view class='zzfw-title'>自助服务区</view>
-    <view class='zzfw-content'>
+    <view class='zzfw-contentzz'>
       <view bindtap='turninCheck' wx:key data-type='0'>
         <view class='zzfw-icon'>turnin</view>
         <text>turnin国际查重</text>
@@ -29,12 +29,12 @@
       </view>
       <view bindtap='turninCheck' wx:key data-type='2'>
         <view class='zzfw-icon'>Grammar</view>
-        <text>Grammarian语法检测</text>
+        <text>语法检测</text>
       </view>
     </view>
   </view>
 
-  <view class='zzfw' style='height:{{tsHeight}}rpx'>
+  <view class='zzfwts' style='height:{{tsHeight}}rpx'>
     <view class='zzfw-title'>特色服务区</view>
     <view class='zzfw-content' style='height:{{tsContentHeight}}rpx'>
       <navigator wx:for-items="{{tsfwList}}" url="../article/article?servid={{item.servid}}&servtype={{item.servtype}}&url={{item.servlink}}">
@@ -46,7 +46,7 @@
     </view>
   </view>
   <view class='zzfw' style='height: 180rpx'>
-    <view class='zzfw-title'><view class='xr-title'>新人专区</view></view>
+    <view class='xr-title'>新人专区</view>
     <view class='xrfl'>
       <navigator url="../article/article?newbornid={{newbornList[0].newbornid}}">{{newbornList[0].title}}</navigator>
       <navigator url="../article/article?newbornid={{newbornList[1].newbornid}}">{{newbornList[1].title}}</navigator>
@@ -54,7 +54,7 @@
   </view>
 
   <view class='zzfw' style='height: 180rpx'>
-    <view class='zzfw-title'>海外招募</view>
+    <view class='xr-title'>海外招募</view>
     <view class='xrfl hwzm'>
       <navigator url="../article/article?abroadid={{abroadList[0].abroadid}}">{{abroadList[0].title}}</navigator>
       <navigator url="../article/article?abroadid={{abroadList[1].abroadid}}">{{abroadList[1].title}}</navigator>

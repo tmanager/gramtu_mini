@@ -146,9 +146,9 @@ Page({
             return
           }
           //合法的扩展名
-          var exname = ["doc", "docx", "ppt", "pptx", "wp", "wpd", "wpt", "ps","pdf", "html", ".rtf", "odt", "hwp", "txt"];
+          var exname = ["doc", "docx", "ppt", "pptx", "wp", "wpd", "wpt", "ps","pdf", "html", "rtf", "odt", "hwp", "txt"];
           if (_that.data.checktype == 2){
-            exname = ["docx", ".rtf", "odt", "txt"];
+            exname = ["doc", "docx", "rtf", "odt", "txt"];
           }
           var name = res.tempFiles[0].name;
           if (exname.indexOf(name.substr(name.lastIndexOf(".") + 1).toLowerCase()) == -1) {

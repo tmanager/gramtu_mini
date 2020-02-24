@@ -6,7 +6,7 @@
   line-height: 80rpx;
   color: black;
   padding: 0 20px;
-  font-size: 35rpx;
+  font-size: 30rpx;
   /*border-bottom: 1px solid #c8c7cc;*/
   font-weight: bold;
 }
@@ -19,9 +19,9 @@
 }
 
 .gallery-img{
-  width: 170rpx;
+  width: 180rpx;
   height: 170rpx;
-  margin-top: -10rpx
+  margin-top: 5rpx
 }
 .gallery-box{
   height: 170rpx;
@@ -32,12 +32,13 @@
   height: 100rpx;
   line-height: 50rpx;
   overflow: hidden;
-  font-size: 35rpx;
+  font-size: 28rpx;
   display: -webkit-box;
   word-break: break-all;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  letter-spacing:1.5rpx;
   color:black;
 }
 .gallery-detail{
@@ -46,7 +47,7 @@
   height: 40rpx;
   line-height: 40rpx;
   overflow: hidden;
-  font-size: 30rpx;
+  font-size: 28rpx;
   color: #8f8f94;
   white-space: nowrap;
   text-overflow: ellipsis;
