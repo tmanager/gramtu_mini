@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0478e187-71e5-47d8-9209-a8fe7befe384" name="Default Changelist" comment="登录及首页接口文档提交">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/turninfile/turninfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/turninfile/turninfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +32,18 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -68,6 +80,25 @@
       <workItem from="1580808145577" duration="8000" />
       <workItem from="1581086608095" duration="161000" />
       <workItem from="1581136481269" duration="613000" />
+      <workItem from="1581163830470" duration="43000" />
+      <workItem from="1581248512311" duration="1000" />
+      <workItem from="1581332124623" duration="116000" />
+      <workItem from="1581347047008" duration="2406000" />
+      <workItem from="1581399572672" duration="3786000" />
+      <workItem from="1581488157212" duration="1291000" />
+      <workItem from="1581585320014" duration="2076000" />
+      <workItem from="1581646047299" duration="599000" />
+      <workItem from="1581648036561" duration="365000" />
+      <workItem from="1581648599718" duration="1278000" />
+      <workItem from="1581822500916" duration="2942000" />
+      <workItem from="1581903040740" duration="70000" />
+      <workItem from="1582024630619" duration="258000" />
+      <workItem from="1582185197066" duration="616000" />
+      <workItem from="1582245237881" duration="232000" />
+      <workItem from="1582464618593" duration="384000" />
+      <workItem from="1582544717740" duration="556000" />
+      <workItem from="1583842182395" duration="482000" />
+      <workItem from="1583842725621" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="首次提交">
       <created>1575539587715</created>
@@ -223,7 +254,49 @@
       <option name="project" value="LOCAL" />
       <updated>1581086673487</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="修改背景图片">
+      <created>1581163852663</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1581163852663</updated>
+    </task>
+    <task id="LOCAL-00024" summary="修改上传pdf报告Bug">
+      <created>1581349872905</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1581349872905</updated>
+    </task>
+    <task id="LOCAL-00025" summary="修改提示信息">
+      <created>1581413119215</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1581413119215</updated>
+    </task>
+    <task id="LOCAL-00026" summary="登录及首页接口文档提交">
+      <created>1581419280513</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1581419280513</updated>
+    </task>
+    <task id="LOCAL-00027" summary="展示时增加论文类型">
+      <created>1581844653032</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1581844653032</updated>
+    </task>
+    <task id="LOCAL-00028" summary="增加doc文件上传类型">
+      <created>1582544874296</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1582544874296</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,45 +334,58 @@
     <MESSAGE value="登录功能提交" />
     <MESSAGE value="获取用户信息失败" />
     <MESSAGE value="查重类型页面显示" />
-    <MESSAGE value="登录及首页接口文档提交" />
     <MESSAGE value="上传url和name修改" />
+    <MESSAGE value="修改背景图片" />
+    <MESSAGE value="修改上传pdf报告Bug" />
     <MESSAGE value="修改提示信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改提示信息" />
+    <MESSAGE value="登录及首页接口文档提交" />
+    <MESSAGE value="展示时增加论文类型" />
+    <MESSAGE value="增加doc文件上传类型" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加doc文件上传类型" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="422" y="33" key="CommitChangelistDialog2" timestamp="1581086672775">
+    <state x="422" y="33" width="1381" height="951" key="CommitChangelistDialog2" timestamp="1582544873486">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="369" y="32" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1580274770898" />
-    <state x="422" y="33" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1581086672775" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1580802283066">
+    <state x="422" y="33" width="1381" height="951" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582544873486" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1581822938565">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580802283066" />
-    <state x="651" y="209" key="FileChooserDialogImpl" timestamp="1581137270431">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581822938565" />
+    <state x="651" y="209" key="FileChooserDialogImpl" timestamp="1583842730579">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="570" y="203" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1580270972228" />
-    <state x="651" y="209" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581137270431" />
-    <state x="766" y="162" key="RollbackChangesDialog" timestamp="1580793239293">
+    <state x="651" y="209" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583842730579" />
+    <state x="768" y="428" key="Github.Dialog.Accounts.Choose" timestamp="1582544882175">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="766" y="162" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580793239293" />
-    <state x="330" y="75" key="SettingsEditor" timestamp="1581086745962">
+    <state x="768" y="428" key="Github.Dialog.Accounts.Choose/0.0.1920.1040@0.0.1920.1040" timestamp="1582544882175" />
+    <state x="766" y="162" key="RollbackChangesDialog" timestamp="1581822868584">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="330" y="75" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581086745962" />
-    <state x="452" y="187" key="Vcs.Push.Dialog.v2" timestamp="1581086758968">
+    <state x="766" y="162" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581822868584" />
+    <state x="330" y="75" key="SettingsEditor" timestamp="1581648661982">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="452" y="187" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1581086758968" />
-    <state x="574" y="264" key="git4idea.merge.GitPullDialog" timestamp="1581086751741">
+    <state x="330" y="75" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581648661982" />
+    <state x="452" y="187" key="Vcs.Push.Dialog.v2" timestamp="1582544877997">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="574" y="264" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581086751741" />
-    <state x="419" y="0" width="840" height="1008" key="search.everywhere.popup" timestamp="1580269379844">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state x="452" y="187" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582544877997" />
+    <state x="92" y="92" width="1736" height="856" key="dock-window-1" timestamp="1581822870987">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1581822870987" />
+    <state x="574" y="264" key="git4idea.merge.GitPullDialog" timestamp="1583842186764">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="574" y="264" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583842186764" />
+    <state x="479" y="0" width="960" height="1038" key="search.everywhere.popup" timestamp="1581822855618">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="419" y="0" width="840" height="1008" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1580269379844" />
+    <state x="479" y="0" width="960" height="1038" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581822855618" />
   </component>
 </project>

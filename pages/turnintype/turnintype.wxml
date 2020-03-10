@@ -9,7 +9,7 @@
   </view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080;line-height:200%;">1.上传文档-->在微信聊天窗口选择待检测文档-->可通过“微信文件传输助手”实现；
   </view>
-  <view style="font-size:25rpx;margin:20rpx;color:#808080;">2.允许的文档类型：Microsoft word、PDF、txt纯文字
+  <view style="font-size:25rpx;margin:20rpx;color:#808080;">2.允许的文件格式：word Doc、Docx、txt
   </view>
   <view style="font-size:25rpx;margin:20rpx;color:#808080;">3.大小限制：≤15MB，超限请删除图片，或选择剪贴上传
   </view>
